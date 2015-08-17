@@ -5,20 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
-public class Home extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -30,6 +25,9 @@ public class Home extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    // StringArray to store the several section(fragment) names of the App
+    private String[] appSections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +46,79 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        Fragment newFragment = null;
+
+        // Method to get FragmentName to avoid switch-case duplication
+        //getFragmentName(position);
+
+        switch (position){
+            case 0:
+                newFragment = new Home_Fragment();
+                break;
+            case 1:
+                newFragment = new Program_Fragment();
+                break;
+            case 2:
+                newFragment = new Gallery_Fragment();
+                break;
+            case 3:
+                newFragment = new Location_Fragment();
+                break;
+            case 4:
+                newFragment = new Reservation_Fragment();
+                break;
+            case 5:
+                newFragment = new Drink_Of_The_Month_Fragment();
+                break;
+            case 7:
+                newFragment = new Regular_Guest_Fragment();
+                break;
+            case 8:
+                newFragment = new News_Fragment();
+                break;
+        }
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, newFragment)
                 .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_section_home);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_section_program);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_section_gallery);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section_location);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section_reservation);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section_drink_of_the_month);
+                break;
+            case 7:
+                mTitle = getString(R.string.title_section_regular_guest);
+                break;
+            case 8:
+                mTitle = getString(R.string.title_section_news);
                 break;
         }
     }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        /** commented because deprecated since API level 21
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
@@ -93,7 +140,7 @@ public class Home extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the HomeActivity/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -140,7 +187,7 @@ public class Home extends AppCompatActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((Home) activity).onSectionAttached(
+            ((HomeActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }

@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">DaSilvaApp</string>
 
-    <string name="title_section1">Home</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section_home">Home</string>
+    <string name="title_section_program">Programm</string>
+    <string name="title_section_gallery">Galerie</string>
+    <string name="title_section_location">Location</string>
+    <string name="title_section_reservation">Reservierung</string>
+    <string name="title_section_drink_of_the_month">Drink des Monats</string>
+    <string name="title_section_regular_guest">Stammgast</string>
+    <string name="title_section_news">News</string>
+    <string name="title_section_image_fullscreen">Vollbild</string>
+    <string name="title_section_gallery_detail">Detailgalerie</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
