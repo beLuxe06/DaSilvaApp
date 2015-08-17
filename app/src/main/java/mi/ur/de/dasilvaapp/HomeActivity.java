@@ -71,10 +71,10 @@ public class HomeActivity extends AppCompatActivity
             case 5:
                 newFragment = new Drink_Of_The_Month_Fragment();
                 break;
-            case 7:
+            case 6:
                 newFragment = new Regular_Guest_Fragment();
                 break;
-            case 8:
+            case 7:
                 newFragment = new News_Fragment();
                 break;
         }
