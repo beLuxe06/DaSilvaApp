@@ -10,7 +10,53 @@
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_section_home"/>
+        android:text="@string/title_section_home"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/next_event_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/section_label"
+        android:text="@string/event_day_today"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/flyer_next_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/next_event_day"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dienstag"
+        android:contentDescription="@string/flyer_next_event_content_description" />
+    <TextView
+        android:id="@+id/today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flyer_next_event"
+        android:layout_alignLeft="@id/flyer_next_event"
+        android:text="@string/today"/>
+    <TextView
+        android:id="@+id/weekday_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flyer_next_event"
+        android:layout_alignRight="@id/flyer_next_event"
+        android:text="@string/weekday_today"/>
+    <TextView
+        android:id="@+id/date_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flyer_next_event"
+        android:layout_alignRight="@id/weekday_today"
+        android:text="@string/date_today"/>
+    <TextView
+        android:id="@+id/event_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weekday_today"
+        android:layout_alignRight="@id/flyer_next_event"
+        android:text="@string/event_status"/>
 
 
 </RelativeLayout>

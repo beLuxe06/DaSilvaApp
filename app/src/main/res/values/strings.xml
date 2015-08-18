@@ -12,6 +12,25 @@
     <string name="title_section_image_fullscreen">Vollbild</string>
     <string name="title_section_gallery_detail">Detailgalerie</string>
 
+
+    <string name="event_day_today">Heute</string>
+    <string name="event_day_tomorrow">Morgen</string>
+    <string name="event_day_x">In X Tagen</string>
+
+    <string name="event_tuesday">Sportler.Stammtisch</string>
+    <string name="event_thursday">Stundenten.Pack</string>
+    <string name="event_friday">I Like...</string>
+    <string name="event_saturday">Club.Classix</string>
+
+    <string name="today">Heute</string>
+    <string name="weekday_today">Montag</string>
+    <string name="date_today">1.1.2000</string>
+    <string name="event_status">Geschlossen</string>
+
+    <string name="flyer_next_event_content_description">Flyer of next upcoming event</string>
+
+
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
