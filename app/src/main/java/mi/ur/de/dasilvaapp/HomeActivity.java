@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -26,6 +29,20 @@ public class HomeActivity extends AppCompatActivity
      */
     private CharSequence mTitle;
 
+    //Store Calendar Data
+    private String actualDate;
+    private String actualUSWeekday;
+    private String actualWeekday;
+    private String actualHour;
+    //Array for Future?
+    //public String[] calendarInfos;
+
+    //Calendar Keys for Bundle
+    public static String DATE = "0";
+    public static String HOUR = "1";
+    public static String DAY = "2";
+
+
     // StringArray to store the several section(fragment) names of the App
     private String[] appSections;
 
@@ -33,7 +50,46 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        setupNavigationDrawerFragment();
 
+
+    }
+
+    private void updateCalendarData() {
+        Calendar c = Calendar.getInstance();
+        // Datum einholen, Format: DD.MM.JJJJ
+        SimpleDateFormat d = new SimpleDateFormat("dd.MM.yyyy");
+        actualDate = d.format(c.getTime());
+        // Uhrzeit einholen, Format: HH
+        SimpleDateFormat h = new SimpleDateFormat("k");
+        actualHour = h.format(c.getTime());
+        // Wochentag einholen und ins deutsche Übertragen, Format: Montag
+        SimpleDateFormat w = new SimpleDateFormat("E");
+        actualUSWeekday = w.format(c.getTime());
+        actualWeekday = getGermanWeekday(actualUSWeekday);
+    }
+
+    private String getGermanWeekday(String USWeekday) {
+        switch (USWeekday){
+            case "Mon":
+                return "Montag";
+            case "Tue":
+                return "Dienstag";
+            case "Wed":
+                return "Mittwoch";
+            case "Thu":
+                return "Donnerstag";
+            case "Fri":
+                return "Freitag";
+            case "Sat":
+                return "Samstag";
+            case "Sun":
+                return "Sonntag";
+        }
+        return null;
+    }
+
+    private void setupNavigationDrawerFragment() {
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -55,6 +111,11 @@ public class HomeActivity extends AppCompatActivity
         switch (position){
             case 0:
                 newFragment = new Home_Fragment();
+                Bundle calendarInfos = new Bundle();
+                calendarInfos.putString(DATE, actualDate);
+                calendarInfos.putString(HOUR, actualHour);
+                calendarInfos.putString(DAY, actualWeekday);
+                newFragment.setArguments(calendarInfos);
                 break;
             case 1:
                 newFragment = new Program_Fragment();
