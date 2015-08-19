@@ -36,7 +36,7 @@ public class Home_Fragment extends Fragment {
 
     private void getCalendarDataFromActivity() {
         Bundle calendarInfos = getArguments();
-        if(calendarInfos != null){
+        if (calendarInfos != null) {
             actualDate = calendarInfos.getString(DATE);
             actualHour = calendarInfos.getString(HOUR);
             actualWeekday = calendarInfos.getString(DAY);
