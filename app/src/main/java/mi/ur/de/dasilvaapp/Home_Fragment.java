@@ -23,15 +23,34 @@ public class Home_Fragment extends Fragment {
     public static String HOUR = "1";
     public static String DAY = "2";
 
+    //Instances of UI
+    private TextView labelNextEventDay;
+    private TextView labelWeekday;
+    private TextView labelDate;
+    private TextView labelOpeningStatus;
+
 
     @Override
     public void onStart() {
         super.onStart();
         getCalendarDataFromActivity();
+        initUI();
         updateDateTextViews();
     }
 
+    private void initUI() {
+        labelNextEventDay = (TextView) getView().findViewById(R.id.next_event_day);
+        labelWeekday = (TextView) getView().findViewById(R.id.weekday_today);
+        labelDate = (TextView) getView().findViewById(R.id.date_today);
+        labelOpeningStatus = (TextView) getView().findViewById(R.id.event_status);
+    }
+
     private void updateDateTextViews() {
+        // labelNextEventDay.setText();
+        labelWeekday.setText(actualWeekday);
+        labelDate.setText(actualDate);
+        labelOpeningStatus.setText(actualHour);
+
     }
 
     private void getCalendarDataFromActivity() {

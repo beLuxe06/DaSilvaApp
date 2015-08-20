@@ -11,19 +11,11 @@
     tools:context=".Home$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:text="@string/title_section_home" />
-
-    <TextView
         android:id="@+id/next_event_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/section_label"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/event_day_today" />

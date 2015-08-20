@@ -51,8 +51,19 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setupNavigationDrawerFragment();
+        updateCalendarData();
+        startHomeFragmentFirst();
+    }
 
-
+    private void startHomeFragmentFirst() {
+        Fragment newFragment = new Home_Fragment();
+        Bundle calendarInfos = new Bundle();
+        calendarInfos.putString(DATE, actualDate);
+        calendarInfos.putString(HOUR, actualHour);
+        calendarInfos.putString(DAY, actualWeekday);
+        newFragment.setArguments(calendarInfos);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
     }
 
     private void updateCalendarData() {
@@ -72,32 +83,29 @@ public class HomeActivity extends AppCompatActivity
     private String getGermanWeekday(String USWeekday) {
         switch (USWeekday){
             case "Mon":
-                return "Montag";
+                return getResources().getString(R.string.weekday_monday);
             case "Tue":
-                return "Dienstag";
+                return getResources().getString(R.string.weekday_tuesday);
             case "Wed":
-                return "Mittwoch";
+                return getResources().getString(R.string.weekday_wednesday);
             case "Thu":
-                return "Donnerstag";
+                return getResources().getString(R.string.weekday_thursday);
             case "Fri":
-                return "Freitag";
+                return getResources().getString(R.string.weekday_friday);
             case "Sat":
-                return "Samstag";
+                return getResources().getString(R.string.weekday_saturday);
             case "Sun":
-                return "Sonntag";
+                return getResources().getString(R.string.weekday_sunday);
         }
         return null;
     }
 
     private void setupNavigationDrawerFragment() {
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -142,9 +150,7 @@ public class HomeActivity extends AppCompatActivity
 
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, newFragment)
-                .commit();
+        fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
     }
 
     public void onSectionAttached(int number) {
