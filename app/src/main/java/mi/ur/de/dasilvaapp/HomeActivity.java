@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity
         // Method to get FragmentName to avoid switch-case duplication
         //getFragmentName(position);
 
-        switch (position){
+        switch (position) {
             case 0:
                 newFragment = new Home_Fragment();
                 Bundle calendarInfos = new Bundle();
@@ -161,7 +161,7 @@ public class HomeActivity extends AppCompatActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
+         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
