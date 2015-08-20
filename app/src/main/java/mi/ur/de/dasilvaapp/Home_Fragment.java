@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -18,6 +19,7 @@ public class Home_Fragment extends Fragment {
     private String actualWeekday;
     private int actualHour;
     private int actualWeekdayIndex;
+    private int actualFlyerSrc;
 
     private String actualOpeningStatus;
     private String nextEventDay;
@@ -32,6 +34,7 @@ public class Home_Fragment extends Fragment {
     private TextView labelWeekday;
     private TextView labelDate;
     private TextView labelOpeningStatus;
+    private ImageView flyer;
 
     @Override
     public void onStart() {
@@ -46,6 +49,7 @@ public class Home_Fragment extends Fragment {
         labelWeekday = (TextView) getView().findViewById(R.id.weekday_today);
         labelDate = (TextView) getView().findViewById(R.id.date_today);
         labelOpeningStatus = (TextView) getView().findViewById(R.id.event_status);
+        flyer = (ImageView) getView().findViewById(R.id.flyer_next_event);
     }
 
     private void updateDateTextViews() {
@@ -54,6 +58,7 @@ public class Home_Fragment extends Fragment {
         labelOpeningStatus.setText(actualOpeningStatus);
         labelWeekday.setText(actualWeekday);
         labelDate.setText(actualDate);
+        flyer.setImageResource(actualFlyerSrc);
 
     }
 
@@ -74,6 +79,7 @@ public class Home_Fragment extends Fragment {
                 actualWeekday = getResources().getString(R.string.weekday_tuesday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                actualFlyerSrc = R.drawable.dienstag;
                 break;
             case 4:
                 actualWeekday = getResources().getString(R.string.weekday_wednesday);
@@ -84,16 +90,19 @@ public class Home_Fragment extends Fragment {
                 actualWeekday = getResources().getString(R.string.weekday_thursday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                actualFlyerSrc = R.drawable.donnerstag;
                 break;
             case 6:
                 actualWeekday = getResources().getString(R.string.weekday_friday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                actualFlyerSrc = R.drawable.freitag;
                 break;
             case 7:
                 actualWeekday = getResources().getString(R.string.weekday_saturday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                actualFlyerSrc = R.drawable.samstag;
                 break;
         }
     }
