@@ -31,16 +31,15 @@ public class HomeActivity extends AppCompatActivity
 
     //Store Calendar Data
     private String actualDate;
-    private String actualUSWeekday;
-    private String actualWeekday;
-    private String actualHour;
+    private int actualHour;
+    public int actualWeekdayIndex;
     //Array for Future?
     //public String[] calendarInfos;
 
     //Calendar Keys for Bundle
     public static String DATE = "0";
     public static String HOUR = "1";
-    public static String DAY = "2";
+    public static String DAY_INDEX = "2";
 
 
     // StringArray to store the several section(fragment) names of the App
@@ -59,8 +58,8 @@ public class HomeActivity extends AppCompatActivity
         Fragment newFragment = new Home_Fragment();
         Bundle calendarInfos = new Bundle();
         calendarInfos.putString(DATE, actualDate);
-        calendarInfos.putString(HOUR, actualHour);
-        calendarInfos.putString(DAY, actualWeekday);
+        calendarInfos.putInt(HOUR, actualHour);
+        calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
         newFragment.setArguments(calendarInfos);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
@@ -72,11 +71,9 @@ public class HomeActivity extends AppCompatActivity
         SimpleDateFormat d = new SimpleDateFormat("dd.MM.yyyy");
         actualDate = d.format(c.getTime());
         // Uhrzeit einholen, Format: HH
-        SimpleDateFormat h = new SimpleDateFormat("k");
-        actualHour = h.format(c.getTime());
-        // Wochentag einholen und ins deutsche Übertragen, Format: Montag
-        SimpleDateFormat w = new SimpleDateFormat("EEEE");
-        actualWeekday = w.format(c.getTime());
+        actualHour = c.get(Calendar.HOUR_OF_DAY);
+        // Wochentagindex einholen, Format: 1-7
+        actualWeekdayIndex = c.get(Calendar.DAY_OF_WEEK);
     }
 
     private void setupNavigationDrawerFragment() {
@@ -95,13 +92,13 @@ public class HomeActivity extends AppCompatActivity
         // Method to get FragmentName to avoid switch-case duplication
         //getFragmentName(position);
 
-        switch (position) {
+        switch (position){
             case 0:
                 newFragment = new Home_Fragment();
                 Bundle calendarInfos = new Bundle();
                 calendarInfos.putString(DATE, actualDate);
-                calendarInfos.putString(HOUR, actualHour);
-                calendarInfos.putString(DAY, actualWeekday);
+                calendarInfos.putInt(HOUR, actualHour);
+                calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
                 newFragment.setArguments(calendarInfos);
                 break;
             case 1:
@@ -164,7 +161,7 @@ public class HomeActivity extends AppCompatActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
-         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
@@ -197,4 +194,45 @@ public class HomeActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+            return rootView;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((HomeActivity) activity).onSectionAttached(
+                    getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+
 }
