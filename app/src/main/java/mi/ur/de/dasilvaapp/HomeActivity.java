@@ -75,29 +75,8 @@ public class HomeActivity extends AppCompatActivity
         SimpleDateFormat h = new SimpleDateFormat("k");
         actualHour = h.format(c.getTime());
         // Wochentag einholen und ins deutsche Übertragen, Format: Montag
-        SimpleDateFormat w = new SimpleDateFormat("E");
-        actualUSWeekday = w.format(c.getTime());
-        actualWeekday = getGermanWeekday(actualUSWeekday);
-    }
-
-    private String getGermanWeekday(String USWeekday) {
-        switch (USWeekday){
-            case "Mon":
-                return getResources().getString(R.string.weekday_monday);
-            case "Tue":
-                return getResources().getString(R.string.weekday_tuesday);
-            case "Wed":
-                return getResources().getString(R.string.weekday_wednesday);
-            case "Thu":
-                return getResources().getString(R.string.weekday_thursday);
-            case "Fri":
-                return getResources().getString(R.string.weekday_friday);
-            case "Sat":
-                return getResources().getString(R.string.weekday_saturday);
-            case "Sun":
-                return getResources().getString(R.string.weekday_sunday);
-        }
-        return null;
+        SimpleDateFormat w = new SimpleDateFormat("EEEE");
+        actualWeekday = w.format(c.getTime());
     }
 
     private void setupNavigationDrawerFragment() {
@@ -116,7 +95,7 @@ public class HomeActivity extends AppCompatActivity
         // Method to get FragmentName to avoid switch-case duplication
         //getFragmentName(position);
 
-        switch (position){
+        switch (position) {
             case 0:
                 newFragment = new Home_Fragment();
                 Bundle calendarInfos = new Bundle();
@@ -185,7 +164,7 @@ public class HomeActivity extends AppCompatActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
+         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
@@ -218,45 +197,4 @@ public class HomeActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((HomeActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
 }
