@@ -33,10 +33,6 @@ public class Home_Fragment extends Fragment {
     private TextView labelDate;
     private TextView labelOpeningStatus;
 
-    //The fragment argument representing the section number for this fragment.
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -63,7 +59,7 @@ public class Home_Fragment extends Fragment {
 
     private void updateActualStringValues(int actualWeekdayIndex) {
         //Prüfung welcher Wochentag, setze Stringvariablen entsprechend
-        switch (actualWeekdayIndex){
+        switch (actualWeekdayIndex) {
             case 1:
                 actualWeekday = getResources().getString(R.string.weekday_sunday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_closed);
