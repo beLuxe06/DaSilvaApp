@@ -31,16 +31,15 @@ public class HomeActivity extends AppCompatActivity
 
     //Store Calendar Data
     private String actualDate;
-    private String actualUSWeekday;
-    private String actualWeekday;
-    private String actualHour;
+    private int actualHour;
+    public int actualWeekdayIndex;
     //Array for Future?
     //public String[] calendarInfos;
 
     //Calendar Keys for Bundle
     public static String DATE = "0";
     public static String HOUR = "1";
-    public static String DAY = "2";
+    public static String DAY_INDEX = "2";
 
 
     // StringArray to store the several section(fragment) names of the App
@@ -59,8 +58,8 @@ public class HomeActivity extends AppCompatActivity
         Fragment newFragment = new Home_Fragment();
         Bundle calendarInfos = new Bundle();
         calendarInfos.putString(DATE, actualDate);
-        calendarInfos.putString(HOUR, actualHour);
-        calendarInfos.putString(DAY, actualWeekday);
+        calendarInfos.putInt(HOUR, actualHour);
+        calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
         newFragment.setArguments(calendarInfos);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
@@ -72,32 +71,9 @@ public class HomeActivity extends AppCompatActivity
         SimpleDateFormat d = new SimpleDateFormat("dd.MM.yyyy");
         actualDate = d.format(c.getTime());
         // Uhrzeit einholen, Format: HH
-        SimpleDateFormat h = new SimpleDateFormat("k");
-        actualHour = h.format(c.getTime());
-        // Wochentag einholen und ins deutsche Übertragen, Format: Montag
-        SimpleDateFormat w = new SimpleDateFormat("E");
-        actualUSWeekday = w.format(c.getTime());
-        actualWeekday = getGermanWeekday(actualUSWeekday);
-    }
-
-    private String getGermanWeekday(String USWeekday) {
-        switch (USWeekday){
-            case "Mon":
-                return getResources().getString(R.string.weekday_monday);
-            case "Tue":
-                return getResources().getString(R.string.weekday_tuesday);
-            case "Wed":
-                return getResources().getString(R.string.weekday_wednesday);
-            case "Thu":
-                return getResources().getString(R.string.weekday_thursday);
-            case "Fri":
-                return getResources().getString(R.string.weekday_friday);
-            case "Sat":
-                return getResources().getString(R.string.weekday_saturday);
-            case "Sun":
-                return getResources().getString(R.string.weekday_sunday);
-        }
-        return null;
+        actualHour = c.get(Calendar.HOUR_OF_DAY);
+        // Wochentagindex einholen, Format: 1-7
+        actualWeekdayIndex = c.get(Calendar.DAY_OF_WEEK);
     }
 
     private void setupNavigationDrawerFragment() {
@@ -121,8 +97,8 @@ public class HomeActivity extends AppCompatActivity
                 newFragment = new Home_Fragment();
                 Bundle calendarInfos = new Bundle();
                 calendarInfos.putString(DATE, actualDate);
-                calendarInfos.putString(HOUR, actualHour);
-                calendarInfos.putString(DAY, actualWeekday);
+                calendarInfos.putInt(HOUR, actualHour);
+                calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
                 newFragment.setArguments(calendarInfos);
                 break;
             case 1:

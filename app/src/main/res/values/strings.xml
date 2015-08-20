@@ -15,6 +15,7 @@
 
     <string name="event_day_today">Heute</string>
     <string name="event_day_tomorrow">Morgen</string>
+    <string name="event_day_day_after_tomorrow">Übermorgen</string>
     <string name="event_day_x">In X Tagen</string>
 
     <string name="event_tuesday">Sportler.Stammtisch</string>
@@ -25,7 +26,11 @@
     <string name="today">Heute</string>
     <string name="weekday_today">Montag</string>
     <string name="date_today">1.1.2000</string>
-    <string name="event_status">Geschlossen</string>
+
+    <string name="event_status_closed">Geschlossen</string>
+    <string name="event_status_open">Offen</string>
+    <string name="event_status_open_in">Offen in: </string>
+
 
     <string name="weekday_monday">Montag</string>
     <string name="weekday_tuesday">Dienstag</string>
