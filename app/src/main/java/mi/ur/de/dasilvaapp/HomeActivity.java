@@ -157,9 +157,13 @@ public class HomeActivity extends AppCompatActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
-         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
+         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/;
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+
+        actionBar.setLogo(R.mipmap.ic_launcher);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
 
 
