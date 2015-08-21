@@ -12,6 +12,14 @@ import android.view.ViewGroup;
 public class Location_Fragment extends Fragment {
 
     @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_location, container, false);

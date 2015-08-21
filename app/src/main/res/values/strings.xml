@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">DaSilva</string>
+    <string name="location_name">Da Silva</string>
+    <string name="location_type">Club.Bar.Lounge</string>
 
     <string name="title_section_home">Home</string>
     <string name="title_section_program">Programm</string>
@@ -42,7 +44,10 @@
 
     <string name="flyer_next_event_content_description">Flyer of next upcoming event</string>
 
+    <string name="location_picture_content_description">Picture of location</string>
 
+    <string name="opening_times_weekdays">Di, Do, Fr, Sa, vor Feiertagen</string>
+    <string name="opening_times_hours">22 – 2 Uhr</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
