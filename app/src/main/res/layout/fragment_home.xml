@@ -6,7 +6,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Home$PlaceholderFragment">
+    android:background="@drawable/background_v1"
+    tools:context=".Home$PlaceholderFragment"
+    android:backgroundTintMode="src_over">
 
     <TextView
         android:id="@+id/next_event_day"
@@ -15,6 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/event_day_today" />
 
     <ImageView
@@ -35,6 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/event_status_closed" />
 
     <TextView
@@ -44,6 +48,7 @@
         android:layout_above="@id/event_status"
         android:layout_toLeftOf="@id/weekday_today"
         android:gravity="center"
+        android:textColor="#FFF"
         android:text="@string/today" />
 
     <TextView
@@ -64,6 +69,7 @@
         android:layout_above="@id/event_status"
         android:layout_toRightOf="@+id/weekday_today"
         android:gravity="center"
+        android:textColor="#FFF"
         android:text="@string/date_today" />
 
 

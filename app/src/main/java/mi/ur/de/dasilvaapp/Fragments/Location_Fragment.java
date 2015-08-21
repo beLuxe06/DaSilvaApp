@@ -57,10 +57,10 @@ public class Location_Fragment extends Fragment {
     }
 
     private void initPictureLinksArray() {
-        pictureLinks.add(R.drawable.dienstag);
-        pictureLinks.add(R.drawable.donnerstag);
-        pictureLinks.add(R.drawable.freitag);
-        pictureLinks.add(R.drawable.samstag);
+        pictureLinks.add(R.drawable.location_01);
+        pictureLinks.add(R.drawable.location_02);
+        pictureLinks.add(R.drawable.location_03);
+        pictureLinks.add(R.drawable.location_04);
     }
 
     private void initUi() {

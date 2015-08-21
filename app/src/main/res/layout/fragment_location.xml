@@ -6,6 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_v1"
+    android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
     <TextView
@@ -15,6 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/location_name" />
 
     <TextView
@@ -24,6 +27,7 @@
         android:layout_below="@+id/location_name"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/location_type" />
 
     <ImageView
@@ -35,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:contentDescription="@string/location_picture_content_description"
-        android:src="@drawable/dienstag"/>
+        android:src="@drawable/location_01"/>
         <!-- picture as placeholder -->
 
     <TextView
@@ -45,6 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/opening_times_hours" />
 
     <TextView
@@ -54,6 +59,7 @@
         android:layout_above="@+id/opening_times_hours"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textColor="#FFF"
         android:text="@string/opening_times_weekdays" />
 
 </RelativeLayout>
