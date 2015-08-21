@@ -49,6 +49,12 @@ public class Home_Fragment extends Fragment {
         updateDateTextViews();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateDateTextViews();
+    }
+
     private void initUI() {
         labelNextEventDay = (TextView) getView().findViewById(R.id.next_event_day);
         labelWeekday = (TextView) getView().findViewById(R.id.weekday_today);
@@ -136,11 +142,10 @@ public class Home_Fragment extends Fragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
-    public static Home_Fragment newInstance(int sectionNumber) {
+    public static Home_Fragment newInstance(int sectionNumber, Bundle bundle) {
         Home_Fragment fragment = new Home_Fragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
+        bundle.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(bundle);
         return fragment;
     }
 

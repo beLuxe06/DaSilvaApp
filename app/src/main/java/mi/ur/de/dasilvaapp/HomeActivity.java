@@ -105,12 +105,11 @@ public class HomeActivity extends AppCompatActivity
 
         switch (position) {
             case 0:
-                newFragment = Home_Fragment.newInstance(position + 1);
                 Bundle calendarInfos = new Bundle();
                 calendarInfos.putString(DATE, actualDate);
                 calendarInfos.putInt(HOUR, actualHour);
                 calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
-                newFragment.setArguments(calendarInfos);
+                newFragment = Home_Fragment.newInstance(position + 1, calendarInfos);
                 break;
             case 1:
                 newFragment = Program_Fragment.newInstance(position + 1);
