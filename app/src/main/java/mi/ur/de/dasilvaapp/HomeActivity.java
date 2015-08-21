@@ -59,6 +59,12 @@ public class HomeActivity extends AppCompatActivity
         startHomeFragmentFirst();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCalendarData();
+    }
+
     private void startHomeFragmentFirst() {
         Fragment newFragment = new Home_Fragment();
         Bundle calendarInfos = new Bundle();
