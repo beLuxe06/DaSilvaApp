@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,15 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import mi.ur.de.dasilvaapp.R;
+
 /**
  * Created by blu on 17.08.2015.
  */
-public class Drink_Of_The_Month_Fragment extends Fragment {
+public class Gallery_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_drink_of_the_month, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
         return rootView;
     }
 

@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import mi.ur.de.dasilvaapp.R;
 
 /**
  * Created by blu on 17.08.2015.

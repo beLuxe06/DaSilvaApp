@@ -12,6 +12,15 @@ import android.support.v4.widget.DrawerLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import mi.ur.de.dasilvaapp.Fragments.Drink_Of_The_Month_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Gallery_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Home_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Location_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.News_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Program_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 

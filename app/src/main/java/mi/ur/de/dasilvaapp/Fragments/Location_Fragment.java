@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Fragments;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.R;
+import mi.ur.de.dasilvaapp.SwipeDetect;
 
 /**
  * Created by blu on 17.08.2015.
