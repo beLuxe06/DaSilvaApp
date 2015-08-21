@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
 
 /**
@@ -37,6 +38,8 @@ public class Home_Fragment extends Fragment {
     private TextView labelDate;
     private TextView labelOpeningStatus;
     private ImageView flyer;
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     @Override
     public void onStart() {
@@ -123,8 +126,22 @@ public class Home_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((HomeActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    public static Home_Fragment newInstance(int sectionNumber) {
+        Home_Fragment fragment = new Home_Fragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

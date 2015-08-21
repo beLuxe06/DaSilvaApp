@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity
 
         switch (position) {
             case 0:
-                newFragment = new Home_Fragment();
+                newFragment = Home_Fragment.newInstance(position + 1);
                 Bundle calendarInfos = new Bundle();
                 calendarInfos.putString(DATE, actualDate);
                 calendarInfos.putInt(HOUR, actualHour);
@@ -107,31 +107,31 @@ public class HomeActivity extends AppCompatActivity
                 newFragment.setArguments(calendarInfos);
                 break;
             case 1:
-                newFragment = new Program_Fragment();
+                newFragment = Program_Fragment.newInstance(position + 1);
                 break;
             case 2:
-                newFragment = new Gallery_Fragment();
+                newFragment = Gallery_Fragment.newInstance(position + 1);
                 break;
             case 3:
-                newFragment = new Location_Fragment();
+                newFragment = Location_Fragment.newInstance(position + 1);
                 break;
             case 4:
-                newFragment = new Reservation_Fragment();
+                newFragment = Reservation_Fragment.newInstance(position + 1);
                 break;
             case 5:
-                newFragment = new Drink_Of_The_Month_Fragment();
+                newFragment = Drink_Of_The_Month_Fragment.newInstance(position + 1);
                 break;
             case 6:
-                newFragment = new Regular_Guest_Fragment();
+                newFragment = Regular_Guest_Fragment.newInstance(position + 1);
                 break;
             case 7:
-                newFragment = new News_Fragment();
+                newFragment = News_Fragment.newInstance(position + 1);
                 break;
         }
 
-        // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
+
     }
 
     public void onSectionAttached(int number) {
@@ -167,12 +167,13 @@ public class HomeActivity extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
          actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/;
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
-
-        actionBar.setLogo(R.mipmap.ic_launcher);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(mTitle);
+            actionBar.setLogo(R.mipmap.ic_launcher);
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 
 

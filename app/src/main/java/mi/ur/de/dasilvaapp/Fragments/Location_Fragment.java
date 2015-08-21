@@ -1,5 +1,6 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
 import mi.ur.de.dasilvaapp.SwipeDetect;
 
@@ -25,6 +27,8 @@ public class Location_Fragment extends Fragment {
     ImageView locationPicture;
     ArrayList<Integer> pictureLinks = new ArrayList<>();
     int imageIndex = 0;
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     @Override
     public void onStart() {
@@ -66,8 +70,22 @@ public class Location_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_location, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_location, container, false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((HomeActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    public static Location_Fragment newInstance(int sectionNumber) {
+        Location_Fragment fragment = new Location_Fragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }
