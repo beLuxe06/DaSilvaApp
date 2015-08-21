@@ -31,7 +31,9 @@
 
     <string name="event_status_closed">Geschlossen</string>
     <string name="event_status_open">Offen</string>
-    <string name="event_status_open_in">Offen in: </string>
+    <string name="event_status_open_in">Offen in </string>
+    <string name="event_status_unit"> Stunden</string>
+
 
 
     <string name="weekday_monday">Montag</string>
