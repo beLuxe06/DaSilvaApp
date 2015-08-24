@@ -88,7 +88,7 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 actualFlyerSrc = R.drawable.samstag;
                 // Ab 2 Uhr geschlossen
-                if(actualHour > CLOSING_TIME){
+                if(actualHour >= CLOSING_TIME){
                     actualOpeningStatus = getResources().getString(R.string.event_status_closed);
                     nextEventDay = getResources().getString(R.string.event_day_day_after_tomorrow);
                     actualFlyerSrc = R.drawable.dienstag;
@@ -109,7 +109,7 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.dienstag;
                 // Ab 21 Uhr geöffnet
-                if(actualHour > OPENING_TIME) {
+                if(actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 }
                 break;
@@ -121,7 +121,7 @@ public class Home_Fragment extends Fragment {
                 nextEventDay = getResources().getString(R.string.event_day_today);
                 actualFlyerSrc = R.drawable.dienstag;
                 // Ab 2 Uhr geschlossen
-                if(actualHour > CLOSING_TIME){
+                if(actualHour >= CLOSING_TIME){
                     actualOpeningStatus = getResources().getString(R.string.event_status_closed);
                     nextEventDay = getResources().getString(R.string.event_day_tomorrow);
                     actualFlyerSrc = R.drawable.donnerstag;
@@ -134,7 +134,7 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.donnerstag;
                 // Ab 21 Uhr geöffnet
-                if(actualHour > OPENING_TIME) {
+                if(actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 }
                 break;
@@ -146,12 +146,12 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.freitag;
                 // Bis 2 Uhr geöffnet von Donnerstag
-                if(actualHour < CLOSING_TIME) {
+                if(actualHour <= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     actualFlyerSrc = R.drawable.donnerstag;
                 }
                 // Ab 21 Uhr geöffnet
-                if(actualHour > OPENING_TIME) {
+                if(actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     actualFlyerSrc = R.drawable.freitag;
                 }
@@ -164,12 +164,12 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.samstag;
                 // Bis 2 Uhr geöffnet von Donnerstag
-                if(actualHour < CLOSING_TIME) {
+                if(actualHour <= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     actualFlyerSrc = R.drawable.freitag;
                 }
                 // Ab 21 Uhr geöffnet
-                if(actualHour > OPENING_TIME) {
+                if(actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     actualFlyerSrc = R.drawable.samstag;
                 }
