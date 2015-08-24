@@ -39,7 +39,8 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:textColor="#FFF"
-        android:text="@string/event_status_closed" />
+        android:text="@string/event_status_closed"
+        android:paddingStart="30dp" />
 
     <TextView
         android:id="@+id/today"
@@ -57,8 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/event_status"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
         android:textColor="#FFF"
         android:text="@string/weekday_today" />
