@@ -40,7 +40,6 @@
         android:layout_gravity="center"
         android:textColor="#FFF"
         android:text="@string/event_status_closed"
-        android:paddingStart="30dp"
         tools:targetApi="jelly_bean_mr1" />
 
     <TextView
