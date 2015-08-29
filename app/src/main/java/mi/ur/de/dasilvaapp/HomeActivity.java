@@ -57,6 +57,12 @@ public class HomeActivity extends AppCompatActivity
         setupNavigationDrawerFragment();
         updateCalendarData();
         startHomeFragmentFirst();
+        overrideTransitions();
+    }
+
+    private void overrideTransitions() {
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
 
     @Override

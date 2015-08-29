@@ -10,8 +10,12 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,7 @@ import mi.ur.de.dasilvaapp.SwipeDetect;
  */
 public class Location_Fragment extends Fragment {
 
-    ImageView locationPicture;
+    ImageSwitcher locationPictureSwitcher;
     ArrayList<Integer> pictureLinks = new ArrayList<>();
     int imageIndex = 0;
 
@@ -33,24 +37,28 @@ public class Location_Fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        initUi();
         initPictureLinksArray();
+        initUi();
         initOnSwipeListener();
     }
 
     private void initOnSwipeListener() {
-        locationPicture.setOnTouchListener(new SwipeDetect() {
+        locationPictureSwitcher.setOnTouchListener(new SwipeDetect() {
             public void onSwipeRight() {
+                locationPictureSwitcher.setInAnimation(getActivity(), R.anim.slide_in_left);
+                locationPictureSwitcher.setOutAnimation(getActivity(), R.anim.slide_out_left);
                 if (imageIndex < pictureLinks.size() - 1) {
                     imageIndex++;
-                    locationPicture.setImageResource(pictureLinks.get(imageIndex));
+                    locationPictureSwitcher.setImageResource(pictureLinks.get(imageIndex));
                 }
             }
 
             public void onSwipeLeft() {
+                locationPictureSwitcher.setInAnimation(getActivity(), R.anim.slide_in_right);
+                locationPictureSwitcher.setOutAnimation(getActivity(), R.anim.slide_out_right);
                 if (imageIndex > 0) {
                     imageIndex--;
-                    locationPicture.setImageResource(pictureLinks.get(imageIndex));
+                    locationPictureSwitcher.setImageResource(pictureLinks.get(imageIndex));
                 }
             }
         });
@@ -64,7 +72,21 @@ public class Location_Fragment extends Fragment {
     }
 
     private void initUi() {
-        locationPicture = (ImageView) getView().findViewById(R.id.location_picture);
+        initImageSwitcher();
+    }
+
+    private void initImageSwitcher() {
+        locationPictureSwitcher = (ImageSwitcher) getView().findViewById(R.id.location_picture);
+        locationPictureSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            public View makeView() {
+                ImageView imageView = new ImageView(getActivity());
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imageView.setLayoutParams(new ImageSwitcher.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                return imageView;
+            }
+        });
+
+        locationPictureSwitcher.setImageResource(pictureLinks.get(imageIndex));
     }
 
     @Override
