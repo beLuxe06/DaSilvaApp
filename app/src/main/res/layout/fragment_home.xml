@@ -10,28 +10,28 @@
     tools:context=".Home$PlaceholderFragment"
     android:backgroundTintMode="src_over">
 
-    <TextView
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
         android:id="@+id/next_event_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:textColor="#FFF"
+        style="@style/headline"
         android:text="@string/event_day_today" />
 
     <ImageView
         android:id="@+id/flyer_next_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/weekday_today"
+        android:layout_above="@+id/event_title"
         android:layout_below="@+id/next_event_day"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:contentDescription="@string/flyer_next_event_content_description"
         android:src="@drawable/dienstag" />
 
-    <TextView
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/event_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,17 +42,17 @@
         android:text="@string/event_status_closed"
         tools:targetApi="jelly_bean_mr1" />
 
-    <TextView
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/event_status"
-        android:layout_toLeftOf="@id/weekday_today"
+        android:layout_above="@+id/event_status"
+        android:layout_toLeftOf="@+id/weekday_today"
         android:gravity="center"
         android:textColor="#FFF"
         android:text="@string/today" />
 
-    <TextView
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/weekday_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,15 +64,24 @@
         android:textColor="#FFF"
         android:text="@string/weekday_today" />
 
-    <TextView
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/date_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/event_status"
+        android:layout_above="@+id/event_status"
         android:layout_toRightOf="@+id/weekday_today"
         android:gravity="center"
         android:textColor="#FFF"
         android:text="@string/date_today" />
 
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/date_today"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Eventtitle"
+        android:textColor="#FFF"/>
 
 </RelativeLayout>
