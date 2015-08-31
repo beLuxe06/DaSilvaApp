@@ -5,5 +5,5 @@
     android:choiceMode="singleChoice"
     android:divider="@color/text_color_primary"
     android:dividerHeight="0dp"
-    android:background="@color/da_silva_highlight"
+    android:background="@color/secondary_text_default_material_dark"
     tools:context=".NavigationDrawerFragment" />

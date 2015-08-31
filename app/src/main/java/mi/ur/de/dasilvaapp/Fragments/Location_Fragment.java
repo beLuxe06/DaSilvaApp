@@ -42,6 +42,11 @@ public class Location_Fragment extends Fragment {
         initOnSwipeListener();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void initOnSwipeListener() {
         locationPictureSwitcher.setOnTouchListener(new SwipeDetect() {
             public void onSwipeRight() {

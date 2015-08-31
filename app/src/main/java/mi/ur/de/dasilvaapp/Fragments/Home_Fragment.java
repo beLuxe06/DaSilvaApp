@@ -20,6 +20,7 @@ import mi.ur.de.dasilvaapp.R;
 public class Home_Fragment extends Fragment {
 
     //Store Calendar Data
+    private String nextEventTitle;
     private String actualDate;
     private String actualWeekday;
     private int actualHour;
@@ -41,12 +42,13 @@ public class Home_Fragment extends Fragment {
     //Instances of UI
     private DaSilvaAppTitleTextView labelNextEventDay;
     //private TextView labelNextEventDay;
-    private DaSilvaAppContentTextView labelWeekday;
-    //private TextView labelWeekday;
-    private DaSilvaAppContentTextView labelDate;
-    //private TextView labelDate;
-    private DaSilvaAppContentTextView labelOpeningStatus;
-    //private TextView labelOpeningStatus;
+    private DaSilvaAppTitleTextView labelNextEventTitle;
+    //private DaSilvaAppContentTextView labelWeekday;
+    private TextView labelWeekday;
+    //private DaSilvaAppContentTextView labelDate;
+    private TextView labelDate;
+    //private DaSilvaAppContentTextView labelOpeningStatus;
+    private TextView labelOpeningStatus;
     private ImageView flyer;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -66,20 +68,22 @@ public class Home_Fragment extends Fragment {
     }
 
     private void initUI() {
+        labelNextEventTitle = (DaSilvaAppTitleTextView) getView().findViewById(R.id.next_event_title);
         labelNextEventDay = (DaSilvaAppTitleTextView) getView().findViewById(R.id.next_event_day);
         //labelNextEventDay = (TextView) getView().findViewById(R.id.next_event_day);
-        labelWeekday = (DaSilvaAppContentTextView) getView().findViewById(R.id.weekday_today);
-        //labelWeekday = (TextView) getView().findViewById(R.id.weekday_today);
-        labelDate = (DaSilvaAppContentTextView) getView().findViewById(R.id.date_today);
-        //labelDate = (TextView) getView().findViewById(R.id.date_today);
-        labelOpeningStatus = (DaSilvaAppContentTextView) getView().findViewById(R.id.event_status);
-        //labelOpeningStatus = (TextView) getView().findViewById(R.id.event_status);
+        //labelWeekday = (DaSilvaAppContentTextView) getView().findViewById(R.id.weekday_today);
+        labelWeekday = (TextView) getView().findViewById(R.id.weekday_today);
+        //labelDate = (DaSilvaAppContentTextView) getView().findViewById(R.id.date_today);
+        labelDate = (TextView) getView().findViewById(R.id.date_today);
+        //labelOpeningStatus = (DaSilvaAppContentTextView) getView().findViewById(R.id.event_status);
+        labelOpeningStatus = (TextView) getView().findViewById(R.id.event_status);
         flyer = (ImageView) getView().findViewById(R.id.flyer_next_event);
     }
 
     private void updateDateTextViews() {
         updateActualStringValues(actualWeekdayIndex, actualHour);
         labelNextEventDay.setText(nextEventDay);
+        labelNextEventTitle.setText(nextEventTitle);
         labelOpeningStatus.setText(actualOpeningStatus);
         labelWeekday.setText(actualWeekday);
         labelDate.setText(actualDate);
@@ -95,14 +99,16 @@ public class Home_Fragment extends Fragment {
                 actualWeekday = getResources().getString(R.string.weekday_sunday);
                 // bis 2 Uhr geöffnet von Samstag
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_saturday);
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                 actualFlyerSrc = R.drawable.samstag;
                 // Ab 2 Uhr geschlossen
-                if(actualHour >= CLOSING_TIME){
+                if (actualHour >= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_closed);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_closed));
                     nextEventDay = getResources().getString(R.string.event_day_day_after_tomorrow);
+                    nextEventTitle = getResources().getString(R.string.event_tuesday);
                     actualFlyerSrc = R.drawable.dienstag;
                 }
                 break;
@@ -110,6 +116,7 @@ public class Home_Fragment extends Fragment {
             case 2:
                 actualWeekday = getResources().getString(R.string.weekday_monday);
                 nextEventDay = getResources().getString(R.string.event_day_tomorrow);
+                nextEventTitle = getResources().getString(R.string.event_tuesday);
                 // Immer geschlossen
                 actualOpeningStatus = getResources().getString(R.string.event_status_closed);
                 labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_closed));
@@ -119,10 +126,11 @@ public class Home_Fragment extends Fragment {
             case 3:
                 actualWeekday = getResources().getString(R.string.weekday_tuesday);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_tuesday);
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.dienstag;
                 // Ab 21 Uhr geöffnet
-                if(actualHour >= OPENING_TIME) {
+                if (actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                 }
@@ -134,12 +142,14 @@ public class Home_Fragment extends Fragment {
                 actualOpeningStatus = getResources().getString(R.string.event_status_open);
                 labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_tuesday);
                 actualFlyerSrc = R.drawable.dienstag;
                 // Ab 2 Uhr geschlossen
-                if(actualHour >= CLOSING_TIME){
+                if (actualHour >= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_closed);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_closed));
                     nextEventDay = getResources().getString(R.string.event_day_tomorrow);
+                    nextEventTitle = getResources().getString(R.string.event_thursday);
                     actualFlyerSrc = R.drawable.donnerstag;
                 }
                 break;
@@ -147,10 +157,11 @@ public class Home_Fragment extends Fragment {
             case 5:
                 actualWeekday = getResources().getString(R.string.weekday_thursday);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_thursday);
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.donnerstag;
                 // Ab 21 Uhr geöffnet
-                if(actualHour >= OPENING_TIME) {
+                if (actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                 }
@@ -159,40 +170,46 @@ public class Home_Fragment extends Fragment {
             case 6:
                 actualWeekday = getResources().getString(R.string.weekday_friday);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_friday);
                 // Zwischen 2 und 21 Uhr geschlossen
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.freitag;
                 // Bis 2 Uhr geöffnet von Donnerstag
-                if(actualHour <= CLOSING_TIME) {
+                if (actualHour <= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
+                    nextEventTitle = getResources().getString(R.string.event_thursday);
                     actualFlyerSrc = R.drawable.donnerstag;
                 }
                 // Ab 21 Uhr geöffnet
-                if(actualHour >= OPENING_TIME) {
+                if (actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                     actualFlyerSrc = R.drawable.freitag;
+                    nextEventTitle = getResources().getString(R.string.event_friday);
                 }
                 break;
             // Samstag
             case 7:
                 actualWeekday = getResources().getString(R.string.weekday_saturday);
                 nextEventDay = getResources().getString(R.string.event_day_today);
+                nextEventTitle = getResources().getString(R.string.event_saturday);
                 // Zwischen 2 und 21 Uhr geschlossen
                 actualOpeningStatus = getOpenInString(actualHour);
                 actualFlyerSrc = R.drawable.samstag;
                 // Bis 2 Uhr geöffnet von Donnerstag
-                if(actualHour <= CLOSING_TIME) {
+                if (actualHour <= CLOSING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                     actualFlyerSrc = R.drawable.freitag;
+                    nextEventTitle = getResources().getString(R.string.event_friday);
                 }
                 // Ab 21 Uhr geöffnet
-                if(actualHour >= OPENING_TIME) {
+                if (actualHour >= OPENING_TIME) {
                     actualOpeningStatus = getResources().getString(R.string.event_status_open);
                     labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open));
                     actualFlyerSrc = R.drawable.samstag;
+                    nextEventTitle = getResources().getString(R.string.event_saturday);
                 }
                 break;
         }
