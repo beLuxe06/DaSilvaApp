@@ -27,8 +27,8 @@
         android:text="@string/location_type"
         android:textColor="#FFF" />
 
-    <ImageSwitcher
-        android:id="@+id/location_picture"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/location_image_view_pager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/opening_times_weekdays"
