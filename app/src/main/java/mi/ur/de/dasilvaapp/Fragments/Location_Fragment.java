@@ -31,12 +31,9 @@ import mi.ur.de.dasilvaapp.ViewPagerAdapter;
  */
 public class Location_Fragment extends Fragment {
 
-    ImageSwitcher locationPictureSwitcher;
-
     ViewPager locationImageViewPager;
     PagerAdapter locationImageViewPagerAdapter;
     int[] imageLinks;
-    int imageIndex = 0;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -45,7 +42,6 @@ public class Location_Fragment extends Fragment {
         super.onStart();
         initPictureLinksArray();
         initUi();
-        //initOnSwipeListener();
     }
 
     @Override
@@ -53,34 +49,11 @@ public class Location_Fragment extends Fragment {
         super.onResume();
     }
 
-    private void initOnSwipeListener() {
-        locationPictureSwitcher.setOnTouchListener(new SwipeDetect() {
-            public void onSwipeRight() {
-                locationPictureSwitcher.setInAnimation(getActivity(), R.anim.slide_in_left);
-                locationPictureSwitcher.setOutAnimation(getActivity(), R.anim.slide_out_left);
-                if (imageIndex < imageLinks.length - 1) {
-                    imageIndex++;
-                    locationPictureSwitcher.setImageResource(imageLinks[imageIndex]);
-                }
-            }
-
-            public void onSwipeLeft() {
-                locationPictureSwitcher.setInAnimation(getActivity(), R.anim.slide_in_right);
-                locationPictureSwitcher.setOutAnimation(getActivity(), R.anim.slide_out_right);
-                if (imageIndex > 0) {
-                    imageIndex--;
-                    locationPictureSwitcher.setImageResource(imageLinks[imageIndex]);
-                }
-            }
-        });
-    }
-
     private void initPictureLinksArray() {
         imageLinks = new int[]{R.drawable.location_01, R.drawable.location_02, R.drawable.location_03, R.drawable.location_04};
     }
 
     private void initUi() {
-        //initImageSwitcher();
         initViewPager();
     }
 
@@ -89,20 +62,6 @@ public class Location_Fragment extends Fragment {
         locationImageViewPagerAdapter = new ViewPagerAdapter(getActivity(), imageLinks);
         locationImageViewPager.setAdapter(locationImageViewPagerAdapter);
     }
-
-    /*private void initImageSwitcher() {
-        locationPictureSwitcher = (ImageSwitcher) getView().findViewById(R.id.location_picture);
-        locationPictureSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
-            public View makeView() {
-                ImageView imageView = new ImageView(getActivity());
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                imageView.setLayoutParams(new ImageSwitcher.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                return imageView;
-            }
-        });
-
-        locationPictureSwitcher.setImageResource(imageLinks[imageIndex]);
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
