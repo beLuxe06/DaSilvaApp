@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_list_view_items">
+
+    <ImageView
+        android:id="@+id/news_feed_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_v1"
+        />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:isIndicator="true"
+        android:id="@+id/news_feed_item_ratingBar"
+        android:layout_alignBottom="@+id/news_feed_item_image"
+        android:layout_centerHorizontal="true"
+        android:numStars="5"
+        android:background="@color/da_silva_highlight"
+        android:stepSize="0.5"
+        android:rating="0"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_today"
+        android:id="@+id/news_feed_item_title"
+        android:layout_above="@+id/news_feed_item_ratingBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/news_feed_item_image"
+        android:layout_alignEnd="@+id/news_feed_item_image"
+        android:background="@color/da_silva_highlight"
+        android:textColor="@color/text_color_primary"
+        style="@style/body"
+        android:singleLine="true" />
+
+</RelativeLayout>

@@ -8,12 +8,35 @@
     android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/location_name_news"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:text="@string/title_section_news"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_name"
+        style="@style/headline"/>
+
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/location_type_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_name_news"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_type"
+        style="@style/subhead"/>
+
+    <ListView
+        android:id="@+id/news_feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/location_type_news"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        android:padding="10dp"
+        android:animateLayoutChanges="true"
+        />
 
 
 </RelativeLayout>

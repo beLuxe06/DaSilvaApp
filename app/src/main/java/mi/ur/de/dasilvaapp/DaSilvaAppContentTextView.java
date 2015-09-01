@@ -13,18 +13,18 @@ import android.widget.TextView;
 public class DaSilvaAppContentTextView extends AppCompatTextView {
     public DaSilvaAppContentTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/SixCaps.ttf");
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/AgencyR.ttf");
         this.setTypeface(tf);
     }
     public DaSilvaAppContentTextView(Context context) {
         super(context);
-        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/SixCaps.ttf");
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/AgencyR.ttf");
         this.setTypeface(tf);
     }
 
     public DaSilvaAppContentTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/SixCaps.ttf");
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/AgencyR.ttf");
         this.setTypeface(tf);
     }
 

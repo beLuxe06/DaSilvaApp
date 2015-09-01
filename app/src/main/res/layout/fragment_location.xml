@@ -7,53 +7,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/location_name"
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/location_name_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/location_name"
-        android:textColor="#FFF" />
+        style="@style/headline"/>
 
-    <TextView
-        android:id="@+id/location_type"
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/location_type_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/location_name"
+        android:layout_below="@+id/location_name_location"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/location_type"
-        android:textColor="#FFF" />
+        style="@style/subhead"/>
 
     <ImageSwitcher
         android:id="@+id/location_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/opening_times_weekdays"
-        android:layout_below="@+id/location_type"
+        android:layout_above="@+id/opening_weekdays_location"
+        android:layout_below="@+id/location_type_location"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/opening_times_hours"
+        android:id="@+id/opening_times_hours_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/opening_times_hours"
-        android:textColor="#FFF" />
+        style="@style/body"/>
 
     <TextView
-        android:id="@+id/opening_times_weekdays"
+        android:id="@+id/opening_weekdays_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/opening_times_hours"
+        android:layout_above="@+id/opening_times_hours_location"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/opening_times_weekdays"
-        android:textColor="#FFF" />
+        style="@style/body"/>
 
 </RelativeLayout>
