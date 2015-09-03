@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DaSilva</string>
+    <string name="app_name">Da Silva</string>
     <string name="location_name">Da Silva</string>
     <string name="location_type">Club.Bar.Lounge</string>
     <string name="facebook_app_id">504302586404216</string>
@@ -55,8 +55,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="event_description_tuesday">Pong or Pay!\n Throw the ball into the cup and you can drink for free!\n Das neue Beerpong Event jeden Dienstag im Da Silva!</string>
-
+    <string name="event_description_tuesday">Pong or Pay!\n Throw ball into cup and drink for free!\n Neues Beerpong Event dienstags im Da Silva! \n Außerdem Specials für Sportler!</string>
+    <string name="event_description_thursday">Studenten.Pack\n Mit Trink 2 Zahl 1 bei Shots und Bier sparst du 50%\n Außerdem alle Longdrinks für nur 3,50€\n Jeden Donnerstag im Da Silva!</string>
+    <string name="event_description_friday">I Like&#8230;\n C&#8230;ocktails, I Like Da Silva!\n Jeden Freitag bei uns Cocktails für 4,90€\n I Like Fridays! </string>
+    <string name="event_description_saturday">#Weekend\n #Revel\n #Drink\n Feiert das Wochenende jeden Samstag im Da Silva! </string>
 
     <string name="action_example">More</string>
 
