@@ -16,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
@@ -34,6 +35,9 @@ public class Location_Fragment extends Fragment {
     ViewPager locationImageViewPager;
     PagerAdapter locationImageViewPagerAdapter;
     int[] imageLinks;
+
+    TextView locationImageIndicator;
+    TextView locationNumberOfImages;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -55,12 +59,40 @@ public class Location_Fragment extends Fragment {
 
     private void initUi() {
         initViewPager();
+        initTextViews();
+    }
+
+    private void initTextViews() {
+        locationImageIndicator = (TextView) getView().findViewById(R.id.indicator);
+        locationNumberOfImages = (TextView) getView().findViewById(R.id.number_of_images);
+        locationNumberOfImages.setText(Integer.toString(imageLinks.length));
     }
 
     private void initViewPager() {
         locationImageViewPager = (ViewPager) getView().findViewById(R.id.location_image_view_pager);
         locationImageViewPagerAdapter = new ViewPagerAdapter(getActivity(), imageLinks);
         locationImageViewPager.setAdapter(locationImageViewPagerAdapter);
+        initViewPagerOnChangeListener();
+    }
+
+    private void initViewPagerOnChangeListener() {
+        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                locationImageIndicator.setText(Integer.toString(position + 1));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        };
+        locationImageViewPager.setOnPageChangeListener(onPageChangeListener);
     }
 
     @Override

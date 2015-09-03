@@ -1,57 +1,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_v1"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/background_v1"
-    android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
     <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
         android:id="@+id/location_name_program"
+        style="@style/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/location_name"
-        style="@style/headline"/>
+        android:text="@string/location_name" />
 
     <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/location_type_program"
+        style="@style/subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/location_name_program"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/location_type"
-        style="@style/subhead"/>
+        android:text="@string/location_type" />
 
     <ImageView
         android:id="@+id/previous_flyer_program"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/actual_event_description_program"
-        android:layout_below="@+id/location_type_program"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/location_type_program"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/location_type_program"
-        android:layout_marginRight="30dp"
-        android:src="@drawable/samstag_neu"
         android:maxWidth="20dp"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:src="@drawable/samstag_neu" />
 
-    <ImageView
+    <android.support.v4.view.ViewPager
         android:id="@+id/flyer_switcher_program"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/actual_event_description_program"
         android:layout_below="@+id/location_type_program"
-        android:layout_toRightOf="@+id/previous_flyer_program"
-        android:layout_toLeftOf="@+id/next_flyer_program"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:src="@drawable/dienstag_neu"
+        android:layout_toLeftOf="@+id/next_flyer_program"
+        android:layout_toRightOf="@+id/previous_flyer_program"
         android:scaleType="centerInside" />
 
     <ImageView
@@ -59,33 +59,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/actual_event_description_program"
-        android:layout_below="@+id/location_type_program"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/location_type_program"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/location_type_program"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/donnerstag_neu"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:src="@drawable/donnerstag_neu" />
 
     <TextView
         android:id="@+id/actual_event_title_program"
+        style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="@string/event_description_tuesday"
-        style="@style/body"/>
+        android:gravity="center"
+        android:text="@string/event_description_tuesday" />
 
     <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
         android:id="@+id/actual_event_description_program"
+        style="@style/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/actual_event_title_program"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/event_tuesday"
-        style="@style/headline"/>
+        android:text="@string/event_tuesday" />
 
 
 </RelativeLayout>
