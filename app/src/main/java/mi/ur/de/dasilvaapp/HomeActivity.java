@@ -16,7 +16,9 @@ import android.support.v4.widget.DrawerLayout;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import android.content.pm.Signature;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -48,7 +50,8 @@ public class HomeActivity extends AppCompatActivity
     //Store Calendar Data
     private String actualDate;
     private int actualHour;
-    public int actualWeekdayIndex;
+    private int actualWeekdayIndex;
+    private int actualMonthIndex;
     //Array for Future?
     //public String[] calendarInfos;
 
@@ -56,6 +59,8 @@ public class HomeActivity extends AppCompatActivity
     public static String DATE = "0";
     public static String HOUR = "1";
     public static String DAY_INDEX = "2";
+
+    public static String MONTH_INDEX = "0";
 
 
     // StringArray to store the several section(fragment) names of the App
@@ -96,8 +101,7 @@ public class HomeActivity extends AppCompatActivity
             }
         } catch (PackageManager.NameNotFoundException e1) {
             Log.e("Name not found", e1.toString());
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             Log.e("No such an algorithm", e.toString());
         } catch (Exception e) {
             Log.e("Exception", e.toString());
@@ -150,6 +154,8 @@ public class HomeActivity extends AppCompatActivity
         actualHour = c.get(Calendar.HOUR_OF_DAY);
         // Wochentagindex einholen, Format: 1-7
         actualWeekdayIndex = c.get(Calendar.DAY_OF_WEEK);
+
+        actualMonthIndex = c.get(Calendar.MONTH);
     }
 
     private void setupNavigationDrawerFragment() {
@@ -170,11 +176,11 @@ public class HomeActivity extends AppCompatActivity
 
         switch (position) {
             case 0:
-                Bundle calendarInfos = new Bundle();
-                calendarInfos.putString(DATE, actualDate);
-                calendarInfos.putInt(HOUR, actualHour);
-                calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
-                newFragment = Home_Fragment.newInstance(position + 1, calendarInfos);
+                Bundle calendarInfoHome = new Bundle();
+                calendarInfoHome.putString(DATE, actualDate);
+                calendarInfoHome.putInt(HOUR, actualHour);
+                calendarInfoHome.putInt(DAY_INDEX, actualWeekdayIndex);
+                newFragment = Home_Fragment.newInstance(position + 1, calendarInfoHome);
                 break;
             case 1:
                 newFragment = Program_Fragment.newInstance(position + 1);
@@ -189,7 +195,9 @@ public class HomeActivity extends AppCompatActivity
                 newFragment = Reservation_Fragment.newInstance(position + 1);
                 break;
             case 5:
-                newFragment = Drink_Of_The_Month_Fragment.newInstance(position + 1);
+                Bundle calendarInfoDrink = new Bundle();
+                calendarInfoDrink.putInt(MONTH_INDEX, actualMonthIndex);
+                newFragment = Drink_Of_The_Month_Fragment.newInstance(position + 1, calendarInfoDrink);
                 break;
             case 6:
                 newFragment = Regular_Guest_Fragment.newInstance(position + 1);

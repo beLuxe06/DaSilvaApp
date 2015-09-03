@@ -37,7 +37,6 @@
     <string name="event_status_unit"> Stunden</string>
 
 
-
     <string name="weekday_monday">Montag</string>
     <string name="weekday_tuesday">Dienstag</string>
     <string name="weekday_wednesday">Mittwoch</string>
@@ -68,7 +67,25 @@
     <string name="indicator_location_image">1</string>
     <string name="number_of_location_images">4</string>
     <string name="slash">/</string>
-    
+
+    <string name="name_of_drink">Name des Drinks</string>
+    <string name="ingredients">Zutaten</string>
+    <string name="drink_image_content_description">Image of drink</string>
+    <string name="description_of_drink">Beschreibung\n des\n Drinks</string>
+
+    <string name="january">Januar</string>
+    <string name="february">Februar</string>
+    <string name="march">März</string>
+    <string name="april">April</string>
+    <string name="may">Mai</string>
+    <string name="june">Juni</string>
+    <string name="juli">Juli</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">Oktober</string>
+    <string name="november">November</string>
+    <string name="december">Dezember</string>
+
     <string name="action_example">More</string>
 
     <string name="action_settings">Settings</string>

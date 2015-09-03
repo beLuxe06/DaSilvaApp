@@ -80,7 +80,6 @@ public class Home_Fragment extends Fragment {
         labelWeekday.setText(actualWeekday);
         labelDate.setText(actualDate);
         flyer.setImageResource(actualFlyerSrc);
-
     }
 
     private void updateActualStringValues(int actualWeekdayIndex, int actualHour) {
