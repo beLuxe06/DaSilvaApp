@@ -8,24 +8,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
+import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.NewsFeedAdapter;
 import mi.ur.de.dasilvaapp.NewsFeedDatabase;
+import mi.ur.de.dasilvaapp.NewsFeedDownloadTask;
 import mi.ur.de.dasilvaapp.NewsFeedItem;
 import mi.ur.de.dasilvaapp.R;
+
+import static com.facebook.AccessToken.setCurrentAccessToken;
 
 /**
  * Created by blu on 17.08.2015.
  */
-public class News_Fragment extends Fragment {
+public class News_Fragment extends Fragment implements DownloadListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private ArrayList<NewsFeedItem> newsFeedItems = new ArrayList<NewsFeedItem>();
     private NewsFeedAdapter news_feed_items_adapter;
     private NewsFeedDatabase db;
+
+    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +54,11 @@ public class News_Fragment extends Fragment {
         initAdapter();
         updateNewsFeedItemsFromDB();
         initUI();
+        new NewsFeedDownloadTask(this,newsFeedItems).execute(ADDRESS);
+        // sendRequestToFacebook();
     }
+
+
 
     @Override
     public void onPause() {
@@ -61,6 +78,14 @@ public class News_Fragment extends Fragment {
         super.onDestroy();
     }
 
+    /**private void sendRequestToFacebook() {
+
+        new GraphRequest(null, "/{58336779060}/feed?access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE", null, HttpMethod.GET, new GraphRequest.Callback() {
+                    public void onCompleted(GraphResponse response) {
+                        newsFeedData = response.getJSONArray();
+                    }
+        }).executeAsync();}*/
+
     private void initUI() {
         initListView();
     }
@@ -72,9 +97,9 @@ public class News_Fragment extends Fragment {
     }
 
     private void updateNewsFeedItemsFromDB() {
-        newsFeedItems.clear();
-        newsFeedItems.addAll(db.getAllNewsFeedItems());
-        news_feed_items_adapter.notifyDataSetChanged();
+      //  newsFeedItems.clear();
+      //  newsFeedItems.addAll(db.getAllNewsFeedItems());
+      //  news_feed_items_adapter.notifyDataSetChanged();
     }
 
     private void initDatabase() {
@@ -103,4 +128,8 @@ public class News_Fragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onDownloadFinished() {
+        news_feed_items_adapter.notifyDataSetChanged();
+    }
 }

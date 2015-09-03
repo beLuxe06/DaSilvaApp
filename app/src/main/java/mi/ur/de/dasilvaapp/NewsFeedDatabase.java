@@ -18,14 +18,18 @@ public class NewsFeedDatabase {
     private static final String DATABASE_TABLE = "news_feed_items";
 
     public static final String KEY_ID = "id";
-    public static final String KEY_DATA_NAME = "data_name";
-    public static final String KEY_FOODIE_TITLE = "foodie_name";
-    public static final String KEY_RATING = "rating";
+    public static final String KEY_FACEBOOK_ID = "facebook_id";
+    public static final String KEY_CREATED_TIME = "created_time";
+    public static final String KEY_STORY = "story";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_IMAGE_URL = "image_url";
 
     public static final int COLUMN_ID_INDEX = 0;
-    public static final int COLUMN_DATA_INDEX = 1;
-    public static final int COLUMN_TITLE_INDEX = 2;
-    public static final int COLUMN_RATING_INDEX = 3;
+    public static final int COLUMN_FACEBOOK_ID_INDEX = 1;
+    public static final int COLUMN_CREATED_TIME_INDEX = 2;
+    public static final int COLUMN_STORY_INDEX = 3;
+    public static final int COLUMN_MESSAGE_INDEX = 4;
+    public static final int COLUMN_IMAGE_URL_INDEX = 5;
 
     private NewsFeedDBOpenHelper dbHelper;
 
@@ -46,9 +50,11 @@ public class NewsFeedDatabase {
     public long addNewsFeedItem(NewsFeedItem item){
         ContentValues newNewsFeedValues = new ContentValues();
 
-        newNewsFeedValues.put(KEY_DATA_NAME, item.getFoodieDataName());
-        newNewsFeedValues.put(KEY_FOODIE_TITLE, item.getFoodieTitle());
-        newNewsFeedValues.put(KEY_RATING, item.getFoodieRating());
+        newNewsFeedValues.put(KEY_FACEBOOK_ID, item.getFacebookID());
+        newNewsFeedValues.put(KEY_CREATED_TIME, item.getCreatedTime());
+        newNewsFeedValues.put(KEY_STORY, item.getStory());
+        newNewsFeedValues.put(KEY_MESSAGE, item.getMessage());
+        newNewsFeedValues.put(KEY_IMAGE_URL, item.getImageURL());
 
         return db.insert(DATABASE_TABLE, null, newNewsFeedValues);
     }
@@ -60,14 +66,70 @@ public class NewsFeedDatabase {
 
 
     // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow
-    public long updateRating(long foodieItemID, float rating){
+    public long updateFacebookID(long id, String facebookID){
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(KEY_RATING, rating);
+        values.put(KEY_FACEBOOK_ID, facebookID);
 
         // Which row to update, based on the ID
         String selection = KEY_ID + " LIKE ?";
-        String[] selectionArgs = { String.valueOf(foodieItemID) };
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
+
+        return 1;
+    }
+
+    public long updateCreatedTime(long id, String createdTime){
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_CREATED_TIME, createdTime);
+
+        // Which row to update, based on the ID
+        String selection = KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
+
+        return 1;
+    }
+
+    public long updateStory(long id, String story){
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_STORY, story);
+
+        // Which row to update, based on the ID
+        String selection = KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
+
+        return 1;
+    }
+
+    public long updateMessage(long id, String message){
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_MESSAGE, message);
+
+        // Which row to update, based on the ID
+        String selection = KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
+
+        return 1;
+    }
+
+    public long updateImageURL(long id, String imageURL){
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_IMAGE_URL, imageURL);
+
+        // Which row to update, based on the ID
+        String selection = KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
 
         int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
 
@@ -75,25 +137,10 @@ public class NewsFeedDatabase {
     }
 
     // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow
-    public long updateTitle(long foodieItemID, String title){
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(KEY_FOODIE_TITLE, title);
-
+    public int deleteNewsFeedItem(long id){
         // Which row to update, based on the ID
         String selection = KEY_ID + " LIKE ?";
-        String[] selectionArgs = { String.valueOf(foodieItemID) };
-
-        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
-
-        return 1;
-    }
-
-    // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow
-    public int deleteNewsFeedItem(long foodieItemID){
-        // Which row to update, based on the ID
-        String selection = KEY_ID + " LIKE ?";
-        String[] selectionArgs = { String.valueOf(foodieItemID) };
+        String[] selectionArgs = { String.valueOf(id) };
 
         int count = db.delete(DATABASE_TABLE, selection, selectionArgs);
 
@@ -103,14 +150,16 @@ public class NewsFeedDatabase {
 
     public ArrayList<NewsFeedItem> getAllNewsFeedItems(){
         ArrayList<NewsFeedItem> items = new ArrayList<NewsFeedItem>();
-        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_DATA_NAME, KEY_FOODIE_TITLE, KEY_RATING}, null, null, null, null, null);
+        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_CREATED_TIME, KEY_STORY, KEY_MESSAGE, KEY_IMAGE_URL}, null, null, null, null, null);
         if(cursor.moveToFirst()){
             do{
                 long id = cursor.getLong(COLUMN_ID_INDEX);
-                String dataName = cursor.getString(COLUMN_DATA_INDEX);
-                String foodieName = cursor.getString(COLUMN_TITLE_INDEX);
-                float rating = cursor.getFloat(COLUMN_RATING_INDEX);
-                items.add(new NewsFeedItem(id, dataName, foodieName, rating));
+                String facebookID = cursor.getString(COLUMN_FACEBOOK_ID_INDEX);
+                String createdTime = cursor.getString(COLUMN_CREATED_TIME_INDEX);
+                String story = cursor.getString(COLUMN_STORY_INDEX);
+                String message = cursor.getString(COLUMN_MESSAGE_INDEX);
+                String imageURL = cursor.getString(COLUMN_IMAGE_URL_INDEX);
+                items.add(new NewsFeedItem(id, facebookID, createdTime, story, message, imageURL));
             }
             while(cursor.moveToNext());
         }
@@ -119,7 +168,7 @@ public class NewsFeedDatabase {
 
 
     private class NewsFeedDBOpenHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_DATA_NAME + " text not null, " + KEY_FOODIE_TITLE + " text," + KEY_RATING + " text);";
+        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_FACEBOOK_ID + " text not null, " + KEY_CREATED_TIME + " text," + KEY_STORY + " text," + KEY_MESSAGE + " text," + KEY_IMAGE_URL + " text);";
 
         public NewsFeedDBOpenHelper(Context c, String dbName, SQLiteDatabase.CursorFactory factory, int version){
             super(c, dbName, factory, version);

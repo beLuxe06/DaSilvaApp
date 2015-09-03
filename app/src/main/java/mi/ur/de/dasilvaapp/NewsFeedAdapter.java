@@ -52,15 +52,12 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
 
         if(newsFeedItem != null) {
 
-            ImageView foodieGalleryImage = (ImageView) actualNewsFeedItemView.findViewById(R.id.news_feed_item_image);
-            TextView foodieName = (TextView) actualNewsFeedItemView.findViewById(R.id.news_feed_item_title);
-            RatingBar foodieRating = (RatingBar) actualNewsFeedItemView.findViewById(R.id.news_feed_item_ratingBar);
-
-            foodieGalleryImage.setImageURI(Uri.parse(newsFeedItems.get(position).getFoodieDataName()));
-
-            foodieName.setText(newsFeedItems.get(position).getFoodieTitle());
-            foodieRating.setRating(newsFeedItems.get(position).getFoodieRating());
-
+            TextView story = (TextView) actualNewsFeedItemView.findViewById(R.id.story);
+            TextView message = (TextView) actualNewsFeedItemView.findViewById(R.id.message);
+            TextView time = (TextView) actualNewsFeedItemView.findViewById(R.id.time_stamp);
+            story.setText(newsFeedItems.get(position).getStory());
+            message.setText(newsFeedItems.get(position).getMessage());
+            time.setText(newsFeedItems.get(position).getMessage());
         }
 
         return actualNewsFeedItemView;

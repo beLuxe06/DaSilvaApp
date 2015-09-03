@@ -6,31 +6,42 @@ package mi.ur.de.dasilvaapp;
 public class NewsFeedItem {
 
     private final long id;
-    private final String foodieDataName;
-    private final String foodieTitle;
-    private final float foodieRating;
+    private final String facebookID;
+    private final String createdTime;
+    private final String story;
+    private final String message;
+    private final String imageURL;
 
-    public NewsFeedItem(long id, String foodieDataName, String foodieTitle, float foodieRating) {
+    public NewsFeedItem(long id, String facebookID, String createdTime, String story, String message, String imageURL) {
         this.id = id;
-        this.foodieDataName = foodieDataName;
-        this.foodieTitle = foodieTitle;
-        this.foodieRating = foodieRating;
+        this.facebookID = facebookID;
+        this.createdTime = createdTime;
+        this.story = story;
+        this.message = message;
+        this.imageURL = imageURL;
     }
 
     public long getID(){
         return id;
     }
 
-    public String getFoodieDataName(){
-        return foodieDataName;
+    public String getFacebookID(){
+        return facebookID;
     }
 
-    public String getFoodieTitle(){
-        return foodieTitle;
+    public String getCreatedTime(){
+        return createdTime;
     }
 
-    public float getFoodieRating(){
-        return foodieRating;
+    public String getStory(){
+        return story;
     }
 
+    public String getMessage(){
+        return message;
+    }
+
+    public String getImageURL(){
+        return imageURL;
+    }
 }

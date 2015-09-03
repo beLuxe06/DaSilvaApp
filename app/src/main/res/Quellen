@@ -21,3 +21,6 @@ https://developers.facebook.com/docs/android/getting-started#androidstudio
 Datenbank und Methodik der Persistierung von Daten vgl. Studienleistung FoodieApp
 View Pager
 http://www.androidbegin.com/tutorial/android-viewpager-gallery-images-and-texts-tutorial/
+Getting News Feed From Facebook
+https://developers.facebook.com/docs/graph-api/reference/v2.4/page/feed
+Auslesen eines JSON Arrays und speichern der Daten in eigenem Objekt vgl. Übung Bundesligatabelle
