@@ -37,7 +37,6 @@
     <string name="event_status_unit"> Stunden</string>
 
 
-
     <string name="weekday_monday">Montag</string>
     <string name="weekday_tuesday">Dienstag</string>
     <string name="weekday_wednesday">Mittwoch</string>
@@ -62,4 +61,8 @@
     <string name="action_example">More</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="indicator_location_image">1</string>
+    <string name="number_of_location_images">4</string>
+    <string name="slash">/</string>
 </resources>
