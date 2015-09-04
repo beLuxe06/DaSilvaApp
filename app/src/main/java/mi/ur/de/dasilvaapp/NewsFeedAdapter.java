@@ -61,7 +61,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
             TextView message = (TextView) actualNewsFeedItemView.findViewById(R.id.message);
             TextView link = (TextView) actualNewsFeedItemView.findViewById(R.id.link_to_facebook_entry);
             new ImageLoadTask(newsFeedItem.getImageURL(), image).execute();
-            time.setText(newsFeedItem.getMessage());
+            time.setText(newsFeedItem.getCreatedTime());
             story.setText(newsFeedItem.getStory());
             message.setText(newsFeedItem.getMessage());
             link.setOnClickListener(new View.OnClickListener() {
