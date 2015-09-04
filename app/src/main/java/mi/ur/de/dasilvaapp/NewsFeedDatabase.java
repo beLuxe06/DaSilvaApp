@@ -20,6 +20,7 @@ public class NewsFeedDatabase {
     public static final String KEY_ID = "id";
     public static final String KEY_FACEBOOK_ID = "facebook_id";
     public static final String KEY_CREATED_TIME = "created_time";
+    public static final String KEY_LINK = "link";
     public static final String KEY_STORY = "story";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_IMAGE_URL = "image_url";
@@ -27,9 +28,10 @@ public class NewsFeedDatabase {
     public static final int COLUMN_ID_INDEX = 0;
     public static final int COLUMN_FACEBOOK_ID_INDEX = 1;
     public static final int COLUMN_CREATED_TIME_INDEX = 2;
-    public static final int COLUMN_STORY_INDEX = 3;
-    public static final int COLUMN_MESSAGE_INDEX = 4;
-    public static final int COLUMN_IMAGE_URL_INDEX = 5;
+    public static final int COLUMN_LINK_INDEX = 3;
+    public static final int COLUMN_STORY_INDEX = 4;
+    public static final int COLUMN_MESSAGE_INDEX = 5;
+    public static final int COLUMN_IMAGE_URL_INDEX = 6;
 
     private NewsFeedDBOpenHelper dbHelper;
 
@@ -52,6 +54,7 @@ public class NewsFeedDatabase {
 
         newNewsFeedValues.put(KEY_FACEBOOK_ID, item.getFacebookID());
         newNewsFeedValues.put(KEY_CREATED_TIME, item.getCreatedTime());
+        newNewsFeedValues.put(KEY_LINK, item.getLink());
         newNewsFeedValues.put(KEY_STORY, item.getStory());
         newNewsFeedValues.put(KEY_MESSAGE, item.getMessage());
         newNewsFeedValues.put(KEY_IMAGE_URL, item.getImageURL());
@@ -84,6 +87,20 @@ public class NewsFeedDatabase {
         // New value for one column
         ContentValues values = new ContentValues();
         values.put(KEY_CREATED_TIME, createdTime);
+
+        // Which row to update, based on the ID
+        String selection = KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
+
+        return 1;
+    }
+
+    public long updateLink(long id, String link){
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_LINK, link);
 
         // Which row to update, based on the ID
         String selection = KEY_ID + " LIKE ?";
@@ -150,16 +167,17 @@ public class NewsFeedDatabase {
 
     public ArrayList<NewsFeedItem> getAllNewsFeedItems(){
         ArrayList<NewsFeedItem> items = new ArrayList<NewsFeedItem>();
-        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_CREATED_TIME, KEY_STORY, KEY_MESSAGE, KEY_IMAGE_URL}, null, null, null, null, null);
+        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_CREATED_TIME, KEY_LINK, KEY_STORY, KEY_MESSAGE, KEY_IMAGE_URL}, null, null, null, null, null);
         if(cursor.moveToFirst()){
             do{
                 long id = cursor.getLong(COLUMN_ID_INDEX);
                 String facebookID = cursor.getString(COLUMN_FACEBOOK_ID_INDEX);
                 String createdTime = cursor.getString(COLUMN_CREATED_TIME_INDEX);
+                String link = cursor.getString(COLUMN_LINK_INDEX);
                 String story = cursor.getString(COLUMN_STORY_INDEX);
                 String message = cursor.getString(COLUMN_MESSAGE_INDEX);
                 String imageURL = cursor.getString(COLUMN_IMAGE_URL_INDEX);
-                items.add(new NewsFeedItem(id, facebookID, createdTime, story, message, imageURL));
+                items.add(new NewsFeedItem(id, facebookID, createdTime, link, story, message, imageURL));
             }
             while(cursor.moveToNext());
         }
@@ -168,7 +186,7 @@ public class NewsFeedDatabase {
 
 
     private class NewsFeedDBOpenHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_FACEBOOK_ID + " text not null, " + KEY_CREATED_TIME + " text," + KEY_STORY + " text," + KEY_MESSAGE + " text," + KEY_IMAGE_URL + " text);";
+        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_FACEBOOK_ID + " text not null, " + KEY_CREATED_TIME + " text,"  + KEY_LINK + " text," + KEY_STORY + " text," + KEY_MESSAGE + " text," + KEY_IMAGE_URL + " text);";
 
         public NewsFeedDBOpenHelper(Context c, String dbName, SQLiteDatabase.CursorFactory factory, int version){
             super(c, dbName, factory, version);

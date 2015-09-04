@@ -19,11 +19,13 @@ import java.util.ArrayList;
  */
 public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
-
+    private static final String DATA = "data";
     private static final String FACEBOOK_ID = "id";
     private static final String CREATED_TIME= "created_time";
     private static final String STORY = "story";
     private static final String MESSAGE = "message";
+    private static final String IMAGE_URL = "full_picture";
+    private static final String LINK = "link";
 
     private ArrayList<NewsFeedItem> newsFeed;
     private DownloadListener listener;
@@ -77,11 +79,13 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
     private void processJson(String text) {
         try {
-            JSONArray jsonArray = new JSONArray(text);
+            JSONObject feed = new JSONObject(text);
+            JSONArray jsonArray = feed.getJSONArray(DATA);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String facebookID = jsonObject.getString(FACEBOOK_ID);
                 String createdTime = jsonObject.getString(CREATED_TIME);
+                String link = jsonObject.getString(LINK);
                 // story may be null
                 String story;
                 try{
@@ -98,7 +102,16 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
                 catch(JSONException e){
                     message = null;
                 }
-                NewsFeedItem item = new NewsFeedItem(0,facebookID, createdTime, story, message, null);
+                // imageURL may be null
+                String imageURL;
+                try{
+                    imageURL = jsonObject.getString(IMAGE_URL);
+                }
+                catch(JSONException e){
+                    imageURL = null;
+                }
+
+                NewsFeedItem item = new NewsFeedItem(0,facebookID, createdTime, link, story, message, imageURL);
                 newsFeed.add(item);
             }
         } catch (JSONException e) {

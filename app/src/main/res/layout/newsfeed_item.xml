@@ -1,36 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/news_feed_"
+    android:id="@+id/news_feed"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/padding_list_view_items">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_list_view_items"
-        style="@style/body"
-        android:text="@string/default_news_feed_message"
-        />
-    <TextView
-        android:id="@+id/story"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_list_view_items"
-        android:layout_below="@+id/message"
-        style="@style/body"
-        android:text="@string/default_news_feed_story"
-        />
-    <TextView
-        android:id="@+id/time_stamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_list_view_items"
-        android:layout_below="@+id/story"
-        style="@style/body"
-        android:text="@string/default_news_feed_time"
-        />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            >
+            <ImageView
+                android:id="@+id/news_feed_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/da_silva_logo_gross_weiss"
+                android:scaleType="centerInside"
+                android:layout_weight="1"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/da_silva_logo_news"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/da_silva_logo_gross_weiss"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="@dimen/padding_list_view_items"
+                    android:scaleType="fitStart" />
+
+                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                    android:id="@+id/location_name_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/headline"
+                    android:gravity="start"
+                    android:paddingLeft="@dimen/padding_list_view_items"
+                    android:text="@string/location_name"
+                    android:layout_alignTop="@+id/da_silva_logo_news"
+                    android:layout_toRightOf="@+id/da_silva_logo_news" />
+
+                <TextView
+                    android:id="@+id/time_stamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_list_view_items"
+                    android:paddingBottom="@dimen/padding_list_view_items"
+                    style="@style/body"
+                    android:text="@string/default_news_feed_time"
+                    android:layout_below="@+id/location_name_news"
+                    android:layout_toRightOf="@+id/da_silva_logo_news"
+                    android:layout_toEndOf="@+id/da_silva_logo_news" />
+
+                <TextView
+                    android:id="@+id/story"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_list_view_items"
+                    style="@style/body"
+                    android:text="@string/default_news_feed_story"
+                    android:layout_toRightOf="@+id/da_silva_logo_news"
+                    android:layout_below="@+id/time_stamp"/>
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_list_view_items"
+                    style="@style/body"
+                    android:text="@string/default_news_feed_message"
+                    android:layout_below="@+id/story"
+                    android:layout_toRightOf="@id/da_silva_logo_news"/>
+                <TextView
+                    android:id="@+id/link_to_facebook_entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="@dimen/padding_list_view_items"
+                    style="@style/body"
+                    android:text="@string/default_news_link"
+                    android:layout_below="@+id/message"
+                    android:layout_toRightOf="@id/da_silva_logo_news"/>
+
+            </RelativeLayout>
+        </TableRow>
+
+
+    </TableLayout>
 
 
 </RelativeLayout>

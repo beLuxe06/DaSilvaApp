@@ -64,6 +64,7 @@
     <string name="default_news_feed_story">Das ist ein Beispieltext für einen Newsfeed-Eintrag.\n Dieser ist mit Absicht etwas länger.</string>
     <string name="default_news_feed_message">Das ist ein Beispieltext für einen Newsfeed-Eintrag.\n Dieser ist mit Absicht etwas länger.</string>
     <string name="default_news_feed_time">vor X Stunden</string>
+    <string name="default_news_link">Zum Facebook-Post</string>
 
     <string name="indicator_location_image">1</string>
     <string name="number_of_location_images">4</string>

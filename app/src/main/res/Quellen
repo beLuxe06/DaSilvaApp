@@ -24,3 +24,9 @@ http://www.androidbegin.com/tutorial/android-viewpager-gallery-images-and-texts-
 Getting News Feed From Facebook
 https://developers.facebook.com/docs/graph-api/reference/v2.4/page/feed
 Auslesen eines JSON Arrays und speichern der Daten in eigenem Objekt vgl. Übung Bundesligatabelle
+Facebook Access Token:
+https://smashballoon.com/custom-facebook-feed/access-token/
+Facebook-GraphAPI Link bekommen
+https://developers.facebook.com/tools/explorer/145634995501895
+ImageView aus URL anzeigen, bzw. Download Bitmap asynchron
+http://stackoverflow.com/questions/18953632/how-to-set-image-from-url-for-imageview

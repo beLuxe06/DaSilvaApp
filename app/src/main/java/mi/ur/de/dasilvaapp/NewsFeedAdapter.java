@@ -2,6 +2,7 @@ package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +41,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View actualNewsFeedItemView;
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,12 +55,25 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
 
         if(newsFeedItem != null) {
 
+            ImageView image = (ImageView) actualNewsFeedItemView.findViewById(R.id.news_feed_image);
+            TextView time = (TextView) actualNewsFeedItemView.findViewById(R.id.time_stamp);
             TextView story = (TextView) actualNewsFeedItemView.findViewById(R.id.story);
             TextView message = (TextView) actualNewsFeedItemView.findViewById(R.id.message);
-            TextView time = (TextView) actualNewsFeedItemView.findViewById(R.id.time_stamp);
-            story.setText(newsFeedItems.get(position).getStory());
-            message.setText(newsFeedItems.get(position).getMessage());
-            time.setText(newsFeedItems.get(position).getMessage());
+            TextView link = (TextView) actualNewsFeedItemView.findViewById(R.id.link_to_facebook_entry);
+            new ImageLoadTask(newsFeedItem.getImageURL(), image).execute();
+            time.setText(newsFeedItem.getMessage());
+            story.setText(newsFeedItem.getStory());
+            message.setText(newsFeedItem.getMessage());
+            link.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        URL linkToFacebookPost = new URL(newsFeedItems.get(position).getLink());
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
 
         return actualNewsFeedItemView;

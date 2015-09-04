@@ -38,7 +38,8 @@ public class News_Fragment extends Fragment implements DownloadListener {
     private NewsFeedAdapter news_feed_items_adapter;
     private NewsFeedDatabase db;
 
-    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
+    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
+    private final static String IMAGE_ADDRESS_PREFIX = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
     @Override
     public void onStart() {
         super.onStart();
-        initDatabase();
+        // initDatabase();
         initAdapter();
         updateNewsFeedItemsFromDB();
         initUI();
@@ -74,17 +75,9 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     @Override
     public void onDestroy() {
-        db.close();
+        // db.close();
         super.onDestroy();
     }
-
-    /**private void sendRequestToFacebook() {
-
-        new GraphRequest(null, "/{58336779060}/feed?access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE", null, HttpMethod.GET, new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-                        newsFeedData = response.getJSONArray();
-                    }
-        }).executeAsync();}*/
 
     private void initUI() {
         initListView();
