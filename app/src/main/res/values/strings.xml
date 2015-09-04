@@ -87,6 +87,45 @@
     <string name="november">November</string>
     <string name="december">Dezember</string>
 
+    <string name="drink_name_january">Mr.Ape‘s.Bellini</string>
+    <string name="drink_name_february">Wodka.Sweet.Sour</string>
+    <string name="drink_name_march">Pataya.Sling</string>
+    <string name="drink_name_april">Apeys.Special</string>
+    <string name="drink_name_may">Wild.Summer</string>
+    <string name="drink_name_june">Pipeline</string>
+    <string name="drink_name_juli">Silver.Passion</string>
+    <string name="drink_name_august">Vanilla.Mojito</string>
+    <string name="drink_name_september">China.Town</string>
+    <string name="drink_name_october">Cai.Bier.Inha</string>
+    <string name="drink_name_november">London.Leafs</string>
+    <string name="drink_name_december">Saures.Weihwasser</string>
+
+    <string name="drink_ingredients_january">Prosecco, Wodka, Pfirsichlikör, Pfirsich</string>
+    <string name="drink_ingredients_february">Wodka, Zitrone, Zucker, Maracuja</string>
+    <string name="drink_ingredients_march">Gin, Cassis, Limette, Zitrone, Zucker, Minze, Wasser</string>
+    <string name="drink_ingredients_april">Gin, Limette, Zitrone, Ananassaft</string>
+    <string name="drink_ingredients_may">Wodka, Limette, Zucker, Wild.Berries</string>
+    <string name="drink_ingredients_june">Wodka, Limette, Zitrone, Mandel, Ananas</string>
+    <string name="drink_ingredients_juli">Wodka, Maracuja, Limette, Red.Bull.Silver</string>
+    <string name="drink_ingredients_august">Rum, Limette, Minze, Vanille, Wasser</string>
+    <string name="drink_ingredients_september">Gin, Limette, Zitrone, Zucker, Minze</string>
+    <string name="drink_ingredients_october">Bier, Rum, Limette, Zucker</string>
+    <string name="drink_ingredients_november">Gin, Gurke, Minze, Limette, Apfelschorle</string>
+    <string name="drink_ingredients_december">Weihwasser, Zitrone, Zucker, Wasser</string>
+
+    <string name="drink_description_january">Happy New Year 2016! \nWir lassen die Korken knallen und feiern mit euch und dem hausgemachten Bellini das neue Jahr und Mr. Ape`s ersten Geburtstag!</string>
+    <string name="drink_description_february">Wodka.Sour kann jeder. Ente süß-sauer nur der Asiate. Wodka.Sweet.Sour kann nur Da Silva. Weder süß noch sauer, oder eher beides? Finde es heraus beim abgedrehten Fasching im Da Silva.</string>
+    <string name="drink_description_march">Langsam wird es wieder Frühling und die Blätter und Blumen sprießen wieder. Auch bei uns geht’s wieder bunt und fruchtig zur Sache. Mit dem Pataya.Sling erlebt ihr prickelnde Frühlingsgefühle.</string>
+    <string name="drink_description_april">Fruchtig, fromm, fröhlich, frei wie der Frühling kommt auch Mr. Ape mit diesem Special um die Ecke. Ein Hauch von Gin, ein Hauch von Ananas und ein wenig Säure schmeicheln eurer Zunge.</string>
+    <string name="drink_description_may">Im Mai kündigen sich die ersten Vorboten des Sommers an. Passend dazu wird’s bei uns säuerlich-fruchtig mit dem beliebten Wild.Berries in dieser überraschenden Kombination.</string>
+    <string name="drink_description_june">Geschmack volles Rohr bietet unsere sommerliche Drink Pipeline. Neutraler Wodka gepaart mit einer ganzen Ladung exotischem Geschmack machen diesen Drink zu dem Must-Have des Sommers.e</string>
+    <string name="drink_description_juli">Das Rezept mit dieser explosiven Zutatenmischung kommt jedoch ganz sanft und geschmeidig daher. Die Frische der Limette trifft den vollmundigen Geschmack der Maracuja.</string>
+    <string name="drink_description_august">Got a little Captain in your drink? Der Geschmack dieses Special Mojitos würde es vermuten lassen. Das gewohnt lässige Erlebnis des klassichen Mojito wird mit einer Note Extravaganz verfeinert.</string>
+    <string name="drink_description_september">Den ganzen September gibt’s bei uns passend zu den heißen Temperaturen im Sommer den erfrischenden China.Town zur endgültigen Abkühlung.</string>
+    <string name="drink_description_october">Perfekt zur Oktoberfestzeit gibt’s bei uns den ausgefallenen, echt bierigen Monatscocktail Cai.Bier.Inha. Geschmacklich und optisch ein neues Erlebnis!</string>
+    <string name="drink_description_november">Die Blätter fallen von den Bäumen in unsere Drinks. Allerdings keine vertrockneten Eichenblätter, sondern frische grüne Minzblätter in unseren fruchtig frischen Monatscocktail.</string>
+    <string name="drink_description_december">Der Teufel hat aus Wut in der Weihnachtszeit das Weihwasser versäuert. Nur hat er die Rechnung ohne unsere Barkeeper gemacht, die es in einen leckeren Cocktail umgewandelt haben.</string>
+
     <string name="action_example">More</string>
 
     <string name="action_settings">Settings</string>
