@@ -37,12 +37,13 @@
 
     <ImageView
         android:id="@+id/drink_image"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/description"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/ingredients"
         android:contentDescription="@string/drink_image_content_description"
-        android:src="@drawable/dienstag_neu" />
+        android:src="@drawable/china_town" />
 
     <TextView
         android:id="@+id/description"
