@@ -41,6 +41,7 @@ public class Location_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
+
     @Override
     public void onStart() {
         super.onStart();
