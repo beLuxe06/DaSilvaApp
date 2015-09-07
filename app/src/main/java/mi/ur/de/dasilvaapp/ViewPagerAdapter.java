@@ -1,8 +1,10 @@
 package mi.ur.de.dasilvaapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import mi.ur.de.dasilvaapp.Fragments.Image_Fullscreen_Fragment;
 
@@ -35,7 +38,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         // Declare Variables
         ImageView locationImage;
@@ -52,6 +55,17 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         // Add viewpager_item.xml to ViewPager
         container.addView(itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Bundle imageResourceBundle = new Bundle();
+                imageResourceBundle.putInt(Image_Fullscreen_Fragment.IMAGE_RESOURCE, image[position]);
+                Fragment newFragment = Image_Fullscreen_Fragment.newInstance(imageResourceBundle);
+                FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
+
+            }
+        });
 
         return itemView;
     }
