@@ -233,7 +233,7 @@ public class Home_Fragment extends Fragment {
                 imageResource.putInt(Image_Fullscreen_Fragment.IMAGE_RESOURCE, actualFlyerSrc);
                 Fragment newFragment = Image_Fullscreen_Fragment.newInstance(imageResource);
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
+                fragmentManager.beginTransaction().addToBackStack("fullscreen").replace(R.id.container, newFragment).commit();
             }
         });
     }

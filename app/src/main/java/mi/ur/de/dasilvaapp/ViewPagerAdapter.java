@@ -62,7 +62,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 imageResourceBundle.putInt(Image_Fullscreen_Fragment.IMAGE_RESOURCE, image[position]);
                 Fragment newFragment = Image_Fullscreen_Fragment.newInstance(imageResourceBundle);
                 FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
+                fragmentManager.beginTransaction().addToBackStack("fullscreen").replace(R.id.container, newFragment).commit();
 
             }
         });

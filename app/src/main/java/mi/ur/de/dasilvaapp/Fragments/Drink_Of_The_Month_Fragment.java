@@ -164,7 +164,7 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
                 imageResourceBundle.putInt(Image_Fullscreen_Fragment.IMAGE_RESOURCE, imageResource);
                 Fragment newFragment = Image_Fullscreen_Fragment.newInstance(imageResourceBundle);
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
+                fragmentManager.beginTransaction().addToBackStack("fullscreen").replace(R.id.container, newFragment).commit();
             }
         });
     }
