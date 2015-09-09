@@ -22,6 +22,11 @@
         <item name="android:textColor">@color/text_color_primary</item>
     </style>
 
+    <style name="decent">
+        <item name="android:textSize">@dimen/decent_font_size</item>
+        <item name="android:textColor">@color/text_color_primary</item>
+    </style>
+
     <style name="closed" parent="body">
         <item name="android:textColor">@color/text_color_closed</item>
     </style>
@@ -32,6 +37,13 @@
 
     <style name="open" parent="body">
         <item name="android:textColor">@color/text_color_open</item>
+    </style>
+
+    <style name="news_feed_item_divider">
+        <item name="android:color">@color/text_color_primary</item>
+        <item name="android:background">?android:attr/listDivider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/news_feed_item_divider_height</item>
     </style>
 
 </resources>

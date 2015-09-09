@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -38,6 +39,8 @@ public class News_Fragment extends Fragment implements DownloadListener {
     private NewsFeedAdapter news_feed_items_adapter;
     private NewsFeedDatabase db;
 
+    public ProgressBar progressBar;
+
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
     private final static String IMAGE_ADDRESS_PREFIX = "";
 
@@ -55,7 +58,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
         initAdapter();
         updateNewsFeedItemsFromDB();
         initUI();
-        new NewsFeedDownloadTask(this,newsFeedItems).execute(ADDRESS);
+        new NewsFeedDownloadTask(getActivity(),this,newsFeedItems).execute(ADDRESS);
         // sendRequestToFacebook();
     }
 
@@ -83,6 +86,21 @@ public class News_Fragment extends Fragment implements DownloadListener {
         initListView();
     }
 
+    @Override
+    public void onDownloadInProgress() {
+
+    }
+
+    @Override
+    public void onDownloadStarted() {
+        initProgressBar();
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void initProgressBar() {
+        progressBar = (ProgressBar) getView().findViewById(R.id.news_feed_progress_bar);
+    }
+
     private void initListView() {
         ListView newsFeed = (ListView) getView().findViewById(R.id.news_feed);
         newsFeed.setAdapter(news_feed_items_adapter);
@@ -102,7 +120,6 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
 
     private void initAdapter() {
-        // Not Sure if its the correct Context
         news_feed_items_adapter = new NewsFeedAdapter(getActivity(), newsFeedItems);
     }
 
@@ -123,6 +140,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     @Override
     public void onDownloadFinished() {
+        progressBar.setVisibility(View.GONE);
         news_feed_items_adapter.notifyDataSetChanged();
     }
 }

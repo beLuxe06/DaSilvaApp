@@ -9,6 +9,8 @@
     <dimen name="margin_fragment_list_view_top_bottom">4dp</dimen>
     <dimen name="padding_list_view_items">4dp</dimen>
 
+    <dimen name="news_feed_item_divider_height">4dp</dimen>
+
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
@@ -16,4 +18,5 @@
     <dimen name="headline_font_size">36dp</dimen>
     <dimen name="subhead_font_size">26dp</dimen>
     <dimen name="body_font_size">14dp</dimen>
+    <dimen name="decent_font_size">10dp</dimen>
 </resources>

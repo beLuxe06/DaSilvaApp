@@ -1,6 +1,8 @@
 package mi.ur.de.dasilvaapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +15,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.Fragments.News_Fragment;
 
 /**
  * Created by blu on 03.09.2015.
@@ -29,8 +33,23 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
     private ArrayList<NewsFeedItem> newsFeed;
     private DownloadListener listener;
+    private Context context;
 
-    public NewsFeedDownloadTask(DownloadListener listener, ArrayList<NewsFeedItem> newsFeed) {
+    @Override
+    protected void onPreExecute() {
+        listener.onDownloadStarted();
+        super.onPreExecute();
+    }
+
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        listener.onDownloadInProgress();
+        super.onProgressUpdate(values);
+    }
+
+    public NewsFeedDownloadTask(Context context, DownloadListener listener, ArrayList<NewsFeedItem> newsFeed) {
+        this.context = context;
         this.listener = listener;
         this.newsFeed = newsFeed;
     }

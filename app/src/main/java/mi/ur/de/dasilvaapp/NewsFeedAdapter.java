@@ -52,6 +52,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
         }
         else{
             actualNewsFeedItemView = convertView;
+
         }
 
         NewsFeedItem newsFeedItem = newsFeedItems.get(position);
@@ -68,7 +69,9 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
             String actualTimeAgoString = calendarProperties.getFormattedTimeAgoString(newsFeedItem.getCreatedTimestamp());
             time.setText(actualTimeAgoString);
             story.setText(newsFeedItem.getStory());
+            // hideTextViewIfEmptyString(story, newsFeedItem.getStory());
             message.setText(newsFeedItem.getMessage());
+            // hideTextViewIfEmptyString(message, newsFeedItem.getMessage());
             link.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,6 +87,11 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
         return actualNewsFeedItemView;
     }
 
+    private void hideTextViewIfEmptyString(TextView textView, String string) {
+        if(string == null || string.isEmpty()){
+            textView.setVisibility(View.GONE);
+        }
+    }
 
 
     private void setUpCalendarProperties(Context context) {

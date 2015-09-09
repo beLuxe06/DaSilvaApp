@@ -28,6 +28,14 @@
         android:text="@string/location_type"
         style="@style/subhead"/>
 
+    <ProgressBar
+        android:id="@+id/news_feed_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_type_news"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        style="@android:style/Widget.ProgressBar.Large"/>
+
     <ListView
         android:id="@+id/news_feed"
         android:layout_width="match_parent"

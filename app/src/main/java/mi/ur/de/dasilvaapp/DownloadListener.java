@@ -6,4 +6,8 @@ package mi.ur.de.dasilvaapp;
 public interface DownloadListener {
 
     public void onDownloadFinished();
+
+    public void onDownloadStarted();
+
+    public void onDownloadInProgress();
 }
