@@ -7,16 +7,16 @@ public class NewsFeedItem {
 
     private final long id;
     private final String facebookID;
-    private final String createdTime;
+    private final String createdTimestamp;
     private final String link;
     private final String story;
     private final String message;
     private final String imageURL;
 
-    public NewsFeedItem(long id, String facebookID, String createdTime, String link, String story, String message, String imageURL) {
+    public NewsFeedItem(long id, String facebookID, String createdTimestamp, String link, String story, String message, String imageURL) {
         this.id = id;
         this.facebookID = facebookID;
-        this.createdTime = createdTime;
+        this.createdTimestamp = createdTimestamp;
         this.link = link;
         this.story = story;
         this.message = message;
@@ -31,8 +31,8 @@ public class NewsFeedItem {
         return facebookID;
     }
 
-    public String getCreatedTime(){
-        return createdTime;
+    public String getCreatedTimestamp(){
+        return createdTimestamp;
     }
 
     public String getLink(){

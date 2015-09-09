@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import mi.ur.de.dasilvaapp.R;
+
 /**
  * Created by blu on 01.09.2015.
  */
@@ -22,6 +24,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
     private Context context;
     private ArrayList<NewsFeedItem> newsFeedItems;
     private int newsFeedItemView;
+    private ActualCalendarProperties calendarProperties;
 
     public NewsFeedAdapter(Context context, ArrayList<NewsFeedItem> newsFeedItems){
         super(context, R.layout.newsfeed_item, newsFeedItems);
@@ -61,7 +64,9 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
             TextView message = (TextView) actualNewsFeedItemView.findViewById(R.id.message);
             TextView link = (TextView) actualNewsFeedItemView.findViewById(R.id.link_to_facebook_entry);
             new ImageLoadTask(newsFeedItem.getImageURL(), image).execute();
-            time.setText(newsFeedItem.getCreatedTime());
+            setUpCalendarProperties(context);
+            String actualTimeAgoString = calendarProperties.getFormattedTimeAgoString(newsFeedItem.getCreatedTimestamp());
+            time.setText(actualTimeAgoString);
             story.setText(newsFeedItem.getStory());
             message.setText(newsFeedItem.getMessage());
             link.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +82,11 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
         }
 
         return actualNewsFeedItemView;
+    }
+
+
+
+    private void setUpCalendarProperties(Context context) {
+        calendarProperties = new ActualCalendarProperties(context);
     }
 }

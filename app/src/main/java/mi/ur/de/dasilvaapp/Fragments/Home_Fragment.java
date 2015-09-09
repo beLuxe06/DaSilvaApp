@@ -34,10 +34,7 @@ public class Home_Fragment extends Fragment {
     private static final int OPENING_TIME = 21;
     private static final int CLOSING_TIME = 2;
 
-    //Calendar Keys for Bundle
-    public static String DATE = "0";
-    public static String HOUR = "1";
-    public static String DAY_INDEX = "2";
+
 
     //Instances of UI
     private DaSilvaAppTitleTextView labelNextEventDay;
@@ -218,9 +215,9 @@ public class Home_Fragment extends Fragment {
     private void getCalendarDataFromActivity() {
         Bundle calendarInfos = getArguments();
         if (calendarInfos != null) {
-            actualDate = calendarInfos.getString(DATE);
-            actualHour = calendarInfos.getInt(HOUR);
-            actualWeekdayIndex = calendarInfos.getInt(DAY_INDEX);
+            actualDate = calendarInfos.getString(HomeActivity.DATE);
+            actualHour = calendarInfos.getInt(HomeActivity.HOUR);
+            actualWeekdayIndex = calendarInfos.getInt(HomeActivity.DAY_INDEX);
         }
 
     }

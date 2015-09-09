@@ -64,6 +64,19 @@
     <string name="default_news_feed_message">Das ist ein Beispieltext für einen Newsfeed-Eintrag.\n Dieser ist mit Absicht etwas länger.</string>
     <string name="default_news_feed_time">vor X Stunden</string>
     <string name="default_news_link">Zum Facebook-Post</string>
+    <string name="news_feed_time_stamp_ago">Vor</string>
+    <string name="news_feed_time_stamp_last_year">Letztes Jahr</string>
+    <string name="news_feed_time_stamp_unit_years">Jahren</string>
+    <string name="news_feed_time_stamp_last_month">Letzter Monat</string>
+    <string name="news_feed_time_stamp_unit_months">Monaten</string>
+    <string name="news_feed_time_stamp_last_week">Letzte Woche</string>
+    <string name="news_feed_time_stamp_unit_weeks">Wochen</string>
+    <string name="news_feed_time_stamp_last_day">Gestern</string>
+    <string name="news_feed_time_stamp_unit_days">Tagen</string>
+    <string name="news_feed_time_stamp_this_hour">Gerade eben</string>
+    <string name="news_feed_time_stamp_last_hour">Vor 1 Stunde</string>
+    <string name="news_feed_time_stamp_unit_hours">Stunden</string>
+
 
     <string name="indicator_location_image">1</string>
     <string name="number_of_location_images">4</string>
