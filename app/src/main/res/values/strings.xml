@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DaSilva</string>
+    <string name="app_name">Da Silva</string>
     <string name="location_name">Da Silva</string>
     <string name="location_type">Club.Bar.Lounge</string>
     <string name="facebook_app_id">504302586404216</string>
@@ -138,6 +138,8 @@
     <string name="drink_description_october">Perfekt zur Oktoberfestzeit gibt’s bei uns den ausgefallenen, echt bierigen Monatscocktail Cai.Bier.Inha. Geschmacklich und optisch ein neues Erlebnis!</string>
     <string name="drink_description_november">Die Blätter fallen von den Bäumen in unsere Drinks. Allerdings keine vertrockneten Eichenblätter, sondern frische grüne Minzblätter in unseren fruchtig frischen Monatscocktail.</string>
     <string name="drink_description_december">Der Teufel hat aus Wut in der Weihnachtszeit das Weihwasser versäuert. Nur hat er die Rechnung ohne unsere Barkeeper gemacht, die es in einen leckeren Cocktail umgewandelt haben.</string>
+
+    <string name="image_fullscreen_content_description">Image in fullscreen.</string>
 
     <string name="action_example">More</string>
 

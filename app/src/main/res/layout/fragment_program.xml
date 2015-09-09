@@ -40,7 +40,8 @@
         android:layout_toLeftOf="@+id/location_type_program"
         android:maxWidth="20dp"
         android:scaleType="centerInside"
-        android:src="@drawable/samstag_neu" />
+        android:src="@drawable/samstag_neu"
+        android:visibility="invisible" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/flyer_switcher_program"

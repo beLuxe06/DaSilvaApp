@@ -3,13 +3,13 @@ package mi.ur.de.dasilvaapp.Fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +35,9 @@ public class Program_Fragment extends Fragment {
     TextView eventDescriptionProgram;
     TextView eventTitleProgram;
 
+    boolean visibilityPreviousFlyerProgram = false;
+    boolean visibilityNextFlyerProgram = true;
+
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     @Override
@@ -43,6 +46,36 @@ public class Program_Fragment extends Fragment {
         initArrays();
         initUi();
         makePreviousAndNextFlyerClickable();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refactorFlyers();
+    }
+
+    private void refactorFlyers() {
+        if (programViewPager.getCurrentItem() > 0) {
+            previousFlyerProgram.setImageResource(imageLinks[programViewPager.getCurrentItem() - 1]);
+        }
+        if (programViewPager.getCurrentItem() < imageLinks.length - 1) {
+            nextFlyerProgram.setImageResource(imageLinks[programViewPager.getCurrentItem() + 1]);
+        }
+        if (visibilityPreviousFlyerProgram) {
+            previousFlyerProgram.setVisibility(View.VISIBLE);
+            previousFlyerProgram.setClickable(true);
+        } else {
+            previousFlyerProgram.setVisibility(View.INVISIBLE);
+            previousFlyerProgram.setClickable(false);
+        }
+
+        if (visibilityNextFlyerProgram) {
+            nextFlyerProgram.setVisibility(View.VISIBLE);
+            nextFlyerProgram.setClickable(true);
+        } else {
+            nextFlyerProgram.setVisibility(View.INVISIBLE);
+            nextFlyerProgram.setClickable(false);
+        }
     }
 
     private void makePreviousAndNextFlyerClickable() {
@@ -104,21 +137,23 @@ public class Program_Fragment extends Fragment {
         if (position != 0) {
             previousFlyerProgram.setVisibility(View.VISIBLE);
             previousFlyerProgram.setClickable(true);
-            /*Animation fadeOutAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
-            previousFlyerProgram.startAnimation(fadeOutAnimation);*/
             previousFlyerProgram.setImageResource(imageLinks[position - 1]);
+            visibilityPreviousFlyerProgram = true;
         } else {
             previousFlyerProgram.setVisibility(View.INVISIBLE);
             previousFlyerProgram.setClickable(false);
+            visibilityPreviousFlyerProgram = false;
         }
 
         if (position != imageLinks.length - 1) {
             nextFlyerProgram.setVisibility(View.VISIBLE);
             nextFlyerProgram.setClickable(true);
             nextFlyerProgram.setImageResource(imageLinks[position + 1]);
+            visibilityNextFlyerProgram = true;
         } else {
             nextFlyerProgram.setVisibility(View.INVISIBLE);
             nextFlyerProgram.setClickable(false);
+            visibilityNextFlyerProgram = false;
         }
     }
 

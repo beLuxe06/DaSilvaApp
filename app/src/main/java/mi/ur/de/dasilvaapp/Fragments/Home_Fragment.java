@@ -3,6 +3,7 @@ package mi.ur.de.dasilvaapp.Fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class Home_Fragment extends Fragment {
         getCalendarDataFromActivity();
         initUI();
         updateDateTextViews();
+        setOnClickListenersForFullScreenImage();
     }
 
     @Override
@@ -219,7 +221,18 @@ public class Home_Fragment extends Fragment {
             actualHour = calendarInfos.getInt(HomeActivity.HOUR);
             actualWeekdayIndex = calendarInfos.getInt(HomeActivity.DAY_INDEX);
         }
+    }
 
+    private void setOnClickListenersForFullScreenImage() {
+        flyer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Bundle imageResource = new Bundle();
+                imageResource.putInt(Image_Fullscreen_Fragment.IMAGE_RESOURCE, actualFlyerSrc);
+                Fragment newFragment = Image_Fullscreen_Fragment.newInstance(imageResource);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack("fullscreen").replace(R.id.container, newFragment).commit();
+            }
+        });
     }
 
     @Override
