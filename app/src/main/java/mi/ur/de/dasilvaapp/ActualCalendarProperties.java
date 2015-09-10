@@ -57,10 +57,10 @@ public class ActualCalendarProperties {
     }
 
     private String getTimeBeforeTimestamp(String timestamp){
-        int timeStampDay = Integer.parseInt(timestamp.substring(8,10));
-        int timeStampMonth = Integer.parseInt(timestamp.substring(5,7));
-        int timeStampYear = Integer.parseInt(timestamp.substring(0, 4));
-        int timeStampHour = Integer.parseInt(timestamp.substring(11,13));
+        int timeStampDay = getIntegerFromDateAsString(timestamp, 8, 10);
+        int timeStampMonth = getIntegerFromDateAsString(timestamp, 5, 7);
+        int timeStampYear = getIntegerFromDateAsString(timestamp, 0, 4);
+        int timeStampHour = getIntegerFromDateAsString(timestamp, 11, 13);
         int actualDay = getDayOfMonth();
         int actualMonth = getMonth();
         int actualYear = getYear();
@@ -105,8 +105,8 @@ public class ActualCalendarProperties {
         return getTimeAgoPlusUnitAsString(WEEKS, numberOfWeeks);
     }
 
-    private int getDifference(int timeStampTime, int actualTime) {
-        return actualTime-timeStampTime;
+    private int getDifference(int timeToSubtract, int time) {
+        return time-timeToSubtract;
     }
 
     private boolean timeNotEqual(int timeStampTime, int actualTime) {
@@ -185,4 +185,84 @@ public class ActualCalendarProperties {
         return false;
     }
 
+    public boolean incorrectDateFormat(String date){
+        int day = getIntegerFromDateAsString(date, 0, 2);
+        int month = getIntegerFromDateAsString(date, 3, 5);
+        int year = getIntegerFromDateAsString(date, 6, 0);
+        if((day < 1) || (day > 31)){
+            return true;
+        }
+        if((month < 1) || (month > 12)){
+            return true;
+        }
+        if((year<1900) || (year > (getYear()+1))){
+            return true;
+        }
+        return false;
+    }
+
+    private Integer getIntegerFromDateAsString(String string, int startIndex, int endIndex) {
+        if(endIndex == 0){
+            return Integer.parseInt(string.substring(startIndex));
+        }
+        else return Integer.parseInt(string.substring(startIndex, endIndex));
+    }
+
+    public boolean illegalAge(String birthday){
+        int dayOfBirth = getIntegerFromDateAsString(birthday, 0, 2);
+        int monthOfBirth = getIntegerFromDateAsString(birthday, 3, 5);
+        int yearOfBirth = getIntegerFromDateAsString(birthday, 6, 0);
+        int acutalDay = getDayOfMonth();
+        int actualMonth = getMonth();
+        int actualYear = getYear();
+        int yearDifference = getDifference(yearOfBirth, actualYear);
+
+        if(yearDifference>17){
+            return false;
+        }
+        if(yearDifference<17){
+            return true;
+        }
+        int monthDifference = getDifference(monthOfBirth, actualMonth);
+        if(monthDifference>0){
+            return false;
+        }
+        if(monthDifference<0){
+            return true;
+        }
+        int dayDifference = getDifference(dayOfBirth, acutalDay);
+        if(dayDifference<0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean timeInPast(String date) {
+        int day = getIntegerFromDateAsString(date, 0, 2);
+        int month = getIntegerFromDateAsString(date, 3, 5);
+        int year = getIntegerFromDateAsString(date, 6, 0);
+        int acutalDay = getDayOfMonth();
+        int actualMonth = getMonth();
+        int actualYear = getYear();
+        int yearDifference = getDifference(year, actualYear);
+
+        if(yearDifference>0){
+            return true;
+        }
+        if(yearDifference<0){
+            return false;
+        }
+        int monthDifference = getDifference(month, actualMonth);
+        if(monthDifference>0){
+            return true;
+        }
+        if(monthDifference<0){
+            return false;
+        }
+        int dayDifference = getDifference(day, acutalDay);
+        if(dayDifference<0){
+            return false;
+        }
+        return true;
+    }
 }

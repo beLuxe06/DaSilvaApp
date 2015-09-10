@@ -5,6 +5,7 @@
     <color name="text_color_closed">#D99694</color>
     <color name="text_color_open_in">#FAC090</color>
     <color name="text_color_open">#B0C020</color>
+    <color name="text_color_hint">#D0D0D0</color>
     ContentColors
     <color name="da_silva_highlight">#B0C020</color>
     <color name="da_silva_background">#1E1E1E</color>

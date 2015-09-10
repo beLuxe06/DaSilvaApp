@@ -30,3 +30,18 @@ Facebook-GraphAPI Link bekommen
 https://developers.facebook.com/tools/explorer/145634995501895
 ImageView aus URL anzeigen, bzw. Download Bitmap asynchron
 http://stackoverflow.com/questions/18953632/how-to-set-image-from-url-for-imageview
+Divider in ListViewItem
+http://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout
+Tabelle mit 2 Spalten
+http://stackoverflow.com/questions/4725024/2-column-tablelayout-with-50-exactly-for-each-column
+Einfache Drop-Down-Menüs(Spinner)
+http://developer.android.com/guide/topics/ui/controls/spinner.html
+http://stackoverflow.com/questions/4361604/how-to-change-the-spinner-font-color
+Senden von Daten aus Reservierungsformular per Mail:
+http://stackoverflow.com/questions/21202069/sending-form-data-to-email
+Validierung von TextInput in Edits
+http://stackoverflow.com/questions/2763022/android-how-can-i-validate-edittext-input
+Validierung von Mail-Adressen
+http://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
+Validierung von Telefonnummern
+http://stackoverflow.com/questions/6358380/phone-number-validation-android

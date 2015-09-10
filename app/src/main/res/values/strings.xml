@@ -23,7 +23,7 @@
     <string name="event_day_x">In X Tagen</string>
 
     <string name="event_tuesday">Pong or Pay</string>
-    <string name="event_thursday">Stundenten.Pack</string>
+    <string name="event_thursday">Studenten.Pack</string>
     <string name="event_friday">I Like...</string>
     <string name="event_saturday">Club.Classix</string>
 
@@ -138,6 +138,38 @@
     <string name="drink_description_october">Perfekt zur Oktoberfestzeit gibt’s bei uns den ausgefallenen, echt bierigen Monatscocktail Cai.Bier.Inha. Geschmacklich und optisch ein neues Erlebnis!</string>
     <string name="drink_description_november">Die Blätter fallen von den Bäumen in unsere Drinks. Allerdings keine vertrockneten Eichenblätter, sondern frische grüne Minzblätter in unseren fruchtig frischen Monatscocktail.</string>
     <string name="drink_description_december">Der Teufel hat aus Wut in der Weihnachtszeit das Weihwasser versäuert. Nur hat er die Rechnung ohne unsere Barkeeper gemacht, die es in einen leckeren Cocktail umgewandelt haben.</string>
+
+    <string name="reservation_name">Name:</string>
+    <string name="reservation_name_hint">Vorname Nachname</string>
+    <string name="reservation_birthday">Geburtsdatum:</string>
+    <string name="reservation_date_hint">TT.MM.JJJJ</string>
+    <string name="reservation_mail">E-Mail:</string>
+    <string name="reservation_mail_hint">E-Mail-Adresse</string>
+    <string name="reservation_phone">Telefon:</string>
+    <string name="reservation_phone_hint">Vorwahl/Rufnummer</string>
+    <string name="reservation_date">Datum:</string>
+    <string name="reservation_time">Uhrzeit:</string>
+    <string-array name="time_array">
+        <item/>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+    </string-array>
+    <string name="reservation_persons">Personen:</string>
+    <string name="reservation_persons_hint">X</string>
+    <string name="reservation_area">Bereich:</string>
+    <string-array name="area_array">
+        <item/>
+        <item>Große Coktailbar</item>
+        <item>Kleine Cocktailbar</item>
+        <item>Kesselbar</item>
+        <item>Loungebar</item>
+    </string-array>
+    <string name="reservation_reason">Anlass:</string>
+    <string name="reservation_reason_hint">z.B. Geburtstag</string>
+    <string name="reservation_send_button">Senden</string>
+
 
     <string name="image_fullscreen_content_description">Image in fullscreen.</string>
 
