@@ -13,7 +13,15 @@ public class SpinnerAdapter<T> extends ArrayAdapter<T> {
 
     public SpinnerAdapter(Context context, T[] objects){
 
-        super(context, R.layout.spinner_item, objects);
+        super(context, R.layout.spinner_item_dropdown, objects);
+
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = super.getView(position, convertView, parent);
+        TextView item = (TextView) v.findViewById(R.id.spinner_item_text);
+        return v;
 
     }
 
@@ -21,7 +29,7 @@ public class SpinnerAdapter<T> extends ArrayAdapter<T> {
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View v = super.getDropDownView(position, convertView, parent);
 
-        TextView item = (TextView) v.findViewById(R.id.spinner_item_text);
+        TextView item = (TextView) v.findViewById(R.id.spinner_item_text_drop_down);
 
         return v;
     }

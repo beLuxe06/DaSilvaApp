@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.ActualCalendarProperties;
+import mi.ur.de.dasilvaapp.Reservation;
 import mi.ur.de.dasilvaapp.SpinnerAdapter;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
@@ -33,19 +35,37 @@ public class Reservation_Fragment extends Fragment {
     private SpinnerAdapter area_adapter;
     private ActualCalendarProperties calendarProperties;
     private Context context;
+    private Reservation reservation;
 
-    private boolean nameCorrectFlag = false;
-    private boolean dateCorrectFlag = false;
-    private boolean birthdayDateCorrectFlag = false;
-    private boolean birthdayFilledFlag = false;
-    private boolean dateFilledFlag = false;
-    private boolean legalAgeFlag = false;
-    private boolean dateInFutureFlag = false;
-    private boolean personsCorrectFlag = false;
-    private boolean reasonCorrectFlag = false;
-    private boolean spinnerCorrectFlag = false;
+    private String selectedTime;
+    private String selectedArea;
+    private int nameCorrectFlag = 0;
+    private int dateCorrectFlag = 0;
+    private int mailCorrectFlag = 0;
+    private int birthdayDateCorrectFlag = 0;
+    private int birthdayFilledFlag = 0;
+    private int dateFilledFlag = 0;
+    private int legalAgeFlag = 0;
+    private int dateInFutureFlag = 0;
+    private int phoneCorrectFlag = 0;
+    private int personsCorrectFlag = 0;
+    private int reasonCorrectFlag = 0;
+    private int areaCorrectFlag = 0;
+    private int timeCorrectFlag = 0;
+    private static final int FALSE = 0;
+    private static final int TRUE = 1;
 
     private ArrayList<String> collectedFormData;
+    private Button sendButton;
+    private EditText name;
+    private EditText birthday;
+    private EditText mail;
+    private EditText phone;
+    private EditText date;
+    private EditText persons;
+    private EditText reason;
+    private Spinner timeSpinner;
+    private Spinner areaSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,19 +94,54 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initSendButton() {
-        Button sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
+        sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mEmail = new Intent(Intent.ACTION_SEND);
-                mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"benediktlux@gmx.net"});
-                mEmail.putExtra(Intent.EXTRA_SUBJECT, "Da Silva App: Reservierung");
-                mEmail.putExtra(Intent.EXTRA_TEXT, collectedFormData.toString());
-                mEmail.setType("message/rfc822");
-                startActivity(Intent.createChooser(mEmail, "Choose your mail client"));
+                if (correctFlagSum()) {
+                    createReservationItemFromFormData();
+                    Intent mEmail = new Intent(Intent.ACTION_SEND);
+                    mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"DaSilvaReservierung@gmx.de"});
+                    mEmail.putExtra(Intent.EXTRA_SUBJECT, "Da Silva App: Reservierung am " + reservation.getDate());
+                    mEmail.putExtra(Intent.EXTRA_TEXT, getFormattedReservationString());
+                    mEmail.setType("message/rfc822");
+                    startActivity(Intent.createChooser(mEmail, "Choose your mail client"));
+                }
             }
         });
+    }
 
+    private String getFormattedReservationString() {
+        return "Name: " + reservation.getName() +"\n" +
+                "Geburtstag: " + reservation.getBirthday() + "\n" +
+                "E-Mail: " + reservation.getMail() + "\n" +
+                "Telefon: " + reservation.getPhone() + "\n" +
+                "Datum: " + reservation.getDate() + "\n" +
+                "Uhrzeit: " + reservation.getTime() + "\n" +
+                "Personenanzahl: " + reservation.getPersons() + "\n" +
+                "Örtlichkeit: " + reservation.getArea() + "\n" +
+                "Anlass: " + reservation.getReason() + "\n";
+    }
+
+    private void createReservationItemFromFormData() {
+        String reservationName = name.getText().toString();
+        String reservationBirthday = birthday.getText().toString();
+        String reservationMail = mail.getText().toString();
+        String reservationPhone = phone.getText().toString();
+        String reservationDate = date.getText().toString();
+        String reservationTime = selectedTime;
+        String reservationPersons = persons.getText().toString();
+        String reservationArea = selectedArea;
+        String reservationReason = reason.getText().toString();
+        reservation = new Reservation(reservationName, reservationBirthday, reservationMail, reservationPhone, reservationDate, reservationTime, reservationPersons, reservationArea, reservationReason);
+    }
+
+    private boolean correctFlagSum() {
+        return getFlagSum() == 9;
+    }
+
+    private int getFlagSum() {
+        return (nameCorrectFlag +  legalAgeFlag + mailCorrectFlag + phoneCorrectFlag + dateInFutureFlag + timeCorrectFlag + personsCorrectFlag + areaCorrectFlag+ reasonCorrectFlag );
     }
 
     private void initInputAndValidateFields() {
@@ -100,7 +155,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterName() {
-        EditText name = (EditText) getView().findViewById(R.id.reservation_name_edit);
+        name = (EditText) getView().findViewById(R.id.reservation_name_edit);
         final ImageView inputIndicatorName = (ImageView) getView().findViewById(R.id.reservation_name_input_indicator);
         checkForCorrectNameInput(name, inputIndicatorName);
     }
@@ -110,12 +165,11 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if (text == null) {
-                    setFlag(nameCorrectFlag, false);
+                    nameCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    setFlag(nameCorrectFlag, true);
+                    nameCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
-                    collectedFormData.add(0, text);
                 }
             }
         });
@@ -123,7 +177,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterBirthday() {
-        EditText birthday = (EditText) getView().findViewById(R.id.reservation_birthday_edit);
+        birthday = (EditText) getView().findViewById(R.id.reservation_birthday_edit);
         final ImageView inputIndicatorBirthday = (ImageView) getView().findViewById(R.id.reservation_birthday_input_indicator);
         checkForCorrectBirthdayInput(birthday, inputIndicatorBirthday);
     }
@@ -133,23 +187,22 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
-                    setFlag(birthdayFilledFlag, false);
+                    birthdayFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    setFlag(birthdayFilledFlag, true);
+                    birthdayFilledFlag = TRUE;
                     calendarProperties = new ActualCalendarProperties(context);
                     if (calendarProperties.incorrectDateFormat(text)) {
-                        setFlag(birthdayDateCorrectFlag, false);
+                        birthdayDateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
-                        setFlag(birthdayDateCorrectFlag, true);
+                        birthdayDateCorrectFlag = TRUE;
                         if (calendarProperties.illegalAge(text)) {
-                            setFlag(legalAgeFlag, false);
+                            legalAgeFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {
-                            setFlag(legalAgeFlag, true);
+                            legalAgeFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
-                            collectedFormData.add(text);
                         }
                     }
                 }
@@ -158,7 +211,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterMail() {
-        EditText mail = (EditText) getView().findViewById(R.id.reservation_mail_edit);
+        mail = (EditText) getView().findViewById(R.id.reservation_mail_edit);
         final ImageView inputIndicatorMail = (ImageView) getView().findViewById(R.id.reservation_mail_input_indicator);
         checkForCorrectEMailInput(mail, inputIndicatorMail);
     }
@@ -170,9 +223,10 @@ public class Reservation_Fragment extends Fragment {
                 String email = text.trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if ((email.matches(emailPattern)) && (email != null)) {
+                    mailCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
-                    collectedFormData.add(email);
                 } else {
+                    mailCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 }
             }
@@ -180,7 +234,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterPhone() {
-        EditText phone = (EditText) getView().findViewById(R.id.reservation_phone_edit);
+        phone = (EditText) getView().findViewById(R.id.reservation_phone_edit);
         final ImageView inputIndicatorPhone = (ImageView) getView().findViewById(R.id.reservation_phone_input_indicator);
         checkForCorrectPhoneInput(phone, inputIndicatorPhone);
     }
@@ -192,9 +246,10 @@ public class Reservation_Fragment extends Fragment {
                 String phone = text.trim();
                 String phonePattern = "^[+]?[0-9]{6,20}$";
                 if ((phone.matches(phonePattern)) && (phone != null)) {
+                    phoneCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
-                    collectedFormData.add(phone);
                 } else {
+                    phoneCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 }
             }
@@ -202,7 +257,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterDate() {
-        EditText date = (EditText) getView().findViewById(R.id.reservation_date_edit);
+        date = (EditText) getView().findViewById(R.id.reservation_date_edit);
         final ImageView inputIndicatorDate = (ImageView) getView().findViewById(R.id.reservation_date_input_indicator);
         checkForCorrectDateInput(date, inputIndicatorDate);
     }
@@ -212,23 +267,22 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
-                    setFlag(dateFilledFlag, false);
+                    dateFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    setFlag(dateFilledFlag, true);
+                    dateFilledFlag = TRUE;
                     calendarProperties = new ActualCalendarProperties(context);
                     if (calendarProperties.incorrectDateFormat(text)) {
-                        setFlag(dateCorrectFlag, false);
+                        dateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
-                        setFlag(dateCorrectFlag, true);
+                        dateCorrectFlag = TRUE;
                         if (calendarProperties.timeInPast(text)) {
-                            setFlag(dateInFutureFlag, false);
+                            dateInFutureFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {
-                            setFlag(dateInFutureFlag, true);
+                            dateInFutureFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
-                            collectedFormData.add(text);
                         }
                     }
                 }
@@ -237,7 +291,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterPersons() {
-        EditText persons = (EditText) getView().findViewById(R.id.reservation_persons_edit);
+        persons = (EditText) getView().findViewById(R.id.reservation_persons_edit);
         final ImageView inputIndicatorPersons = (ImageView) getView().findViewById(R.id.reservation_persons_input_indicator);
         checkForCorrectPersonsInput(persons, inputIndicatorPersons);
     }
@@ -247,17 +301,16 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if (text == null || text.equals("")) {
-                    setFlag(personsCorrectFlag, false);
+                    personsCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
                     int persons = Integer.parseInt(text);
                     if ((persons < 4) || (persons > 50)) {
-                        setFlag(personsCorrectFlag, false);
+                        personsCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
-                        setFlag(personsCorrectFlag, true);
+                        personsCorrectFlag = TRUE;
                         indicator.setImageResource(R.drawable.icon_correct);
-                        collectedFormData.add(text);
                     }
                 }
             }
@@ -265,7 +318,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initEnterReason() {
-        EditText reason = (EditText) getView().findViewById(R.id.reservation_reason_edit);
+        reason = (EditText) getView().findViewById(R.id.reservation_reason_edit);
         final ImageView inputIndicatorReason = (ImageView) getView().findViewById(R.id.reservation_reason_input_indicator);
         checkForCorrectReasonInput(reason, inputIndicatorReason);
     }
@@ -275,12 +328,11 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() < 4) || (text.length() > 30)) {
-                    setFlag(reasonCorrectFlag, false);
+                    reasonCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    setFlag(personsCorrectFlag, true);
+                    reasonCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
-                    collectedFormData.add(text);
                 }
             }
         });
@@ -292,42 +344,53 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initTimeSpinner() {
-        Spinner timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
+        timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
         timeSpinner.setAdapter(time_adapter);
         final ImageView inputIndicatorTime = (ImageView) getView().findViewById(R.id.reservation_time_input_indicator);
-        checkForCorrectTimeSpinnerInput(timeSpinner, inputIndicatorTime);
-    }
-
-    private void checkForCorrectTimeSpinnerInput(Spinner spinner, ImageView indicator) {
-        String text = spinner.getSelectedItem().toString();
-        if ((text == null) || (text.equals(""))) {
-            setFlag(spinnerCorrectFlag, false);
-            indicator.setImageResource(R.drawable.icon_incorrect);
-        } else {
-            setFlag(spinnerCorrectFlag, true);
-            indicator.setImageResource(R.drawable.icon_correct);
-            collectedFormData.add(text);
-        }
+        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedTime = time_adapter.getItem(position).toString();
+                if((selectedTime.equals("") || (selectedTime == null))){
+                    timeCorrectFlag = FALSE;
+                    inputIndicatorTime.setImageResource(R.drawable.icon_incorrect);
+                }
+                else{
+                    timeCorrectFlag = TRUE;
+                    inputIndicatorTime.setImageResource(R.drawable.icon_correct);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                timeCorrectFlag = FALSE;
+                inputIndicatorTime.setImageResource(R.drawable.icon_incorrect);
+            }
+        });
     }
 
     private void initAreaSpinner() {
-        Spinner areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
-        TextView selectedItem = (TextView) getView().findViewById(R.id.spinner_item_text);
+        areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
         areaSpinner.setAdapter(area_adapter);
         final ImageView inputIndicatorArea = (ImageView) getView().findViewById(R.id.reservation_area_input_indicator);
-        checkForCorrectAreaSpinnerInput(areaSpinner, inputIndicatorArea);
-    }
-
-    private void checkForCorrectAreaSpinnerInput(Spinner spinner, ImageView indicator) {
-        String text = spinner.getSelectedItem().toString();
-        if ((text == null) || (text.equals(""))) {
-            setFlag(spinnerCorrectFlag, false);
-            indicator.setImageResource(R.drawable.icon_incorrect);
-        } else {
-            setFlag(spinnerCorrectFlag, true);
-            indicator.setImageResource(R.drawable.icon_correct);
-            collectedFormData.add(text);
-        }
+        areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedArea = area_adapter.getItem(position).toString();
+                if((selectedArea.equals("") || (selectedArea == null))){
+                    areaCorrectFlag = FALSE;
+                    inputIndicatorArea.setImageResource(R.drawable.icon_incorrect);
+                }
+                else{
+                    areaCorrectFlag = TRUE;
+                    inputIndicatorArea.setImageResource(R.drawable.icon_correct);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                areaCorrectFlag = FALSE;
+                inputIndicatorArea.setImageResource(R.drawable.icon_incorrect);
+            }
+        });
     }
 
     private void initAdapters() {
@@ -358,9 +421,5 @@ public class Reservation_Fragment extends Fragment {
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public void setFlag(boolean flagToSet, boolean value) {
-        flagToSet = value;
     }
 }
