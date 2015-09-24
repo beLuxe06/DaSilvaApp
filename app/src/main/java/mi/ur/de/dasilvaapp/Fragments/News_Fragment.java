@@ -9,24 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
-
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.NewsFeedAdapter;
-import mi.ur.de.dasilvaapp.NewsFeedDatabase;
 import mi.ur.de.dasilvaapp.NewsFeedDownloadTask;
 import mi.ur.de.dasilvaapp.NewsFeedItem;
 import mi.ur.de.dasilvaapp.R;
-
-import static com.facebook.AccessToken.setCurrentAccessToken;
 
 /**
  * Created by blu on 17.08.2015.
@@ -37,7 +27,6 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     private ArrayList<NewsFeedItem> newsFeedItems = new ArrayList<NewsFeedItem>();
     private NewsFeedAdapter news_feed_items_adapter;
-    private NewsFeedDatabase db;
 
     public ProgressBar progressBar;
 
@@ -54,33 +43,27 @@ public class News_Fragment extends Fragment implements DownloadListener {
     @Override
     public void onStart() {
         super.onStart();
-        // initDatabase();
         initAdapter();
-        updateNewsFeedItemsFromDB();
         initUI();
-        new NewsFeedDownloadTask(getActivity(),this,newsFeedItems).execute(ADDRESS);
-        // sendRequestToFacebook();
+        fetchDataFromFacebook();
     }
 
+    private void fetchDataFromFacebook() {
+        newsFeedItems.clear();
+        new NewsFeedDownloadTask(getActivity(),this,newsFeedItems).execute(ADDRESS);
+    }
 
 
     @Override
     public void onPause() {
         super.onPause();
-        updateNewsFeedItemsFromDB();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateNewsFeedItemsFromDB();
     }
 
-    @Override
-    public void onDestroy() {
-        // db.close();
-        super.onDestroy();
-    }
 
     private void initUI() {
         initListView();
@@ -104,20 +87,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
     private void initListView() {
         ListView newsFeed = (ListView) getView().findViewById(R.id.news_feed);
         newsFeed.setAdapter(news_feed_items_adapter);
-        // Perhaps setOnClickListeners ?
     }
-
-    private void updateNewsFeedItemsFromDB() {
-      //  newsFeedItems.clear();
-      //  newsFeedItems.addAll(db.getAllNewsFeedItems());
-      //  news_feed_items_adapter.notifyDataSetChanged();
-    }
-
-    private void initDatabase() {
-        db = new NewsFeedDatabase(getActivity());
-        db.open();
-    }
-
 
     private void initAdapter() {
         news_feed_items_adapter = new NewsFeedAdapter(getActivity(), newsFeedItems);

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.ActualCalendarProperties;
+import mi.ur.de.dasilvaapp.DateHelper;
 import mi.ur.de.dasilvaapp.Reservation;
 import mi.ur.de.dasilvaapp.SpinnerAdapter;
 import mi.ur.de.dasilvaapp.HomeActivity;
@@ -34,6 +35,7 @@ public class Reservation_Fragment extends Fragment {
     private SpinnerAdapter time_adapter;
     private SpinnerAdapter area_adapter;
     private ActualCalendarProperties calendarProperties;
+    private DateHelper dh;
     private Context context;
     private Reservation reservation;
 
@@ -191,13 +193,12 @@ public class Reservation_Fragment extends Fragment {
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
                     birthdayFilledFlag = TRUE;
-                    calendarProperties = new ActualCalendarProperties(context);
-                    if (calendarProperties.incorrectDateFormat(text)) {
+                    if (dh.incorrectDateFormat(text)) {
                         birthdayDateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
                         birthdayDateCorrectFlag = TRUE;
-                        if (calendarProperties.illegalAge(text)) {
+                        if (dh.illegalAge(text)) {
                             legalAgeFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {
@@ -271,13 +272,13 @@ public class Reservation_Fragment extends Fragment {
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
                     dateFilledFlag = TRUE;
-                    calendarProperties = new ActualCalendarProperties(context);
-                    if (calendarProperties.incorrectDateFormat(text)) {
+                    dh = new DateHelper(context);
+                    if (dh.incorrectDateFormat(text)) {
                         dateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
                         dateCorrectFlag = TRUE;
-                        if (calendarProperties.timeInPast(text)) {
+                        if (dh.timeInPast(text)) {
                             dateInFutureFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {

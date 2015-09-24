@@ -51,6 +51,9 @@
 
     <string name="opening_times_weekdays">Di, Do, Fr, Sa, vor Feiertagen</string>
     <string name="opening_times_hours">21 – 2 Uhr</string>
+    <string name="opening_time">21</string>
+    <string name="closing_time">2</string>
+    <string name="opening_duration">5</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

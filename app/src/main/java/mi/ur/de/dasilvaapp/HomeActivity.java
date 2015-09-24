@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import android.content.pm.Signature;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.facebook.FacebookSdk;
@@ -35,7 +36,7 @@ import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -46,22 +47,11 @@ public class HomeActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private ArrayList<DaSilvaEvent> events = new ArrayList<DaSilvaEvent>();
+    // private EventListAdapter events_adapter;
+    private EventDatabase db;
 
-    //Store Calendar Data
-    private String actualDate;
-    private int actualHour;
-    private int actualWeekdayIndex;
-    private int actualMonthIndex;
-    //Array for Future?
-    //public String[] calendarInfos;
-
-    //Calendar Keys for Bundle
-    public static String DATE = "0";
-    public static String HOUR = "1";
-    public static String DAY_INDEX = "2";
-
-    public static String MONTH_INDEX = "0";
-
+    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
     // StringArray to store the several section(fragment) names of the App
     private String[] appSections;
@@ -69,45 +59,37 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String keyHash = printKeyHash(this);
         setContentView(R.layout.activity_home);
+        initEvents();
         setupNavigationDrawerFragment();
-        updateCalendarData();
         startHomeFragmentFirst();
         overrideTransitions();
     }
 
-    // getting the App Development Key Hashes for Facebook Development
-    public static String printKeyHash(Activity context) {
-        PackageInfo packageInfo;
-        String key = null;
-        try {
-            //getting application package name, as defined in manifest
-            String packageName = context.getApplicationContext().getPackageName();
+    private void initEvents() {
+        initEventDatabase();
+        initEventAdapter();
+        fetchDataFromFacebook();
+    }
 
-            //Retriving package info
-            packageInfo = context.getPackageManager().getPackageInfo(packageName,
-                    PackageManager.GET_SIGNATURES);
+    private void fetchDataFromFacebook() {
+        events.clear();
+        new EventsDownloadTask(this,this,events).execute(ADDRESS);
+    }
 
-            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+    private void updateEventsFromDB() {
+        events.clear();
+        events.addAll(db.getAllEvents());
+       // events_adapter.notifyDataSetChanged();
+    }
 
-            for (Signature signature : packageInfo.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                key = new String(Base64.encode(md.digest(), 0));
+    private void initEventAdapter() {
+       // events_adapter = new EventListAdapter(this, events);
+    }
 
-                // String key = new String(Base64.encodeBytes(md.digest()));
-                Log.e("Key Hash=", key);
-            }
-        } catch (PackageManager.NameNotFoundException e1) {
-            Log.e("Name not found", e1.toString());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("No such an algorithm", e.toString());
-        } catch (Exception e) {
-            Log.e("Exception", e.toString());
-        }
-
-        return key;
+    private void initEventDatabase() {
+        db = new EventDatabase(this);
+        db.open();
     }
 
     private void overrideTransitions() {
@@ -116,10 +98,16 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    public void onDestroy() {
+        db.close();
+        super.onDestroy();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
-
-        // Facebook Logs 'app deactivate' App Event.
+        updateEventsFromDB();
+        // Facebook Logs 'app deactivate' App DaSilvaEvent.
         // Forces Shut Down -> Commented
         // AppEventsLogger.deactivateApp(this);
     }
@@ -127,8 +115,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        updateCalendarData();
-
+        updateEventsFromDB();
         // Facebook Logs 'install' and 'app activate' App Events.
         // Forces Shut Down -> Commented
         // AppEventsLogger.activateApp(this);
@@ -136,26 +123,8 @@ public class HomeActivity extends AppCompatActivity
 
     private void startHomeFragmentFirst() {
         Fragment newFragment = new Home_Fragment();
-        Bundle calendarInfos = new Bundle();
-        calendarInfos.putString(DATE, actualDate);
-        calendarInfos.putInt(HOUR, actualHour);
-        calendarInfos.putInt(DAY_INDEX, actualWeekdayIndex);
-        newFragment.setArguments(calendarInfos);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
-    }
-
-    private void updateCalendarData() {
-        Calendar c = Calendar.getInstance();
-        // Datum einholen, Format: DD.MM.JJJJ
-        SimpleDateFormat d = new SimpleDateFormat("dd.MM.yyyy");
-        actualDate = d.format(c.getTime());
-        // Uhrzeit einholen, Format: HH
-        actualHour = c.get(Calendar.HOUR_OF_DAY);
-        // Wochentagindex einholen, Format: 1-7
-        actualWeekdayIndex = c.get(Calendar.DAY_OF_WEEK);
-
-        actualMonthIndex = c.get(Calendar.MONTH);
     }
 
     private void setupNavigationDrawerFragment() {
@@ -176,11 +145,7 @@ public class HomeActivity extends AppCompatActivity
 
         switch (position) {
             case 0:
-                Bundle calendarInfoHome = new Bundle();
-                calendarInfoHome.putString(DATE, actualDate);
-                calendarInfoHome.putInt(HOUR, actualHour);
-                calendarInfoHome.putInt(DAY_INDEX, actualWeekdayIndex);
-                newFragment = Home_Fragment.newInstance(position + 1, calendarInfoHome);
+                newFragment = Home_Fragment.newInstance(position + 1);
                 break;
             case 1:
                 newFragment = Program_Fragment.newInstance(position + 1);
@@ -195,9 +160,7 @@ public class HomeActivity extends AppCompatActivity
                 newFragment = Reservation_Fragment.newInstance(position + 1);
                 break;
             case 5:
-                Bundle calendarInfoDrink = new Bundle();
-                calendarInfoDrink.putInt(MONTH_INDEX, actualMonthIndex);
-                newFragment = Drink_Of_The_Month_Fragment.newInstance(position + 1, calendarInfoDrink);
+                newFragment = Drink_Of_The_Month_Fragment.newInstance(position + 1);
                 break;
             case 6:
                 newFragment = Regular_Guest_Fragment.newInstance(position + 1);
@@ -283,4 +246,18 @@ public class HomeActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onDownloadFinished() {
+
+    }
+
+    @Override
+    public void onDownloadStarted() {
+
+    }
+
+    @Override
+    public void onDownloadInProgress() {
+
+    }
 }

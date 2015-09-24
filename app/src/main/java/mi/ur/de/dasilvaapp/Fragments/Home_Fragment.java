@@ -1,6 +1,7 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mi.ur.de.dasilvaapp.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.DaSilvaAppContentTextView;
 import mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView;
 import mi.ur.de.dasilvaapp.HomeActivity;
@@ -28,6 +30,9 @@ public class Home_Fragment extends Fragment {
     private int actualWeekdayIndex;
     private int actualFlyerSrc;
     private int actualTimeToOpening;
+
+    private Context context;
+    private ActualCalendarProperties calendarProperties;
 
     private String actualOpeningStatus;
     private String nextEventDay;
@@ -50,7 +55,7 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getCalendarDataFromActivity();
+        getCalendarData();
         initUI();
         updateDateTextViews();
         setOnClickListenersForFullScreenImage();
@@ -80,6 +85,8 @@ public class Home_Fragment extends Fragment {
         labelDate.setText(actualDate);
         flyer.setImageResource(actualFlyerSrc);
     }
+
+
 
     private void updateActualStringValues(int actualWeekdayIndex, int actualHour) {
         //Prüfung welcher Wochentag, setze Stringvariablen entsprechend
@@ -214,13 +221,10 @@ public class Home_Fragment extends Fragment {
     }
 
 
-    private void getCalendarDataFromActivity() {
-        Bundle calendarInfos = getArguments();
-        if (calendarInfos != null) {
-            actualDate = calendarInfos.getString(HomeActivity.DATE);
-            actualHour = calendarInfos.getInt(HomeActivity.HOUR);
-            actualWeekdayIndex = calendarInfos.getInt(HomeActivity.DAY_INDEX);
-        }
+    private void getCalendarData() {
+        calendarProperties = new ActualCalendarProperties(context);
+        actualWeekdayIndex = calendarProperties.getWeekdayIndex();
+        actualHour = calendarProperties.getHour();
     }
 
     private void setOnClickListenersForFullScreenImage() {
@@ -248,10 +252,8 @@ public class Home_Fragment extends Fragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
-    public static Home_Fragment newInstance(int sectionNumber, Bundle bundle) {
+    public static Home_Fragment newInstance(int sectionNumber) {
         Home_Fragment fragment = new Home_Fragment();
-        bundle.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(bundle);
         return fragment;
     }
 

@@ -1,44 +1,43 @@
-package mi.ur.de.dasilvaapp;
+/**package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
  * Created by blu on 01.09.2015.
  */
-public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
+/**public class EventListAdapter extends ArrayAdapter<DaSilvaEvent> {
     private Context context;
-    private ArrayList<NewsFeedItem> newsFeedItems;
-    private int newsFeedItemView;
+    private ArrayList<DaSilvaEvent> events;
+    private int EventView;
     private ActualCalendarProperties calendarProperties;
-    private DateHelper dh;
 
-    public NewsFeedAdapter(Context context, ArrayList<NewsFeedItem> newsFeedItems){
-        super(context, R.layout.newsfeed_item, newsFeedItems);
+    public EventListAdapter(Context context, ArrayList<DaSilvaEvent> events){
+        super(context, null, events);
         this.context = context;
-        this.newsFeedItems = newsFeedItems;
-        this.newsFeedItemView = R.layout.newsfeed_item;
-        dh = new DateHelper(context);
+        this.events = events;
+        this.eventItemView = R.layout.newsfeed_item;
     }
 
     @Override
     public int getCount() {
-        return newsFeedItems.size();
+        return events.size();
     }
 
     @Override
-    public NewsFeedItem getItem(int position) {
-        return newsFeedItems.get(position);
+    public DaSilvaEvent getItem(int position) {
+        return events.get(position);
     }
 
     @Override
@@ -64,8 +63,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
             TextView link = (TextView) actualNewsFeedItemView.findViewById(R.id.link_to_facebook_entry);
             new ImageLoadTask(newsFeedItem.getImageURL(), image).execute();
             setUpCalendarProperties(context);
-            Timestamp timestamp = new Timestamp(newsFeedItem.getCreatedTimestamp());
-            String actualTimeAgoString = dh.getFormattedTimeAgoString(timestamp);
+            String actualTimeAgoString = calendarProperties.getFormattedTimeAgoString(newsFeedItem.getCreatedTimestamp());
             time.setText(actualTimeAgoString);
             story.setText(newsFeedItem.getStory());
             message.setText(newsFeedItem.getMessage());
@@ -84,6 +82,7 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
         return actualNewsFeedItemView;
     }
 
+
     private void hideTextViewIfEmptyString(TextView textView, String string) {
         if(string == null || string.isEmpty()){
             textView.setVisibility(View.GONE);
@@ -95,3 +94,4 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
         calendarProperties = new ActualCalendarProperties(context);
     }
 }
+*/
