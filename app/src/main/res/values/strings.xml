@@ -15,7 +15,26 @@
     <string name="title_section_news">News</string>
     <string name="title_section_image_fullscreen">Vollbild</string>
     <string name="title_section_gallery_detail">Detailgalerie</string>
-
+    <string-array name="section_icons">
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_program</item>
+        <item>@drawable/icon_gallery</item>
+        <item>@drawable/icon_location</item>
+        <item>@drawable/icon_mail</item>
+        <item>@drawable/icon_drink</item>
+        <item>@drawable/icon_regular_guest</item>
+        <item>@drawable/icon_news</item>
+    </string-array>
+    <string-array name="sections">
+        <item>Home</item>
+        <item>Programm</item>
+        <item>Galerie</item>
+        <item>Location</item>
+        <item>Reservierung</item>
+        <item>Drink des Monats</item>
+        <item>Stammgast</item>
+        <item>News</item>
+    </string-array>
 
     <string name="event_day_today">Heute</string>
     <string name="event_day_tomorrow">Morgen</string>

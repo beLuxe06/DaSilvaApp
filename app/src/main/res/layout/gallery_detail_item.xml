@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gallery_detail_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_list_view_items"
+    android:minHeight="100dp">
+
+    <ImageView
+        android:id="@+id/gallery_detail_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/da_silva_logo_gross_weiss"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
+    <ProgressBar
+        android:id="@+id/gallery_detail_item_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="@android:style/Widget.ProgressBar.Large"/>
+
+</RelativeLayout>

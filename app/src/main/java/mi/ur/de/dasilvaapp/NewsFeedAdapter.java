@@ -2,11 +2,14 @@ package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,44 +56,27 @@ public class NewsFeedAdapter extends ArrayAdapter<NewsFeedItem> {
 
         }
 
-        NewsFeedItem newsFeedItem = newsFeedItems.get(position);
+        final NewsFeedItem newsFeedItem = newsFeedItems.get(position);
 
         if(newsFeedItem != null) {
 
+            ProgressBar progressBar = (ProgressBar) actualNewsFeedItemView.findViewById(R.id.news_feed_item_progress_bar);
             ImageView image = (ImageView) actualNewsFeedItemView.findViewById(R.id.news_feed_image);
             TextView time = (TextView) actualNewsFeedItemView.findViewById(R.id.time_stamp);
             TextView story = (TextView) actualNewsFeedItemView.findViewById(R.id.story);
             TextView message = (TextView) actualNewsFeedItemView.findViewById(R.id.message);
             TextView link = (TextView) actualNewsFeedItemView.findViewById(R.id.link_to_facebook_entry);
-            new ImageLoadTask(newsFeedItem.getImageURL(), image).execute();
+            new ImageLoadTask(newsFeedItem.getImageURL(), image, progressBar).execute();
             setUpCalendarProperties(context);
             Timestamp timestamp = new Timestamp(newsFeedItem.getCreatedTimestamp());
             String actualTimeAgoString = dh.getFormattedTimeAgoString(timestamp);
             time.setText(actualTimeAgoString);
             story.setText(newsFeedItem.getStory());
             message.setText(newsFeedItem.getMessage());
-            link.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        URL linkToFacebookPost = new URL(newsFeedItems.get(position).getLink());
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
         }
 
         return actualNewsFeedItemView;
     }
-
-    private void hideTextViewIfEmptyString(TextView textView, String string) {
-        if(string == null || string.isEmpty()){
-            textView.setVisibility(View.GONE);
-        }
-    }
-
-
     private void setUpCalendarProperties(Context context) {
         calendarProperties = new ActualCalendarProperties(context);
     }

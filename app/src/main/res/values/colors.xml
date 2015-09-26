@@ -2,6 +2,7 @@
 <resources>
     FontColors
     <color name="text_color_primary">#FFFFFF</color>
+
     <color name="text_color_closed">#D99694</color>
     <color name="text_color_open_in">#FAC090</color>
     <color name="text_color_open">#B0C020</color>
@@ -9,6 +10,8 @@
     ContentColors
     <color name="da_silva_highlight">#B0C020</color>
     <color name="da_silva_background">#1E1E1E</color>
+    <color name="da_silva_background_transparent">#B91E1E1E</color>
+    <color name="navigation_drawer_background_color">#B9EEEEEE</color>
 
 
 

@@ -20,11 +20,51 @@ public class ActualCalendarProperties {
     public ActualCalendarProperties(Context context) {
         this.context = context;
         calendar = Calendar.getInstance();
-
     }
 
     public int getWeekdayIndex(){
         return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    public String getWeekday(){
+        int index = getWeekdayIndex();
+        String weekday = null;
+        switch (index){
+            case 1:
+                weekday = context.getResources().getString(R.string.weekday_sunday);
+                break;
+            case 2:
+                weekday = context.getResources().getString(R.string.weekday_monday);
+                break;
+            case 3:
+                weekday = context.getResources().getString(R.string.weekday_tuesday);
+                break;
+            case 4:
+                weekday = context.getResources().getString(R.string.weekday_wednesday);
+                break;
+            case 5:
+                weekday = context.getResources().getString(R.string.weekday_thursday);
+                break;
+            case 6:
+                weekday = context.getResources().getString(R.string.weekday_friday);
+                break;
+            case 7:
+                weekday = context.getResources().getString(R.string.weekday_saturday);
+                break;
+        }
+        return weekday;
+    }
+
+    public String getOpeningStatus(String openingTime){
+        Timestamp timestamp = new Timestamp(openingTime);
+        String actualOpeningStatus = context.getResources().getString(R.string.event_status_open_in);
+        int actualTimeToOpening = getHoursTillTime(timestamp.getHour());
+        actualOpeningStatus = actualOpeningStatus + " " + actualTimeToOpening + " " + context.getResources().getString(R.string.event_status_unit);
+        return actualOpeningStatus;
+    }
+
+    private int getHoursTillTime(int timestampHour){
+        return timestampHour-getHour();
     }
 
     public int getDayOfMonth(){
@@ -49,6 +89,11 @@ public class ActualCalendarProperties {
 
     public String getDateString() {
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        return df.format(calendar.getTime());
+    }
+
+    public String getDBSearchString(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(calendar.getTime());
     }
 

@@ -106,7 +106,6 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        updateEventsFromDB();
         // Facebook Logs 'app deactivate' App DaSilvaEvent.
         // Forces Shut Down -> Commented
         // AppEventsLogger.deactivateApp(this);
@@ -115,14 +114,14 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        updateEventsFromDB();
+       // updateEventsFromDB();
         // Facebook Logs 'install' and 'app activate' App Events.
         // Forces Shut Down -> Commented
         // AppEventsLogger.activateApp(this);
     }
 
     private void startHomeFragmentFirst() {
-        Fragment newFragment = new Home_Fragment();
+        Fragment newFragment = Home_Fragment.newInstance(1);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, newFragment).commit();
     }
@@ -176,31 +175,9 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section_home);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section_program);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section_gallery);
-                break;
-            case 4:
-                mTitle = getString(R.string.title_section_location);
-                break;
-            case 5:
-                mTitle = getString(R.string.title_section_reservation);
-                break;
-            case 6:
-                mTitle = getString(R.string.title_section_drink_of_the_month);
-                break;
-            case 7:
-                mTitle = getString(R.string.title_section_regular_guest);
-                break;
-            case 8:
-                mTitle = getString(R.string.title_section_news);
-                break;
+        String[] stringArray = getResources().getStringArray(R.array.sections);
+        if (number >= 1) {
+            mTitle = stringArray[number - 1];
         }
     }
 

@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     android:choiceMode="singleChoice"
     android:divider="@color/text_color_primary"
-    android:dividerHeight="0dp"
-    android:background="@color/secondary_text_default_material_dark"
+    android:dividerHeight="2dp"
+    android:background="@drawable/navigation_drawer_background"
     tools:context=".NavigationDrawerFragment" />

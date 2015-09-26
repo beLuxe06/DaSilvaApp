@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -31,7 +32,6 @@ public class News_Fragment extends Fragment implements DownloadListener {
     public ProgressBar progressBar;
 
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
-    private final static String IMAGE_ADDRESS_PREFIX = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +87,11 @@ public class News_Fragment extends Fragment implements DownloadListener {
     private void initListView() {
         ListView newsFeed = (ListView) getView().findViewById(R.id.news_feed);
         newsFeed.setAdapter(news_feed_items_adapter);
+        newsFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long ViewID) {
+            }
+        });
     }
 
     private void initAdapter() {

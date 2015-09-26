@@ -3,7 +3,9 @@ package mi.ur.de.dasilvaapp;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -16,10 +18,12 @@ public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
     private String url;
     private ImageView imageView;
+    private ProgressBar progressBar;
 
-    public ImageLoadTask(String url, ImageView imageView) {
+    public ImageLoadTask(String url, ImageView imageView, ProgressBar progressBar) {
         this.url = url;
         this.imageView = imageView;
+        this.progressBar = progressBar;
     }
 
     @Override
@@ -41,8 +45,9 @@ public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap result) {
-        super.onPostExecute(result);
         imageView.setImageBitmap(result);
+        progressBar.setVisibility(View.GONE);
+        super.onPostExecute(result);
     }
 
 }

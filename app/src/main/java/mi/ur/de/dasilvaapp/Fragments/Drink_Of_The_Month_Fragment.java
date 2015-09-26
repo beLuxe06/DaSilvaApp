@@ -1,6 +1,7 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +37,7 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
     private ImageView imageOfDrink;
 
     private ActualCalendarProperties calenderProperties;
+    private Context context;
 
     @Override
     public void onStart() {
@@ -153,6 +155,8 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
     }
 
     private void getCalendarData() {
+        context = getActivity();
+        calenderProperties = new ActualCalendarProperties(context);
         actualMonthIndex = calenderProperties.getMonth();
     }
 
@@ -184,6 +188,9 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
 
     public static Drink_Of_The_Month_Fragment newInstance(int sectionNumber) {
         Drink_Of_The_Month_Fragment fragment = new Drink_Of_The_Month_Fragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
         return fragment;
     }
 

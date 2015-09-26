@@ -14,6 +14,8 @@ import android.widget.TextView;
 import mi.ur.de.dasilvaapp.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.DaSilvaAppContentTextView;
 import mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView;
+import mi.ur.de.dasilvaapp.DaSilvaEvent;
+import mi.ur.de.dasilvaapp.EventDatabase;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
 
@@ -25,6 +27,7 @@ public class Home_Fragment extends Fragment {
     //Store Calendar Data
     private String nextEventTitle;
     private String actualDate;
+    private String actualDBSearchDate;
     private String actualWeekday;
     private int actualHour;
     private int actualWeekdayIndex;
@@ -39,6 +42,7 @@ public class Home_Fragment extends Fragment {
 
     private static final int OPENING_TIME = 21;
     private static final int CLOSING_TIME = 2;
+    private static final String ADDRESS = "https://graph.facebook.com/58336779060?fields=events{start_time,end_time,name,description,id,picture{url}}&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
 
 
@@ -49,6 +53,7 @@ public class Home_Fragment extends Fragment {
     private TextView labelDate;
     private TextView labelOpeningStatus;
     private ImageView flyer;
+    private EventDatabase db;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -56,9 +61,21 @@ public class Home_Fragment extends Fragment {
     public void onStart() {
         super.onStart();
         getCalendarData();
+       // initDatabase();
         initUI();
         updateDateTextViews();
         setOnClickListenersForFullScreenImage();
+    }
+
+    private void initDatabase() {
+        db = new EventDatabase(context);
+        db.open();
+    }
+
+    @Override
+    public void onDestroy() {
+//        db.close();
+        super.onDestroy();
     }
 
     @Override
@@ -77,6 +94,13 @@ public class Home_Fragment extends Fragment {
     }
 
     private void updateDateTextViews() {
+        // DaSilvaEvent upcomingEvent = db.getEvent(actualDBSearchDate);
+        // labelWeekday.setText(calendarProperties.getWeekday());
+        // labelDate.setText(calendarProperties.getDateString());
+        // labelOpeningStatus.setText(calendarProperties.getOpeningStatus());
+        // labelNextEventTitle.setText(upcomingEvent.getName());
+        // labelNextEventTitle.setText(upcomingEvent.getDateString());
+        // flyer.setImageRessource(upcomingEvent.getImageURL());
         updateActualStringValues(actualWeekdayIndex, actualHour);
         labelNextEventDay.setText(nextEventDay);
         labelNextEventTitle.setText(nextEventTitle);
@@ -85,8 +109,6 @@ public class Home_Fragment extends Fragment {
         labelDate.setText(actualDate);
         flyer.setImageResource(actualFlyerSrc);
     }
-
-
 
     private void updateActualStringValues(int actualWeekdayIndex, int actualHour) {
         //Prüfung welcher Wochentag, setze Stringvariablen entsprechend
@@ -222,9 +244,12 @@ public class Home_Fragment extends Fragment {
 
 
     private void getCalendarData() {
+        context = getActivity();
         calendarProperties = new ActualCalendarProperties(context);
         actualWeekdayIndex = calendarProperties.getWeekdayIndex();
         actualHour = calendarProperties.getHour();
+        actualDBSearchDate = calendarProperties.getDBSearchString();
+        actualDate = calendarProperties.getDateString();
     }
 
     private void setOnClickListenersForFullScreenImage() {
@@ -254,6 +279,9 @@ public class Home_Fragment extends Fragment {
 
     public static Home_Fragment newInstance(int sectionNumber) {
         Home_Fragment fragment = new Home_Fragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
         return fragment;
     }
 

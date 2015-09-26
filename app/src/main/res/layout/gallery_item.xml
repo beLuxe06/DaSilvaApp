@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gallery_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_list_view_items"
+    android:minHeight="100dp">
+
+    <ImageView
+        android:id="@+id/gallery_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/da_silva_logo_gross_weiss"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
+    <ProgressBar
+        android:id="@+id/gallery_item_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="@android:style/Widget.ProgressBar.Large"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/gallery_item_image"
+        android:layout_alignLeft="@+id/gallery_item_image"
+        android:layout_alignRight="@+id/gallery_item_image"
+        android:weightSum="1">
+
+        <TableRow
+            android:background="@color/da_silva_background_transparent"
+            >
+            <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                android:id="@+id/gallery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/subhead"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_list_view_items"
+                android:text="@string/date_today"
+                android:layout_alignBottom="@+id/gallery_item_image"
+                android:layout_alignLeft="@+id/gallery_item_image"
+                android:layout_weight="0.35"/>
+            <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                android:id="@+id/gallery_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/subhead"
+                android:gravity="end"
+                android:paddingLeft="@dimen/padding_list_view_items"
+                android:text="@string/event_tuesday"
+                android:layout_alignBottom="@+id/gallery_item_image"
+                android:layout_alignRight="@+id/gallery_item_image"
+                android:layout_weight="0.65"/>
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

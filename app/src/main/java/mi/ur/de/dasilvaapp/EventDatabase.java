@@ -20,6 +20,7 @@ public class EventDatabase {
     public static final String KEY_ID = "id";
     public static final String KEY_FACEBOOK_ID = "facebook_id";
     public static final String KEY_NAME = "name";
+    public static final String KEY_DATE = "date";
     public static final String KEY_OPENING_TIME = "opening_time";
     public static final String KEY_CLOSING_TIME = "closing_time";
     public static final String KEY_DESCRIPTION = "description";
@@ -28,10 +29,11 @@ public class EventDatabase {
     public static final int COLUMN_ID_INDEX = 0;
     public static final int COLUMN_FACEBOOK_ID_INDEX = 1;
     public static final int COLUMN_NAME_INDEX = 2;
-    public static final int COLUMN_OPENING_TIME_INDEX = 3;
-    public static final int COLUMN_CLOSING_TIME_INDEX = 4;
-    public static final int COLUMN_DESCRIPTION_INDEX = 5;
-    public static final int COLUMN_IMAGE_URL_INDEX = 6;
+    public static final int COLUMN_DATE_INDEX = 3;
+    public static final int COLUMN_OPENING_TIME_INDEX = 4;
+    public static final int COLUMN_CLOSING_TIME_INDEX = 5;
+    public static final int COLUMN_DESCRIPTION_INDEX = 6;
+    public static final int COLUMN_IMAGE_URL_INDEX = 7;
 
     private EventDBOpenHelper dbHelper;
 
@@ -49,11 +51,34 @@ public class EventDatabase {
         db.close();
     }
 
-    public long addNewsFeedItem(DaSilvaEvent event){
+    public DaSilvaEvent getEvent(String searchDate){
+        DaSilvaEvent event;
+        String selection = KEY_DATE + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(searchDate) };
+
+        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_NAME, KEY_DATE, KEY_OPENING_TIME, KEY_CLOSING_TIME, KEY_DESCRIPTION, KEY_IMAGE_URL}, selection, selectionArgs, null, null, null);
+
+        long id = cursor.getLong(COLUMN_ID_INDEX);
+        String facebookID = cursor.getString(COLUMN_FACEBOOK_ID_INDEX);
+        String name = cursor.getString(COLUMN_NAME_INDEX);
+        String date = cursor.getString(COLUMN_DATE_INDEX);
+        String openingTime = cursor.getString(COLUMN_OPENING_TIME_INDEX);
+        String closingTime = cursor.getString(COLUMN_CLOSING_TIME_INDEX);
+        String description = cursor.getString(COLUMN_DESCRIPTION_INDEX);
+        String imageURL = cursor.getString(COLUMN_IMAGE_URL_INDEX);
+
+        event = new DaSilvaEvent(id, facebookID, name, date, openingTime, closingTime, description, imageURL);
+
+        return event;
+
+    }
+
+    public long addEvent(DaSilvaEvent event){
         ContentValues eventValues = new ContentValues();
 
         eventValues.put(KEY_FACEBOOK_ID, event.getFacebookId());
         eventValues.put(KEY_NAME, event.getName());
+        eventValues.put(KEY_DATE, event.getDate());
         eventValues.put(KEY_OPENING_TIME, event.getOpeningTime());
         eventValues.put(KEY_CLOSING_TIME, event.getClosingTime());
         eventValues.put(KEY_DESCRIPTION, event.getDescription());
@@ -92,17 +117,18 @@ public class EventDatabase {
 
     public ArrayList<DaSilvaEvent> getAllEvents(){
         ArrayList<DaSilvaEvent> events = new ArrayList<DaSilvaEvent>();
-        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_NAME, KEY_OPENING_TIME, KEY_OPENING_TIME, KEY_DESCRIPTION}, null, null, null, null, null);
+        Cursor cursor = db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_FACEBOOK_ID, KEY_NAME, KEY_DATE, KEY_OPENING_TIME, KEY_OPENING_TIME, KEY_DESCRIPTION}, null, null, null, null, null);
         if(cursor.moveToFirst()){
             do{
                 long id = cursor.getLong(COLUMN_ID_INDEX);
-                long facebookID = cursor.getLong(COLUMN_FACEBOOK_ID_INDEX);
+                String facebookID = cursor.getString(COLUMN_FACEBOOK_ID_INDEX);
                 String name = cursor.getString(COLUMN_NAME_INDEX);
+                String date = cursor.getString(COLUMN_DATE_INDEX);
                 String openingTime = cursor.getString(COLUMN_OPENING_TIME_INDEX);
                 String closingTime = cursor.getString(COLUMN_CLOSING_TIME_INDEX);
                 String description = cursor.getString(COLUMN_DESCRIPTION_INDEX);
                 String imageURL = cursor.getString(COLUMN_IMAGE_URL_INDEX);
-                events.add(new DaSilvaEvent(id, facebookID, name, openingTime, closingTime, description, imageURL));
+                events.add(new DaSilvaEvent(id, facebookID, name, date, openingTime, closingTime, description, imageURL));
             }
             while(cursor.moveToNext());
         }
@@ -111,7 +137,7 @@ public class EventDatabase {
 
 
     private class EventDBOpenHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_FACEBOOK_ID + " text, " + KEY_NAME + " text not null,"  + KEY_OPENING_TIME + " text," + KEY_CLOSING_TIME + " text," + KEY_DESCRIPTION + " text," + KEY_IMAGE_URL + " text);";
+        private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_FACEBOOK_ID + " text, " + KEY_NAME + " text not null," + KEY_DATE + " text,"  + KEY_OPENING_TIME + " text," + KEY_CLOSING_TIME + " text," + KEY_DESCRIPTION + " text," + KEY_IMAGE_URL + " text);";
 
         public EventDBOpenHelper(Context c, String dbName, SQLiteDatabase.CursorFactory factory, int version){
             super(c, dbName, factory, version);

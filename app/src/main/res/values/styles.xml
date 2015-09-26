@@ -12,6 +12,14 @@
         <item name="android:layout_margin">@dimen/margin_fragment_headline_top_bottom</item>
     </style>
 
+    <style name="image_caption" parent="headline">
+        <item name="android:textSize">@dimen/caption_font_size</item>
+    </style>
+
+    <style name="navigation_drawer" parent="image_caption">
+        <item name="android:textColor">@color/da_silva_background</item>
+    </style>
+
     <style name="subhead">
         <item name="android:textSize">@dimen/subhead_font_size</item>
         <item name="android:textColor">@color/text_color_primary</item>

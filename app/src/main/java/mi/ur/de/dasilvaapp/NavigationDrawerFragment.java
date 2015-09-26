@@ -1,5 +1,7 @@
 package mi.ur.de.dasilvaapp;
 
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -97,20 +100,23 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<>(
+        final TypedArray typedArray = getResources().obtainTypedArray(R.array.section_icons);
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_section_home),
-                        getString(R.string.title_section_program),
-                        getString(R.string.title_section_gallery),
-                        getString(R.string.title_section_location),
-                        getString(R.string.title_section_reservation),
-                        getString(R.string.title_section_drink_of_the_month),
-                        getString(R.string.title_section_regular_guest),
-                        getString(R.string.title_section_news),
-                }));
+                R.layout.navigation_drawer_list_item,
+                R.id.navigation_fragment_section,
+                getResources().getStringArray(R.array.sections)
+        ) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                int resourceId = typedArray.getResourceId(position, 0);
+
+                Drawable drawable = getResources().getDrawable(resourceId);
+                ((DaSilvaAppTitleTextView) v).setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                return v;
+            }
+        });
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }

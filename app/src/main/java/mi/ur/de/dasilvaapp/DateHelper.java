@@ -38,7 +38,7 @@ public class DateHelper {
 
     public DateHelper(Context context){
         this.context = context;
-        ActualCalendarProperties calendarProperties = new ActualCalendarProperties(context);
+        calendarProperties = new ActualCalendarProperties(context);
         updateCalendarProperties();
     }
 
@@ -79,7 +79,7 @@ public class DateHelper {
     }
 
     private boolean hoursCorrect(int timestampHour, int openingDuration) {
-        if((actualHour > CLOSING_TIME) && (actualHour < OPENING_TIME)){
+        if((actualHour > CLOSING_TIME) || (actualHour < OPENING_TIME)){
             return false;
         }
         int hourDifference;
@@ -155,7 +155,7 @@ public class DateHelper {
 
     private boolean isMidnight(int timeStampDay, int timeStampHour) {
         updateCalendarProperties();
-        if((timeStampHour == 23) && (actualHour == 0)){
+        if((timeStampHour < 24) && (actualHour > 0)){
             if(timeStampDay==(actualDay-1)){
                 return true;
             }
@@ -222,9 +222,7 @@ public class DateHelper {
         return HOURS+0+THIS;
     }
 
-    public int getHoursTillTime(int time){
-        return time-calendarProperties.getHour();
-    }
+
 
     private String getTimeAgoPlusUnitAsString(String Unit, int difference) {
         // Check for last year, return last year

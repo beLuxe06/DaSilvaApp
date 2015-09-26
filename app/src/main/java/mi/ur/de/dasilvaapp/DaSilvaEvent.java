@@ -8,17 +8,19 @@ import java.util.Date;
 public class DaSilvaEvent {
 
     private final long id;
-    private final long facebookId;
+    private final String facebookId;
     private final String name;
+    private final String date;
     private final String openingTime;
     private final String closingTime;
     private final String description;
     private final String imageURL;
 
-    public DaSilvaEvent(long id, long facebookId, String name, String openingTime, String closingTime, String description, String imageURL) {
+    public DaSilvaEvent(long id, String facebookId, String name, String date, String openingTime, String closingTime, String description, String imageURL) {
         this.id = id;
         this.facebookId = facebookId;
         this.name = name;
+        this.date = date;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.description = description;
@@ -29,12 +31,16 @@ public class DaSilvaEvent {
         return id;
     }
 
-    public long getFacebookId(){
+    public String getFacebookId(){
         return facebookId;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getOpeningTime() {

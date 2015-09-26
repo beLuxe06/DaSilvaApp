@@ -8,12 +8,43 @@
     android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/gallery_detail_event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:text="@string/title_section_gallery_detail"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/event_tuesday"
+        style="@style/headline"/>
+
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/gallery_detail_event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gallery_detail_event_name"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/date_today"
+        style="@style/subhead"/>
+
+    <ProgressBar
+        android:id="@+id/gallery_detail_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gallery_detail_event_date"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        style="@android:style/Widget.ProgressBar.Large"/>
+
+    <ListView
+        android:id="@+id/gallery_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gallery_detail_event_date"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        android:padding="10dp"
+        android:animateLayoutChanges="true"
+        />
 
 
 </RelativeLayout>

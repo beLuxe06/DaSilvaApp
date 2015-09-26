@@ -8,10 +8,42 @@
     android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
-    <ImageView
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/location_name_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/under_construction"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_name"
+        style="@style/headline"/>
 
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/location_type_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_name_gallery"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_type"
+        style="@style/subhead"/>
+
+    <ProgressBar
+        android:id="@+id/gallery_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_type_gallery"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        style="@android:style/Widget.ProgressBar.Large"/>
+
+    <ListView
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_type_gallery"
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
+        android:padding="10dp"
+        android:animateLayoutChanges="true"
+        />
 
 </RelativeLayout>
