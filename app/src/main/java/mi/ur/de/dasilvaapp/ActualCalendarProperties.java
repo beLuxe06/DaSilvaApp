@@ -102,12 +102,12 @@ public class ActualCalendarProperties {
     }
 
     public String getTimeString() {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         return df.format(calendar.getTime());
     }
 
     public String getCurrentTimestamp(){
-        return getDateString() + " " + getTimeString();
+        return getDBSearchString() + "T" + getTimeString();
     }
 
 
