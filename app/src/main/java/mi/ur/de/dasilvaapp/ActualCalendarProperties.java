@@ -106,7 +106,7 @@ public class ActualCalendarProperties {
         return df.format(calendar.getTime());
     }
 
-    public String getCurrentTimestamp(){
+    public String getCurrentTimestampAsString(){
         return getDBSearchString() + "T" + getTimeString();
     }
 

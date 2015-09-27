@@ -32,7 +32,7 @@ public class DateHelper {
 
     public static final int FACEBOOK_DATE_OBJECT = 1;
     public static final int CALENDAR_DATE_OBJECT = 2;
-    public static final int MIN_NUM_HOURS_TO_STAY = 1;
+    public static final int MIN_NUM_HOURS_TO_STAY = 2;
     public static final int OPENING_TIME = 21;
     public static final int CLOSING_TIME = 2;
 
@@ -80,7 +80,7 @@ public class DateHelper {
         return "incorrect";
     }
 
-    private String hoursCorrect(int timestampHour, int openingDuration) {
+    public String hoursCorrect(int timestampHour, int openingDuration) {
         if((actualHour > CLOSING_TIME) || (actualHour < OPENING_TIME)){
             return "out of opening duration";
         }

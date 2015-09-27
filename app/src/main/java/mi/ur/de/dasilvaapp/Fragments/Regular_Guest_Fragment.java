@@ -37,8 +37,8 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final double DA_SILVA_LATITUDE = 49.025;
-    private static final double DA_SILVA_LONGITUDE = 12.167;
+    private static final double DA_SILVA_LATITUDE = 49.016;
+    private static final double DA_SILVA_LONGITUDE = 12.097;
 
     private static final int DATABASE_ONLY_ID = 0;
 
@@ -110,11 +110,18 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void enterButtonClicked() {
-        if (isLocationEnabled(getActivity())) {
-            compareEnteringLocations();
-        } else {
-            Toast.makeText(getActivity(), R.string.activate_location, Toast.LENGTH_SHORT).show();
+        String hoursCorrect = dateHelper.hoursCorrect(0,0);
+        if(hoursCorrect.equals("out of opening duration")){
+            Toast.makeText(getActivity(), R.string.out_of_opening_times, Toast.LENGTH_SHORT).show();
         }
+        else{
+            if (isLocationEnabled(getActivity())) {
+                compareEnteringLocations();
+            } else {
+                Toast.makeText(getActivity(), R.string.activate_location, Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     private void compareEnteringLocations() {
@@ -149,7 +156,7 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void saveEnteringInDatabase() {
-        String timeString = calendarProperties.getTimeString();
+        String timeString = calendarProperties.getCurrentTimestampAsString();
         if (regularGuestDatabase.getAllRegularGuestItems().size() == 0) {
             RegularGuestItem savings = new RegularGuestItem(0, timeString);
             regularGuestDatabase.addRegularGuestItem(savings);

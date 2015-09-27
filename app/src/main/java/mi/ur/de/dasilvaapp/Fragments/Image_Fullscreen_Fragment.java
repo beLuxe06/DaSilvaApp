@@ -41,6 +41,12 @@ public class Image_Fullscreen_Fragment extends Fragment {
 
     private void initFullScreenImage() {
         fullScreenImage.setImageResource(imageResource);
+        fullScreenImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
