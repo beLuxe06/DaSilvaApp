@@ -172,7 +172,7 @@
     <string name="reservation_date">Datum:</string>
     <string name="reservation_time">Uhrzeit:</string>
     <string-array name="time_array">
-        <item/>
+        <item />
         <item>21:00</item>
         <item>21:30</item>
         <item>22:00</item>
@@ -182,7 +182,7 @@
     <string name="reservation_persons_hint">X</string>
     <string name="reservation_area">Bereich:</string>
     <string-array name="area_array">
-        <item/>
+        <item />
         <item>Große Coktailbar</item>
         <item>Kleine Cocktailbar</item>
         <item>Kesselbar</item>
@@ -192,6 +192,20 @@
     <string name="reservation_reason_hint">z.B. Geburtstag</string>
     <string name="reservation_send_button">Senden</string>
 
+    <string name="enter_da_silva">Da Silva betreten</string>
+    <string name="leave_da_silva">Da Silva verlassen</string>
+    <string name="number_of_visits">Anzahl von Besuchen</string>
+    <string name="zero">0</string>
+
+    <string name="activate_location">Bitte aktivieren sie den Standortdienst.</string>
+    <string name="you_entered">Du hast das Da Silva betreten.</string>
+    <string name="please_enter">Bitte betreten sie das Da Silva.</string>
+    <string name="you_left">Du hast das Da Silva verlassen.</string>
+    <string name="enter_first">Bitte betreten sie das Da Silva zuerst.</string>
+    <string name="not_right_period_of_time">Aufenthaltsdauer nicht im erforderten Zeitrahmen.</string>
+    <string name="visit_too_short">Bleibe mindestens eine Stunde um Punkte zu sammeln.</string>
+    <string name="visit_too_long">Dein Besuch ist zu lange her.</string>
+    <string name="out_of_opening_times">Außerhalb der Öffnungszeit!</string>
 
     <string name="image_fullscreen_content_description">Image in fullscreen.</string>
 

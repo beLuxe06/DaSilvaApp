@@ -45,6 +45,10 @@ Validierung von Mail-Adressen
 http://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
 Validierung von Telefonnummern
 http://stackoverflow.com/questions/6358380/phone-number-validation-android
+Test ob Location Services aktiviert
+http://stackoverflow.com/questions/10311834/how-to-check-if-location-services-are-enabled
+Location
+http://gabesechansoftware.com/location-tracking/
 DateAndCalender Parsing
 http://www.mkyong.com/java/java-convert-date-to-calendar-example/
 http://developer.android.com/reference/java/util/Date.html

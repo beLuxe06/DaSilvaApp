@@ -51,6 +51,7 @@ public class Location_Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        locationImageIndicator.setText(Integer.toString(locationImageViewPager.getCurrentItem() + 1));
     }
 
     private void initPictureLinksArray() {
