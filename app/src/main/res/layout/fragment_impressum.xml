@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_v1"
+    android:backgroundTintMode="src_over"
+    tools:context=".Home$PlaceholderFragment"
+    android:nestedScrollingEnabled="false">
+
+    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+        android:id="@+id/location_name_impressum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_name"
+        style="@style/headline"/>
+
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/location_type_impressum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_name_impressum"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/location_type"
+        style="@style/subhead"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location_type_impressum"
+        android:layout_marginTop="15dp">
+    <TextView
+        android:id="@+id/impressum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/impressum"
+        style="@style/body"/>
+    </ScrollView>
+    
+
+
+</RelativeLayout>

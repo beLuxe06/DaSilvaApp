@@ -27,10 +27,13 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 import mi.ur.de.dasilvaapp.Fragments.Drink_Of_The_Month_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Drinks_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Gallery_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Home_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Impressum_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Location_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.News_Fragment;
+import mi.ur.de.dasilvaapp.Fragments.Opening_Time_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Program_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
@@ -216,11 +219,41 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_opening_time) {
+            startOpeningTimeFragment();
+            return true;
+        }
+        if (id == R.id.action_drinks) {
+            startDrinksFragment();
+            return true;
+        }
+        if (id == R.id.action_impressum) {
+            startImpressumFragment();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startImpressumFragment() {
+        Fragment newFragment = null;
+        newFragment = Impressum_Fragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().addToBackStack("impressum").replace(R.id.container, newFragment).commit();
+    }
+
+    private void startOpeningTimeFragment() {
+        Fragment newFragment = null;
+                newFragment = Opening_Time_Fragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().addToBackStack("opening_times").replace(R.id.container, newFragment).commit();
+    }
+
+    private void startDrinksFragment() {
+        Fragment newFragment = null;
+        newFragment = Drinks_Fragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().addToBackStack("drinks").replace(R.id.container, newFragment).commit();
     }
 
     @Override

@@ -79,7 +79,7 @@
 
     <string name="event_description_tuesday">Pong or Pay!\n Throw ball into cup and drink for free!\n Neues Beerpong Event dienstags im Da Silva! \n Außerdem Specials für Sportler!</string>
     <string name="event_description_thursday">Studenten.Pack\n Mit Trink 2 Zahl 1 bei Shots und Bier sparst du 50%\n Außerdem alle Longdrinks für nur 3,50€\n Jeden Donnerstag im Da Silva!</string>
-    <string name="event_description_friday">I Like&#8230;\n C&#8230;ocktails, I Like Da Silva!\n Jeden Freitag bei uns Cocktails für 4,90€\n I Like Fridays! </string>
+    <string name="event_description_friday">I Like&#8230;\n &#8230;Cocktails, I Like Da Silva!\n Jeden Freitag bei uns Cocktails für 4,90€\n I Like Fridays! </string>
     <string name="event_description_saturday">#Weekend\n #Revel\n #Drink\n Feiert das Wochenende jeden Samstag im Da Silva! </string>
 
     <string name="default_news_feed_story">Das ist ein Beispieltext für einen Newsfeed-Eintrag.\n Dieser ist mit Absicht etwas länger.</string>
@@ -209,7 +209,48 @@
 
     <string name="image_fullscreen_content_description">Image in fullscreen.</string>
 
+    <string name="opening_times_fragment_headline">MEET . DRINK . CELEBRATE</string>
+    <string name="opening_times_fragment_subhead">an 4 Bars auf 3 Ebenen</string>
+    <string name="opening_times_fragment_preface">Wir sind für euch da:</string>
+    <string name="opening_times_fragment_days">Di, Do, Fr, Sa</string>
+    <string name="opening_times_fragment_holiday">und vor Feiertagen!</string>
+    <string name="opening_times_fragment_times">jeweils von 21 - 2 Uhr!</string>
+    <string name="opening_times_fragment_call">Komm vorbei und feier mit uns!</string>
+    <string name="opening_times_fragment_anticipation">Wir freuen uns auf deinen Besuch!</string>
+
+    <string name="impressum">DA SILVA \n Bar . Lounge . Club \n Obermünsterstr. 9 \n 93047 Regensburg \n Email: info@dasilva-regensburg.de \n Betriebsleitung: \n Matthias Hamm \n Email: m.hamm@dasilva-regensburg.de \n Impressum \n Vitaiolo GmbH und Co. KG \n Weizenweg 2 / Sarchinger Feld \n 93092 Barbing / Regenbburg \n Email: office@dasilva-regensburg.de \n Geschäftsführer: \n Adrian J. Golba und Daniel Forster \n Tel.: 09401 5282524 \n Registereintrag: \n Eintragung im Handelsregister. \n Registergericht:Amtsgericht Regensburg \n Registernummer: HRB 10236 \n Umsatzsteuer-ID gemäß §27 a Umsatzsteuergesetz: DE249825095 \n Quellenangaben für die verwendeten Bilder: \n Galeriefotos: \n Daniel Pielmeier \n Webseite: \n Daniel Pielmeier IT-Consulting . Computer, Internet und So. \n T: +49 171 / 5239362 \n Haftungsausschluss: \n Haftung für Inhalte \n Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</string>
+
+    <string name="drinks_fragment_headline">Getränkepreise</string>
+    <string name="section_beer">Biere</string>
+    <string name="beers"> Bischofshof Bruckmandl \nBeck`s \nBeck`s Gold \nBeck`s Lemon \nBeck`s Alkoholfrei \nFranziskaner Weiße \nFranziskaner leichte Weiße \nDesperados \nDesperados red</string>
+    <string name="beer_prices">3,00\n3,00\n3,00\n3,00\n3,00\n3,50\n3,50\n4,00\n4,00</string>
+    <string name="section_longdrink">Longdrinks</string>
+    <string name="longdrinks">Prosecco RedBull \nWodka RedBull \nJägermeister RedBull \nWokda Lemon \nJack Daniel`s Cola \nBacardi Razz 7up \nGin Tonic</string>
+    <string name="longdrink_prices">5,50\n6,50\n7,00\n6,50\n7,00\n6,50\n6,50</string>
+    <string name="section_cocktail">Cocktails</string>
+    <string name="cocktails">Solero \nTouch Down \nSex on the Beach \nAperol Schumann`s \nCaipirinha \nCuba Libre \nMojito \nRazz Mojito \nHugo \nAperol Sprizz \n Lillet Wild Berry</string>
+    <string name="cocktail_prices">6,50\n6,50\n6,50\n6,50\n6,50\n6,50\n7,50\n7,50\n5,00\n5,00</string>
+    <string name="section_non_alcoholic_cocktail">Alkoholfreie \nCocktails</string>
+    <string name="non_alcoholic_cocktails">Fruit Punch \nVirgin Caipirinha </string>
+    <string name="non_alcoholic_cocktail_prices">5,00 \n5,00</string>
+    <string name="section_shot">Shots</string>
+    <string name="shots">Jägermeister \nRamazotti \nRamazotti Menta \nSambuca \nErdbeerlimes \nTequila \nFicken \nWeihwasser \nMartini \nBaileys</string>
+    <string name="shot_prices">2,50\n2,50\n2,50\n2,50\n2,50\n2,50\n2,50\n3,00\n4,00\n4,00</string>
+    <string name="section_wine">Weine und \nSchaumweine</string>
+    <string name="wines">Hauswein weiß/rot \nFlasche Hauswein weiß/rot \nWeinschorle \nFrizzante brut \nFrizzante brut auf Eis \nFlasche Frizzante brut \nFlasche Veuve Clicquot Brut</string>
+    <string name="wine_prices">5,00\n18,00\n4,00\n2,50\n4,50\n18,00\n70,00</string>
+    <string name="section_soft_drinks">Softdrinks</string>
+    <string name="softdrinks">Wasser still/spritzig \nApfelschorle \nRedBull \nRedBull sugarfree \nRedBull silver \nRedBull red \nRedBull blue \nRedBull Cola\n Pepsi \nPepsi light \n7up \nSchwipSchwap \nOrangina \nTonic Water \nBitter Lemon \nGinger Ale \nWild Berries</string>
+    <string name="softdrink_prices">2,00\n3,00\n3,50\n3,50\n3,50\n3,50\n3,50\n3,50\n2,50\n2,50\n2,50\n2,50\n3,00\n3,00\n3,00\n3,00\n3,00</string>
+    <string name="section_bottles">Flaschen</string>
+    <string name="bottles">Weihwasser Wodka \nAbsolut Wodka \nGreyGoose Wodka \nWeihwasser Gin \nBombay Gin \nJack Daniel`s \nJägermeister</string>
+    <string name="bottle_prices">60,00\n70,00\n90,00\n70,00\n85,00\n85,00\n85,00</string>
+    <string name="drinks_fragment_sub_headlines">Getränkepreise</string>
+
     <string name="action_example">More</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_opening_time">Öffnungszeiten</string>
+    <string name="action_drinks">Getränkekarte</string>
+    <string name="action_impressum">Impressum</string>
 </resources>

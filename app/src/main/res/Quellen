@@ -60,3 +60,5 @@ Setting Color Ressources for Navigation Drawer
 http://stackoverflow.com/questions/23112376/custom-background-color-for-selected-item-with-activatedbackgroundindicator-na
 How to add Icons in Navigation Drawer
 http://stackoverflow.com/questions/28119149/how-do-i-add-icons-to-android-studios-navigation-drawer-template
+How to Make Big TextViews Scrollable
+http://developer.android.com/reference/android/widget/ScrollView.html

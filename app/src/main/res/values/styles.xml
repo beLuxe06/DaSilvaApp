@@ -25,6 +25,10 @@
         <item name="android:textColor">@color/text_color_primary</item>
     </style>
 
+    <style name="sub_subhead" parent="subhead">
+        <item name="android:textSize">@dimen/sub_subhead_font_size</item>
+    </style>
+
     <style name="body">
         <item name="android:textSize">@dimen/body_font_size</item>
         <item name="android:textColor">@color/text_color_primary</item>
