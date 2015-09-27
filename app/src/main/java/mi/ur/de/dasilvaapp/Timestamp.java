@@ -58,7 +58,7 @@ public class Timestamp {
         return null;
     }
 
-    public String getStringfromTimestamp(Timestamp timestamp){
+    public String getStringfromTimestamp(){
         int year = getYear();
         int month = getMonth();
         int day = getDay();

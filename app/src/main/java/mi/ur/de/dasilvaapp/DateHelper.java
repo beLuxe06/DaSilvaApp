@@ -50,7 +50,7 @@ public class DateHelper {
         actualMinute = calendarProperties.getMinute();
     }
 
-    public boolean isVisitLongEnough(Timestamp timestamp){
+    public String isVisitLongEnough(Timestamp timestamp){
         updateCalendarProperties();
 
         int yearDifference = getDifference(actualYear, timestamp.getYear());
@@ -68,19 +68,21 @@ public class DateHelper {
         if(yearsCorrect(yearDifference, newYearsEve)){
             if(monthsCorrect(monthDifference, lastMonthsEve, newYearsEve)){
                 if(daysCorrect(dayDifference, midnight, lastMonthsEve)){
-                    if(hoursCorrect(timestamp.getHour(), openingDuration)){
-                        return true;
+                    String returnString = hoursCorrect(timestamp.getHour(), openingDuration);
+                    if(returnString == null){
+                        return "correct";
                     }
+                    else return returnString;
                 }
             }
         }
 
-        return false;
+        return "incorrect";
     }
 
-    private boolean hoursCorrect(int timestampHour, int openingDuration) {
+    private String hoursCorrect(int timestampHour, int openingDuration) {
         if((actualHour > CLOSING_TIME) || (actualHour < OPENING_TIME)){
-            return false;
+            return "out of opening duration";
         }
         int hourDifference;
         if (actualHour < 0){
@@ -89,10 +91,13 @@ public class DateHelper {
         else{
             hourDifference = getDifference(timestampHour, 24) + actualHour;
         }
-        if((hourDifference < MIN_NUM_HOURS_TO_STAY) || (hourDifference < openingDuration)){
-            return false;
+        if((hourDifference < MIN_NUM_HOURS_TO_STAY)){
+            return "visit to short";
         }
-        return true;
+        if(hourDifference > openingDuration){
+            return "visit to long";
+        }
+        return null;
 
     }
 
