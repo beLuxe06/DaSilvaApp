@@ -36,6 +36,10 @@ public class Timestamp {
         return timestampCalendar.get(Calendar.MINUTE);
     }
 
+    public int getSecond(){
+        return timestampCalendar.get(Calendar.SECOND);
+    }
+
     private Calendar getCalendarFromDate(String timestamp) {
         Date date = getDateFromTimestamp(timestamp);
         Calendar calendar = Calendar.getInstance();
@@ -54,5 +58,14 @@ public class Timestamp {
         return null;
     }
 
-
+    public String getStringfromTimestamp(Timestamp timestamp){
+        int year = getYear();
+        int month = getMonth();
+        int day = getDay();
+        int hour = getHour();
+        int minute = getMinute();
+        int second = getSecond();
+        String timeStampString = year + "-" + month + "-" + day + "T" + hour +":" + minute + ":" + second;
+        return  timeStampString;
+    }
 }
