@@ -69,7 +69,7 @@ public class DateHelper {
             if(monthsCorrect(monthDifference, lastMonthsEve, newYearsEve)){
                 if(daysCorrect(dayDifference, midnight, lastMonthsEve)){
                     String returnString = hoursCorrect(timestamp.getHour(), openingDuration);
-                    if(returnString == null){
+                    if(returnString.equals("")){
                         return "correct";
                     }
                     else return returnString;
@@ -92,12 +92,12 @@ public class DateHelper {
             hourDifference = getDifference(timestampHour, 24) + actualHour;
         }
         if((hourDifference < MIN_NUM_HOURS_TO_STAY)){
-            return "visit to short";
+            return "visit too short";
         }
         if(hourDifference > openingDuration){
-            return "visit to long";
+            return "visit too long";
         }
-        return null;
+        return "";
 
     }
 
