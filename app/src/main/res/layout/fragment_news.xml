@@ -1,40 +1,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_v1"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/background_v1"
-    android:backgroundTintMode="src_over"
     tools:context=".Home$PlaceholderFragment">
 
     <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
         android:id="@+id/location_name_news"
+        style="@style/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/location_name"
-        style="@style/headline"/>
+        android:text="@string/location_name" />
 
     <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
         android:id="@+id/location_type_news"
+        style="@style/subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/location_name_news"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/location_type"
-        style="@style/subhead"/>
+        android:text="@string/location_type" />
 
     <ProgressBar
         android:id="@+id/news_feed_progress_bar"
+        style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/location_type_news"
-        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
-        style="@android:style/Widget.ProgressBar.Large"/>
+        android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom" />
 
     <ListView
         android:id="@+id/news_feed"
@@ -42,9 +43,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/location_type_news"
         android:layout_marginTop="@dimen/margin_fragment_list_view_top_bottom"
-        android:padding="10dp"
         android:animateLayoutChanges="true"
-        />
+        android:padding="10dp" />
 
 
 </RelativeLayout>

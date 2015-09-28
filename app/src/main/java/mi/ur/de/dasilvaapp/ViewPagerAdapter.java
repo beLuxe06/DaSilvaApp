@@ -1,6 +1,5 @@
 package mi.ur.de.dasilvaapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import mi.ur.de.dasilvaapp.Fragments.Image_Fullscreen_Fragment;
 

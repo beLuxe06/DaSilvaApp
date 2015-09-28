@@ -2,7 +2,6 @@ package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,8 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import mi.ur.de.dasilvaapp.Fragments.News_Fragment;
-
 /**
  * Created by blu on 03.09.2015.
  */
@@ -25,7 +22,7 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
     private static final String DATA = "data";
     private static final String FACEBOOK_ID = "id";
-    private static final String CREATED_TIME= "created_time";
+    private static final String CREATED_TIME = "created_time";
     private static final String STORY = "story";
     private static final String MESSAGE = "message";
     private static final String IMAGE_URL = "full_picture";
@@ -107,26 +104,23 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
                 String link = jsonObject.getString(LINK);
                 // story may be null
                 String story;
-                try{
+                try {
                     story = jsonObject.getString(STORY);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     story = null;
                 }
                 // message may be null
                 String message;
-                try{
+                try {
                     message = jsonObject.getString(MESSAGE);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     message = null;
                 }
                 // imageURL may be null
                 String imageURL;
-                try{
+                try {
                     imageURL = jsonObject.getString(IMAGE_URL);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     imageURL = null;
                 }
 

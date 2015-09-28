@@ -30,7 +30,6 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
     private ArrayList<DaSilvaGallery> galleries;
     private DownloadListener listener;
     private Context context;
-    private String imageURL;
 
     @Override
     protected void onPreExecute() {
@@ -117,7 +116,7 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
                 }
 
                 // imageURL may be null
-                imageURL = null;
+                String imageURL = null;
                 try {
                     imageURL = jsonObject.getJSONObject("picture").getJSONObject("data").getString(URL);
                 } catch (JSONException e) {
@@ -128,7 +127,7 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
                     }
                 }
 
-                if((date != null)){
+                if ((date != null)) {
                     DaSilvaGallery newGallery = new DaSilvaGallery(0, facebookID, name, date, imageURL, link);
                     galleries.add(newGallery);
                 }

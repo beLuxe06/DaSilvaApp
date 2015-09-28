@@ -1,7 +1,6 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,9 +18,6 @@ import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.GalleryAdapter;
 import mi.ur.de.dasilvaapp.GalleryDownloadTask;
 import mi.ur.de.dasilvaapp.HomeActivity;
-import mi.ur.de.dasilvaapp.NewsFeedAdapter;
-import mi.ur.de.dasilvaapp.NewsFeedDownloadTask;
-import mi.ur.de.dasilvaapp.NewsFeedItem;
 import mi.ur.de.dasilvaapp.R;
 
 /**
@@ -31,7 +27,7 @@ public class Gallery_Fragment extends Fragment implements DownloadListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private ArrayList<DaSilvaGallery> galleryItems = new ArrayList<DaSilvaGallery>();
+    private ArrayList<DaSilvaGallery> galleryItems = new ArrayList<>();
     private GalleryAdapter gallery_items_adapter;
 
     public ProgressBar progressBar;
@@ -41,8 +37,7 @@ public class Gallery_Fragment extends Fragment implements DownloadListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_gallery, container, false);
     }
 
     @Override
@@ -55,7 +50,7 @@ public class Gallery_Fragment extends Fragment implements DownloadListener {
 
     private void fetchDataFromFacebook() {
         galleryItems.clear();
-        new GalleryDownloadTask(getActivity(),this,galleryItems).execute(ADDRESS);
+        new GalleryDownloadTask(getActivity(), this, galleryItems).execute(ADDRESS);
     }
 
     private void initUI() {

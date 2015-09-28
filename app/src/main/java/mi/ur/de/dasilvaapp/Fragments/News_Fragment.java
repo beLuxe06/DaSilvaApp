@@ -26,19 +26,12 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private ArrayList<NewsFeedItem> newsFeedItems = new ArrayList<NewsFeedItem>();
+    private ArrayList<NewsFeedItem> newsFeedItems = new ArrayList<>();
     private NewsFeedAdapter news_feed_items_adapter;
 
     public ProgressBar progressBar;
 
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
-        return rootView;
-    }
 
     @Override
     public void onStart() {
@@ -50,7 +43,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     private void fetchDataFromFacebook() {
         newsFeedItems.clear();
-        new NewsFeedDownloadTask(getActivity(),this,newsFeedItems).execute(ADDRESS);
+        new NewsFeedDownloadTask(getActivity(), this, newsFeedItems).execute(ADDRESS);
     }
 
 
@@ -117,5 +110,11 @@ public class News_Fragment extends Fragment implements DownloadListener {
     public void onDownloadFinished() {
         progressBar.setVisibility(View.GONE);
         news_feed_items_adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_news, container, false);
     }
 }

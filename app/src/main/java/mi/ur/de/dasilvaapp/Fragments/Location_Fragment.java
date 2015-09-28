@@ -1,30 +1,17 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageSwitcher;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewSwitcher;
-
-import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
-import mi.ur.de.dasilvaapp.SwipeDetect;
 import mi.ur.de.dasilvaapp.ViewPagerAdapter;
 
 /**

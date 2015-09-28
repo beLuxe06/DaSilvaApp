@@ -3,6 +3,7 @@ package mi.ur.de.dasilvaapp;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -23,8 +24,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import mi.ur.de.dasilvaapp.Fragments.Drinks_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Impressum_Fragment;
@@ -117,7 +116,7 @@ public class NavigationDrawerFragment extends Fragment {
                 View v = super.getView(position, convertView, parent);
                 int resourceId = typedArray.getResourceId(position, 0);
 
-                Drawable drawable = getResources().getDrawable(resourceId);
+                Drawable drawable = ContextCompat.getDrawable(getActivity(), resourceId);
                 ((DaSilvaAppTitleTextView) v).setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 return v;
             }
@@ -279,22 +278,19 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void startImpressumFragment() {
-        Fragment newFragment = null;
-        newFragment = Impressum_Fragment.newInstance();
+        Fragment newFragment = Impressum_Fragment.newInstance();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("impressum").replace(R.id.container, newFragment).commit();
     }
 
     private void startOpeningTimeFragment() {
-        Fragment newFragment = null;
-        newFragment = Opening_Time_Fragment.newInstance();
+        Fragment newFragment = Opening_Time_Fragment.newInstance();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("opening_times").replace(R.id.container, newFragment).commit();
     }
 
     private void startDrinksFragment() {
-        Fragment newFragment = null;
-        newFragment = Drinks_Fragment.newInstance();
+        Fragment newFragment = Drinks_Fragment.newInstance();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("drinks").replace(R.id.container, newFragment).commit();
     }

@@ -16,8 +16,7 @@ public class Drinks_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_drinks, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_drinks, container, false);
     }
 
     @Override
@@ -26,7 +25,6 @@ public class Drinks_Fragment extends Fragment {
     }
 
     public static Drinks_Fragment newInstance() {
-        Drinks_Fragment fragment = new Drinks_Fragment();
-        return fragment;
+        return new Drinks_Fragment();
     }
 }

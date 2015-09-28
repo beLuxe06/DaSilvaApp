@@ -3,29 +3,31 @@
     android:id="@+id/gallery_detail_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_list_view_items"
-    android:minHeight="100dp">
+    android:minHeight="100dp"
+    android:padding="@dimen/padding_list_view_items">
 
     <ImageView
         android:id="@+id/gallery_detail_item_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/da_silva_logo_gross_weiss"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        android:contentDescription="@string/gallery_detail_image_content_descripion"
+        android:minHeight="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/da_silva_logo_gross_weiss" />
+
     <ProgressBar
         android:id="@+id/gallery_detail_item_progress_bar"
+        style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        style="@android:style/Widget.ProgressBar.Large"/>
+        android:adjustViewBounds="true"
+        android:minHeight="100dp"
+        android:scaleType="fitCenter" />
 
 </RelativeLayout>

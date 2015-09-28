@@ -81,9 +81,7 @@ public class RegularGuestDatabase {
         String selection = KEY_ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
 
-        int count = db.delete(DATABASE_TABLE, selection, selectionArgs);
-
-        return 1;
+        return db.delete(DATABASE_TABLE, selection, selectionArgs);
     }
 
 
@@ -98,6 +96,7 @@ public class RegularGuestDatabase {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return items;
     }
 

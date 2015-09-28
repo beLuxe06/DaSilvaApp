@@ -2,7 +2,6 @@ package mi.ur.de.dasilvaapp.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.DaSilvaGallery;
 import mi.ur.de.dasilvaapp.DownloadListener;
-import mi.ur.de.dasilvaapp.GalleryAdapter;
 import mi.ur.de.dasilvaapp.GalleryDetailAdapter;
 import mi.ur.de.dasilvaapp.GalleryDownloadTask;
 import mi.ur.de.dasilvaapp.R;
@@ -23,7 +21,7 @@ import mi.ur.de.dasilvaapp.R;
 /**
  * Created by blu on 17.08.2015.
  */
-public class Gallery_Detail_Fragment extends Fragment implements DownloadListener{
+public class Gallery_Detail_Fragment extends Fragment implements DownloadListener {
 
     public static final String FACEBOOK_ID_KEY = "0";
     public static final String EVENT_NAME_KEY = "1";
@@ -32,14 +30,13 @@ public class Gallery_Detail_Fragment extends Fragment implements DownloadListene
     private static final String ADDRESS_SUFFIX = "/photos?fields=id,picture,name,link,backdated_time&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
     private GalleryDetailAdapter gallery_detail_items_adapter;
-    private ArrayList<DaSilvaGallery> galleryDetailItems = new ArrayList<DaSilvaGallery>();
+    private ArrayList<DaSilvaGallery> galleryDetailItems = new ArrayList<>();
     private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_gallery_detail, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_gallery_detail, container, false);
     }
 
     @Override
@@ -52,16 +49,15 @@ public class Gallery_Detail_Fragment extends Fragment implements DownloadListene
 
     private void fetchImagesFromFacebook() {
         galleryDetailItems.clear();
-        Bundle bundleImageRessources = getArguments();
-        if(bundleImageRessources != null){
-            String facebookID = bundleImageRessources.getString(FACEBOOK_ID_KEY);
-            new GalleryDownloadTask(getActivity(),this,galleryDetailItems).execute(getAddress(facebookID));
+        Bundle bundleImageResources = getArguments();
+        if (bundleImageResources != null) {
+            String facebookID = bundleImageResources.getString(FACEBOOK_ID_KEY);
+            new GalleryDownloadTask(getActivity(), this, galleryDetailItems).execute(getAddress(facebookID));
         }
     }
 
     private String getAddress(String facebookID) {
-        String address = ADDRESS_PREFIX + facebookID + ADDRESS_SUFFIX;
-        return address;
+        return ADDRESS_PREFIX + facebookID + ADDRESS_SUFFIX;
     }
 
     private void initAdapter() {
@@ -72,7 +68,6 @@ public class Gallery_Detail_Fragment extends Fragment implements DownloadListene
         initAndUpdateTextViews();
         initListView();
     }
-
 
 
     private void initAndUpdateTextViews() {

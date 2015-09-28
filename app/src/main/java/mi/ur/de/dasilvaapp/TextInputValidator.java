@@ -2,17 +2,16 @@ package mi.ur.de.dasilvaapp;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
  * Created by blu on 10.09.2015.
  */
-public abstract class TextInputValidator implements TextWatcher{
+public abstract class TextInputValidator implements TextWatcher {
 
     private final TextView textView;
 
-    public TextInputValidator(TextView textView){
+    public TextInputValidator(TextView textView) {
         this.textView = textView;
     }
 

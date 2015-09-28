@@ -2,12 +2,8 @@ package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
 
-import java.lang.reflect.Array;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by blu on 04.09.2015.
@@ -22,14 +18,14 @@ public class ActualCalendarProperties {
         calendar = Calendar.getInstance();
     }
 
-    public int getWeekdayIndex(){
+    public int getWeekdayIndex() {
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
-    public String getWeekday(){
+    public String getWeekday() {
         int index = getWeekdayIndex();
         String weekday = null;
-        switch (index){
+        switch (index) {
             case 1:
                 weekday = context.getResources().getString(R.string.weekday_sunday);
                 break;
@@ -55,7 +51,7 @@ public class ActualCalendarProperties {
         return weekday;
     }
 
-    public String getOpeningStatus(String openingTime){
+    public String getOpeningStatus(String openingTime) {
         Timestamp timestamp = new Timestamp(openingTime);
         String actualOpeningStatus = context.getResources().getString(R.string.event_status_open_in);
         int actualTimeToOpening = getHoursTillTime(timestamp.getHour());
@@ -63,19 +59,19 @@ public class ActualCalendarProperties {
         return actualOpeningStatus;
     }
 
-    private int getHoursTillTime(int timestampHour){
-        return timestampHour-getHour();
+    private int getHoursTillTime(int timestampHour) {
+        return timestampHour - getHour();
     }
 
-    public int getDayOfMonth(){
+    public int getDayOfMonth() {
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    public int getMonth(){
-        return (calendar.get(Calendar.MONTH)+1);
+    public int getMonth() {
+        return (calendar.get(Calendar.MONTH) + 1);
     }
 
-    public int getYear(){
+    public int getYear() {
         return calendar.get(Calendar.YEAR);
     }
 
@@ -83,7 +79,7 @@ public class ActualCalendarProperties {
         return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
-    public int getMinute(){
+    public int getMinute() {
         return calendar.get(Calendar.MINUTE);
     }
 
@@ -92,12 +88,12 @@ public class ActualCalendarProperties {
         return df.format(calendar.getTime());
     }
 
-    public String getDBSearchString(){
+    public String getDBSearchString() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(calendar.getTime());
     }
 
-    public long getDateAsLong(){
+    public long getDateAsLong() {
         return calendar.getTime().getTime();
     }
 
@@ -106,10 +102,9 @@ public class ActualCalendarProperties {
         return df.format(calendar.getTime());
     }
 
-    public String getCurrentTimestampAsString(){
+    public String getCurrentTimestampAsString() {
         return getDBSearchString() + "T" + getTimeString();
     }
-
 
 
 }

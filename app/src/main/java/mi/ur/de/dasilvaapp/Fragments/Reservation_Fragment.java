@@ -15,9 +15,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import mi.ur.de.dasilvaapp.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.DateHelper;
 import mi.ur.de.dasilvaapp.Reservation;
 import mi.ur.de.dasilvaapp.SpinnerAdapter;
@@ -34,7 +31,6 @@ public class Reservation_Fragment extends Fragment {
 
     private SpinnerAdapter time_adapter;
     private SpinnerAdapter area_adapter;
-    private ActualCalendarProperties calendarProperties;
     private DateHelper dh;
     private Context context;
     private Reservation reservation;
@@ -42,11 +38,7 @@ public class Reservation_Fragment extends Fragment {
     private String selectedTime;
     private String selectedArea;
     private int nameCorrectFlag = 0;
-    private int dateCorrectFlag = 0;
     private int mailCorrectFlag = 0;
-    private int birthdayDateCorrectFlag = 0;
-    private int birthdayFilledFlag = 0;
-    private int dateFilledFlag = 0;
     private int legalAgeFlag = 0;
     private int dateInFutureFlag = 0;
     private int phoneCorrectFlag = 0;
@@ -57,8 +49,6 @@ public class Reservation_Fragment extends Fragment {
     private static final int FALSE = 0;
     private static final int TRUE = 1;
 
-    private ArrayList<String> collectedFormData;
-    private Button sendButton;
     private EditText name;
     private EditText birthday;
     private EditText mail;
@@ -66,27 +56,19 @@ public class Reservation_Fragment extends Fragment {
     private EditText date;
     private EditText persons;
     private EditText reason;
-    private Spinner timeSpinner;
-    private Spinner areaSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_reservation, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         context = getActivity();
-        initArrayList();
         initAdapters();
         initUI();
-    }
-
-    private void initArrayList() {
-        collectedFormData = new ArrayList<>();
     }
 
     private void initUI() {
@@ -96,7 +78,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initSendButton() {
-        sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
+        Button sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +96,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private String getFormattedReservationString() {
-        return "Name: " + reservation.getName() +"\n" +
+        return "Name: " + reservation.getName() + "\n" +
                 "Geburtstag: " + reservation.getBirthday() + "\n" +
                 "E-Mail: " + reservation.getMail() + "\n" +
                 "Telefon: " + reservation.getPhone() + "\n" +
@@ -143,7 +125,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private int getFlagSum() {
-        return (nameCorrectFlag +  legalAgeFlag + mailCorrectFlag + phoneCorrectFlag + dateInFutureFlag + timeCorrectFlag + personsCorrectFlag + areaCorrectFlag+ reasonCorrectFlag );
+        return (nameCorrectFlag + legalAgeFlag + mailCorrectFlag + phoneCorrectFlag + dateInFutureFlag + timeCorrectFlag + personsCorrectFlag + areaCorrectFlag + reasonCorrectFlag);
     }
 
     private void initInputAndValidateFields() {
@@ -189,15 +171,11 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
-                    birthdayFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    birthdayFilledFlag = TRUE;
                     if (dh.incorrectDateFormat(text)) {
-                        birthdayDateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
-                        birthdayDateCorrectFlag = TRUE;
                         if (dh.illegalAge(text)) {
                             legalAgeFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
@@ -223,7 +201,7 @@ public class Reservation_Fragment extends Fragment {
             public void validate(TextView textView, String text) {
                 String email = text.trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if ((email.matches(emailPattern)) && (email != null)) {
+                if ((email.matches(emailPattern))) {
                     mailCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
                 } else {
@@ -246,7 +224,7 @@ public class Reservation_Fragment extends Fragment {
             public void validate(TextView textView, String text) {
                 String phone = text.trim();
                 String phonePattern = "^[+]?[0-9]{6,20}$";
-                if ((phone.matches(phonePattern)) && (phone != null)) {
+                if ((phone.matches(phonePattern))) {
                     phoneCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
                 } else {
@@ -268,16 +246,12 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
-                    dateFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    dateFilledFlag = TRUE;
                     dh = new DateHelper(context);
                     if (dh.incorrectDateFormat(text)) {
-                        dateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
-                        dateCorrectFlag = TRUE;
                         if (dh.timeInPast(text)) {
                             dateInFutureFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
@@ -345,22 +319,22 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initTimeSpinner() {
-        timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
+        Spinner timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
         timeSpinner.setAdapter(time_adapter);
         final ImageView inputIndicatorTime = (ImageView) getView().findViewById(R.id.reservation_time_input_indicator);
         timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedTime = time_adapter.getItem(position).toString();
-                if((selectedTime.equals("") || (selectedTime == null))){
+                if ((selectedTime.equals(""))) {
                     timeCorrectFlag = FALSE;
                     inputIndicatorTime.setImageResource(R.drawable.icon_incorrect);
-                }
-                else{
+                } else {
                     timeCorrectFlag = TRUE;
                     inputIndicatorTime.setImageResource(R.drawable.icon_correct);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 timeCorrectFlag = FALSE;
@@ -370,22 +344,22 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initAreaSpinner() {
-        areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
+        Spinner areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
         areaSpinner.setAdapter(area_adapter);
         final ImageView inputIndicatorArea = (ImageView) getView().findViewById(R.id.reservation_area_input_indicator);
         areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedArea = area_adapter.getItem(position).toString();
-                if((selectedArea.equals("") || (selectedArea == null))){
+                if ((selectedArea.equals(""))) {
                     areaCorrectFlag = FALSE;
                     inputIndicatorArea.setImageResource(R.drawable.icon_incorrect);
-                }
-                else{
+                } else {
                     areaCorrectFlag = TRUE;
                     inputIndicatorArea.setImageResource(R.drawable.icon_correct);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 areaCorrectFlag = FALSE;
@@ -400,13 +374,13 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initAreaSpinnerAdapter() {
-        String [] area_array = getActivity().getResources().getStringArray(R.array.area_array);
-        this.area_adapter = new SpinnerAdapter<String>(getActivity(), area_array);
+        String[] area_array = getActivity().getResources().getStringArray(R.array.area_array);
+        this.area_adapter = new SpinnerAdapter<>(getActivity(), area_array);
     }
 
     private void initTimeSpinnerAdapter() {
-        String [] time_array = getActivity().getResources().getStringArray(R.array.time_array);
-        this.time_adapter = new SpinnerAdapter<String>(getActivity(), time_array);
+        String[] time_array = getActivity().getResources().getStringArray(R.array.time_array);
+        this.time_adapter = new SpinnerAdapter<>(getActivity(), time_array);
     }
 
     @Override

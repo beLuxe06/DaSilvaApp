@@ -1,7 +1,6 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,9 +34,6 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
     private TextView labelIngredients;
     private TextView labelDrinkDescription;
     private ImageView imageOfDrink;
-
-    private ActualCalendarProperties calenderProperties;
-    private Context context;
 
     @Override
     public void onStart() {
@@ -155,8 +151,7 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
     }
 
     private void getCalendarData() {
-        context = getActivity();
-        calenderProperties = new ActualCalendarProperties(context);
+        ActualCalendarProperties calenderProperties = new ActualCalendarProperties(getActivity());
         actualMonthIndex = calenderProperties.getMonth();
     }
 
@@ -175,8 +170,7 @@ public class Drink_Of_The_Month_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_drink_of_the_month, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_drink_of_the_month, container, false);
     }
 
     @Override

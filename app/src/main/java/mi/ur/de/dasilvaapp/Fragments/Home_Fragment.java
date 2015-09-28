@@ -1,7 +1,6 @@
 package mi.ur.de.dasilvaapp.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,11 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import mi.ur.de.dasilvaapp.ActualCalendarProperties;
-import mi.ur.de.dasilvaapp.DaSilvaAppContentTextView;
 import mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView;
-import mi.ur.de.dasilvaapp.DaSilvaEvent;
-import mi.ur.de.dasilvaapp.DateHelper;
-import mi.ur.de.dasilvaapp.EventDatabase;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
 
@@ -28,25 +23,16 @@ public class Home_Fragment extends Fragment {
     //Store Calendar Data
     private String nextEventTitle;
     private String actualDate;
-    private String actualDBSearchDate;
     private String actualWeekday;
     private int actualHour;
     private int actualWeekdayIndex;
     private int actualFlyerSrc;
-    private int actualTimeToOpening;
-
-    private Context context;
-    private ActualCalendarProperties calendarProperties;
-    private DateHelper dh;
 
     private String actualOpeningStatus;
     private String nextEventDay;
 
     private static final int OPENING_TIME = 21;
     private static final int CLOSING_TIME = 2;
-    private static final String ADDRESS = "https://graph.facebook.com/58336779060?fields=events{start_time,end_time,name,description,id,picture{url}}&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
-
-
 
     //Instances of UI
     private DaSilvaAppTitleTextView labelNextEventDay;
@@ -225,20 +211,17 @@ public class Home_Fragment extends Fragment {
     private String getOpenInString(int actualHour) {
         actualOpeningStatus = getResources().getString(R.string.event_status_open_in);
         labelOpeningStatus.setTextColor(getResources().getColor(R.color.text_color_open_in));
-        actualTimeToOpening = OPENING_TIME - actualHour;
+        int actualTimeToOpening = OPENING_TIME - actualHour;
         actualOpeningStatus = actualOpeningStatus + " " + actualTimeToOpening + " " + getResources().getString(R.string.event_status_unit);
         return actualOpeningStatus;
     }
 
 
     private void getCalendarData() {
-        context = getActivity();
-        calendarProperties = new ActualCalendarProperties(context);
+        ActualCalendarProperties calendarProperties = new ActualCalendarProperties(getActivity());
         actualWeekdayIndex = calendarProperties.getWeekdayIndex();
         actualHour = calendarProperties.getHour();
-        actualDBSearchDate = calendarProperties.getDBSearchString();
         actualDate = calendarProperties.getDateString();
-        dh = new DateHelper(context);
     }
 
     private void setOnClickListenersForFullScreenImage() {

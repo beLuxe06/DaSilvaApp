@@ -12,31 +12,31 @@ public class Timestamp {
 
     private Calendar timestampCalendar;
 
-    public Timestamp(String timestamp){
+    public Timestamp(String timestamp) {
         timestampCalendar = getCalendarFromDate(timestamp);
     }
 
-    public int getYear(){
+    public int getYear() {
         return timestampCalendar.get(Calendar.YEAR);
     }
 
-    public int getMonth(){
-        return (timestampCalendar.get(Calendar.MONTH)+1);
+    public int getMonth() {
+        return (timestampCalendar.get(Calendar.MONTH) + 1);
     }
 
-    public int getDay(){
+    public int getDay() {
         return timestampCalendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    public int getHour(){
+    public int getHour() {
         return timestampCalendar.get(Calendar.HOUR_OF_DAY);
     }
 
-    public int getMinute(){
+    public int getMinute() {
         return timestampCalendar.get(Calendar.MINUTE);
     }
 
-    public int getSecond(){
+    public int getSecond() {
         return timestampCalendar.get(Calendar.SECOND);
     }
 
@@ -50,22 +50,20 @@ public class Timestamp {
     private Date getDateFromTimestamp(String timestamp) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
-            Date date = sdf.parse(timestamp);
-            return date;
+            return sdf.parse(timestamp);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getStringfromTimestamp(){
+    public String getStringfromTimestamp() {
         int year = getYear();
         int month = getMonth();
         int day = getDay();
         int hour = getHour();
         int minute = getMinute();
         int second = getSecond();
-        String timeStampString = year + "-" + month + "-" + day + "T" + hour +":" + minute + ":" + second;
-        return  timeStampString;
+        return year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second;
     }
 }

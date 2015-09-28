@@ -1,30 +1,13 @@
 package mi.ur.de.dasilvaapp;
 
-import android.app.Activity;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import android.content.pm.Signature;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import mi.ur.de.dasilvaapp.Fragments.Drink_Of_The_Month_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Drinks_Fragment;
@@ -39,7 +22,7 @@ import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -50,12 +33,6 @@ public class HomeActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private ArrayList<DaSilvaEvent> events = new ArrayList<DaSilvaEvent>();
-
-    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
-
-    // StringArray to store the several section(fragment) names of the App
-    private String[] appSections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +129,7 @@ public class HomeActivity extends AppCompatActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         /** commented because deprecated since API level 21
-         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/;
+         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);*/
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setTitle(mTitle);
@@ -201,22 +178,19 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void startImpressumFragment() {
-        Fragment newFragment = null;
-        newFragment = Impressum_Fragment.newInstance();
+        Fragment newFragment = Impressum_Fragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("impressum").replace(R.id.container, newFragment).commit();
     }
 
     private void startOpeningTimeFragment() {
-        Fragment newFragment = null;
-                newFragment = Opening_Time_Fragment.newInstance();
+        Fragment newFragment = Opening_Time_Fragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("opening_times").replace(R.id.container, newFragment).commit();
     }
 
     private void startDrinksFragment() {
-        Fragment newFragment = null;
-        newFragment = Drinks_Fragment.newInstance();
+        Fragment newFragment = Drinks_Fragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("drinks").replace(R.id.container, newFragment).commit();
     }

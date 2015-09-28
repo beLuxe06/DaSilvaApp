@@ -1,11 +1,9 @@
 package mi.ur.de.dasilvaapp;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * Created by blu on 27.08.2015.

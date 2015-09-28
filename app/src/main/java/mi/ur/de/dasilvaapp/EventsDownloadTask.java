@@ -14,8 +14,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by blu on 03.09.2015.
@@ -33,9 +31,6 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
     private ArrayList<DaSilvaEvent> events;
     private DownloadListener listener;
     private Context context;
-    private ActualCalendarProperties calendarProperties;
-    private ArrayList<Integer> openingProperties;
-    private ArrayList<Integer> closingProperties;
 
     @Override
     protected void onPreExecute() {
@@ -99,7 +94,6 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
     }
 
     private void processJson(String text) {
-        setupCalendarProperties();
         try {
             JSONObject event = new JSONObject(text);
             JSONArray jsonArray = event.getJSONArray(DATA);
@@ -107,43 +101,35 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String facebookID = jsonObject.getString(FACEBOOK_ID);
                 String name = jsonObject.getString(NAME);
-                String date = jsonObject.getString(START_TIME).substring(0,10);
+                String date = jsonObject.getString(START_TIME).substring(0, 10);
                 String openingTime = jsonObject.getString(START_TIME);
                 // endTime may be null
                 String closingTime;
-                try{
+                try {
                     closingTime = jsonObject.getString(END_TIME);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     closingTime = null;
                 }
                 // description may be null
                 String description;
-                try{
+                try {
                     description = jsonObject.getString(DESCRIPTION);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     description = null;
                 }
                 // imageURL may be null
                 String imageURL;
-                try{
+                try {
                     imageURL = jsonObject.getString(URL);
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     imageURL = null;
                 }
 
-                DaSilvaEvent newEvent = new DaSilvaEvent(0,facebookID, name, date, openingTime, closingTime, description, imageURL);
+                DaSilvaEvent newEvent = new DaSilvaEvent(0, facebookID, name, date, openingTime, closingTime, description, imageURL);
                 events.add(newEvent);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
-    private void setupCalendarProperties() {
-        calendarProperties = new ActualCalendarProperties(context);
-    }
-
 }

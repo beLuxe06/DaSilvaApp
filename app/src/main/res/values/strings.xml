@@ -41,9 +41,10 @@
     <string name="event_day_day_after_tomorrow">Übermorgen</string>
     <string name="event_day_x">In X Tagen</string>
 
+    <string name="event_title">Eventname</string>
     <string name="event_tuesday">Pong or Pay</string>
     <string name="event_thursday">Studenten.Pack</string>
-    <string name="event_friday">I Like...</string>
+    <string name="event_friday">I Like&#8230;</string>
     <string name="event_saturday">Club.Classix</string>
 
     <string name="today">Heute</string>
@@ -64,9 +65,22 @@
     <string name="weekday_saturday">Samstag</string>
     <string name="weekday_sunday">Sonntag</string>
 
-    <string name="flyer_next_event_content_description">Flyer of next upcoming event</string>
+    <string name="flyer_next_event_content_description">Flyer des nächsten Events</string>
 
-    <string name="location_picture_content_description">Picture of location</string>
+    <string name="location_picture_content_description">Bild der Location</string>
+
+    <string name="last_event_content_description">Flyer des letzten Events</string>
+    <string name="next_event_content_description">Flyer des nächsten Events</string>
+
+    <string name="is_valid_content_description">Zeigt an ob Inhalt erlaubt ist</string>
+
+    <string name="gallery_detail_image_content_descripion">Bild der Gallerie in Vollbildansicht</string>
+    <string name="gallery_item_image_content_descripion">Bild der Gallerie</string>
+
+    <string name="news_feed_image_content_description">Bild des Newsfeeds</string>
+    <string name="logo_news_content_description">Logo des Da Silva</string>
+
+    <string name="view_pager_image_content_description">Bild des ViewPagers</string>
 
     <string name="opening_times_weekdays">Di, Do, Fr, Sa, vor Feiertagen</string>
     <string name="opening_times_hours">21 – 2 Uhr</string>
@@ -217,7 +231,7 @@
     <string name="opening_times_fragment_preface">Wir sind für euch da:</string>
     <string name="opening_times_fragment_days">Di, Do, Fr, Sa</string>
     <string name="opening_times_fragment_holiday">und vor Feiertagen!</string>
-    <string name="opening_times_fragment_times">jeweils von 21 - 2 Uhr!</string>
+    <string name="opening_times_fragment_times">jeweils von 21 &#8211; 2 Uhr!</string>
     <string name="opening_times_fragment_call">Komm vorbei und feier mit uns!</string>
     <string name="opening_times_fragment_anticipation">Wir freuen uns auf deinen Besuch!</string>
 
@@ -250,7 +264,7 @@
     <string name="bottle_prices">60,00\n70,00\n90,00\n70,00\n85,00\n85,00\n85,00</string>
     <string name="drinks_fragment_sub_headlines">Getränkepreise</string>
 
-    <string name="action_example">More</string>
+    <string name="section">Section</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_opening_time">Öffnungszeiten</string>

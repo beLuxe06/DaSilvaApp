@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -24,7 +22,6 @@ public class GalleryAdapter extends ArrayAdapter<DaSilvaGallery> {
     private Context context;
     private ArrayList<DaSilvaGallery> galleryItems;
     private int galleryItemView;
-    private ActualCalendarProperties calendarProperties;
 
     public GalleryAdapter(Context context, ArrayList<DaSilvaGallery> galleryItems){
         super(context, R.layout.gallery_item, galleryItems);

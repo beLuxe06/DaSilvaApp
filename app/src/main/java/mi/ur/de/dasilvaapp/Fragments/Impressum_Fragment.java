@@ -16,8 +16,7 @@ public class Impressum_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_impressum, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_impressum, container, false);
     }
 
     @Override
@@ -26,7 +25,6 @@ public class Impressum_Fragment extends Fragment {
     }
 
     public static Impressum_Fragment newInstance() {
-        Impressum_Fragment fragment = new Impressum_Fragment();
-        return fragment;
+        return new Impressum_Fragment();
     }
 }

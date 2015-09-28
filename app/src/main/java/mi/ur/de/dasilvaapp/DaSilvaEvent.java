@@ -1,7 +1,5 @@
 package mi.ur.de.dasilvaapp;
 
-import java.util.Date;
-
 /**
  * Created by blu on 11.09.2015.
  */
@@ -27,11 +25,11 @@ public class DaSilvaEvent {
         this.imageURL = imageURL;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
     }
 
-    public String getFacebookId(){
+    public String getFacebookId() {
         return facebookId;
     }
 

@@ -21,11 +21,11 @@ public class DaSilvaGallery {
         this.link = link;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
     }
 
-    public String getFacebookId(){
+    public String getFacebookId() {
         return facebookId;
     }
 
