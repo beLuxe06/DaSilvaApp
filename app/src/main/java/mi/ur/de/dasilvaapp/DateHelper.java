@@ -24,11 +24,18 @@ public class DateHelper {
     public static String LAST = "last";
     public static String THIS = "this";
 
+    public static String OUT_OF_OPENING_DURATION = "out of opening duration";
+    public static String VISIT_TOO_SHORT = "visit too short";
+    public static String VISIT_TOO_LONG = "visit too long";
+    public static String VISIT_CORRECT = "correct";
+    public static String VISIT_INCORRECT = "incorrect";
+
     private int actualYear;
     private int actualMonth;
     private int actualDay;
     private int actualHour;
     private int actualMinute;
+    private int actualWeekdayIndex;
 
     public static final int FACEBOOK_DATE_OBJECT = 1;
     public static final int CALENDAR_DATE_OBJECT = 2;
@@ -48,6 +55,7 @@ public class DateHelper {
         actualDay = calendarProperties.getDayOfMonth();
         actualHour = calendarProperties.getHour();
         actualMinute = calendarProperties.getMinute();
+        actualWeekdayIndex = calendarProperties.getWeekdayIndex();
     }
 
     public String isVisitLongEnough(Timestamp timestamp){
@@ -70,7 +78,7 @@ public class DateHelper {
                 if(daysCorrect(dayDifference, midnight, lastMonthsEve)){
                     String returnString = hoursCorrect(timestamp.getHour(), openingDuration);
                     if(returnString.equals("")){
-                        return "correct";
+                        return VISIT_CORRECT;
                     }
                     else return returnString;
                 }
@@ -80,9 +88,68 @@ public class DateHelper {
         return "incorrect";
     }
 
+    public String isOpen(){
+        switch(actualWeekdayIndex){
+            case 1:
+                if(isOpenAtMorning()){
+                    return VISIT_CORRECT;
+                }
+                else return OUT_OF_OPENING_DURATION;
+            case 2:
+                return OUT_OF_OPENING_DURATION;
+            case 3:
+                if(isOpenAtEvening()){
+                    return VISIT_CORRECT;
+                }
+                else return OUT_OF_OPENING_DURATION;
+            case 4:
+                if(isOpenAtMorning()){
+                    return VISIT_CORRECT;
+                }
+                else return OUT_OF_OPENING_DURATION;
+            case 5:
+                if(isOpenAtEvening()){
+                    return VISIT_CORRECT;
+                }
+                else return OUT_OF_OPENING_DURATION;
+            case 6:
+                if(isOpenAtEveningAndMorning()){
+                    return OUT_OF_OPENING_DURATION;
+                }
+                else return VISIT_CORRECT;
+            case 7:
+                if(isOpenAtEveningAndMorning()){
+                    return OUT_OF_OPENING_DURATION;
+                }
+                else return VISIT_CORRECT;
+        }
+        return VISIT_INCORRECT;
+    }
+
+    private boolean isOpenAtEvening(){
+        if(actualHour >= OPENING_TIME ){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isOpenAtMorning(){
+        if(actualHour <= CLOSING_TIME ){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isOpenAtEveningAndMorning(){
+        if(isOpenAtEvening()&&isOpenAtMorning()){
+            return true;
+        }
+        return false;
+    }
+
     public String hoursCorrect(int timestampHour, int openingDuration) {
-        if((actualHour > CLOSING_TIME) || (actualHour < OPENING_TIME)){
-            return "out of opening duration";
+        if((actualHour >= CLOSING_TIME) && (actualHour <= OPENING_TIME)){
+            return OUT_OF_OPENING_DURATION;
         }
         int hourDifference;
         if (actualHour < 0){
@@ -92,10 +159,10 @@ public class DateHelper {
             hourDifference = getDifference(timestampHour, 24) + actualHour;
         }
         if((hourDifference < MIN_NUM_HOURS_TO_STAY)){
-            return "visit too short";
+            return VISIT_TOO_SHORT;
         }
         if(hourDifference > openingDuration){
-            return "visit too long";
+            return VISIT_TOO_LONG;
         }
         return "";
 
