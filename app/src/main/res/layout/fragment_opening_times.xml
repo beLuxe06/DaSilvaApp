@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home$PlaceholderFragment">
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
         android:id="@+id/location_name_opening_times"
         style="@style/headline"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:text="@string/location_name" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/location_type_opening_times"
         style="@style/subhead"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:text="@string/location_type" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/headline"
         style="@style/sub_subhead"
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         android:gravity="center_horizontal"
         android:text="@string/opening_times_fragment_preface" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/days"
         style="@style/subhead"
         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
         android:gravity="center_horizontal"
         android:text="@string/opening_times_fragment_days" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/holiday"
         style="@style/subhead"
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
         android:gravity="center_horizontal"
         android:text="@string/opening_times_fragment_holiday" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/times"
         style="@style/subhead"
         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
         android:gravity="center_horizontal"
         android:text="@string/opening_times_fragment_times" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/call"
         style="@style/sub_subhead"
         android:layout_width="match_parent"
@@ -112,7 +112,7 @@
         android:gravity="center_horizontal"
         android:text="@string/opening_times_fragment_call" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/anticipation"
         style="@style/sub_subhead"
         android:layout_width="match_parent"

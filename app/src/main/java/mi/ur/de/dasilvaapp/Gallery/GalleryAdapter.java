@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Gallery;
 
 import android.content.Context;
 
@@ -13,6 +13,10 @@ import android.widget.ProgressBar;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.NewsFeed.ImageLoadTask;
+import mi.ur.de.dasilvaapp.R;
+import mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView;
 
 
 /**

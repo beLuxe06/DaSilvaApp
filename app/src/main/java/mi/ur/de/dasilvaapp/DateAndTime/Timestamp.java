@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.DateAndTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

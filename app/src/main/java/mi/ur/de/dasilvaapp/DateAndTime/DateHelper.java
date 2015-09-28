@@ -1,6 +1,8 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.DateAndTime;
 
 import android.content.Context;
+
+import mi.ur.de.dasilvaapp.R;
 
 /**
  * Created by blu on 24.09.2015.

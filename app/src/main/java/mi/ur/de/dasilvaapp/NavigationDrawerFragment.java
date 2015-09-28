@@ -28,6 +28,7 @@ import android.widget.ListView;
 import mi.ur.de.dasilvaapp.Fragments.Drinks_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Impressum_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Opening_Time_Fragment;
+import mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

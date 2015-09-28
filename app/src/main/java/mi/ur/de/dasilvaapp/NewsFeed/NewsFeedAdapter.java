@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.NewsFeed;
 
 import android.content.Context;
 
@@ -11,6 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.DateAndTime.DateHelper;
+import mi.ur.de.dasilvaapp.R;
+import mi.ur.de.dasilvaapp.DateAndTime.Timestamp;
 
 
 /**

@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import mi.ur.de.dasilvaapp.DateHelper;
-import mi.ur.de.dasilvaapp.Reservation;
+import mi.ur.de.dasilvaapp.DateAndTime.DateHelper;
+import mi.ur.de.dasilvaapp.Reservation.Reservation;
 import mi.ur.de.dasilvaapp.SpinnerAdapter;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
-import mi.ur.de.dasilvaapp.TextInputValidator;
+import mi.ur.de.dasilvaapp.Reservation.TextInputValidator;
 
 /**
  * Created by blu on 17.08.2015.

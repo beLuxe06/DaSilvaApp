@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.TextViews;
 
 import android.content.Context;
 import android.graphics.Typeface;

@@ -1,9 +1,11 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.DateAndTime;
 
 import android.content.Context;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import mi.ur.de.dasilvaapp.R;
 
 /**
  * Created by blu on 04.09.2015.

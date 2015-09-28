@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Gallery;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -15,20 +15,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+
 /**
- * Created by blu on 03.09.2015.
+ * Created by blu on 25.09.2015.
  */
-public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
+public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
 
     private static final String DATA = "data";
     private static final String FACEBOOK_ID = "id";
     private static final String NAME = "name";
-    private static final String START_TIME = "start_time";
-    private static final String END_TIME = "end_time";
-    private static final String DESCRIPTION = "description";
+    private static final String DATE = "backdated_time";
+    private static final String LINK = "link";
     private static final String URL = "url";
 
-    private ArrayList<DaSilvaEvent> events;
+    private ArrayList<DaSilvaGallery> galleries;
     private DownloadListener listener;
     private Context context;
 
@@ -45,10 +46,10 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
         super.onProgressUpdate(values);
     }
 
-    public EventsDownloadTask(Context context, DownloadListener listener, ArrayList<DaSilvaEvent> events) {
+    public GalleryDownloadTask(Context context, DownloadListener listener, ArrayList<DaSilvaGallery> galleries) {
         this.context = context;
         this.listener = listener;
-        this.events = events;
+        this.galleries = galleries;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
         String jsonString = "";
 
         try {
-            URL url = new URL(params[0]);
+            java.net.URL url = new URL(params[0]);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -95,38 +96,43 @@ public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
 
     private void processJson(String text) {
         try {
-            JSONObject event = new JSONObject(text);
-            JSONArray jsonArray = event.getJSONArray(DATA);
+            JSONObject gallery = new JSONObject(text);
+            JSONArray jsonArray = gallery.getJSONArray(DATA);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String facebookID = jsonObject.getString(FACEBOOK_ID);
-                String name = jsonObject.getString(NAME);
-                String date = jsonObject.getString(START_TIME).substring(0, 10);
-                String openingTime = jsonObject.getString(START_TIME);
-                // endTime may be null
-                String closingTime;
+                String name;
+                // name for pictures is null
                 try {
-                    closingTime = jsonObject.getString(END_TIME);
+                    name = jsonObject.getString(NAME);
                 } catch (JSONException e) {
-                    closingTime = null;
+                    name = null;
                 }
-                // description may be null
-                String description;
+                String link = jsonObject.getString(LINK);
+                // date may be null
+                String date;
                 try {
-                    description = jsonObject.getString(DESCRIPTION);
+                    date = jsonObject.getString(DATE).substring(0, 10);
                 } catch (JSONException e) {
-                    description = null;
-                }
-                // imageURL may be null
-                String imageURL;
-                try {
-                    imageURL = jsonObject.getString(URL);
-                } catch (JSONException e) {
-                    imageURL = null;
+                    date = null;
                 }
 
-                DaSilvaEvent newEvent = new DaSilvaEvent(0, facebookID, name, date, openingTime, closingTime, description, imageURL);
-                events.add(newEvent);
+                // imageURL may be null
+                String imageURL = null;
+                try {
+                    imageURL = jsonObject.getJSONObject("picture").getJSONObject("data").getString(URL);
+                } catch (JSONException e) {
+                    try {
+                        imageURL = jsonObject.getString("picture");
+                    } catch (JSONException ex) {
+                        imageURL = null;
+                    }
+                }
+
+                if ((date != null)) {
+                    DaSilvaGallery newGallery = new DaSilvaGallery(0, facebookID, name, date, imageURL, link);
+                    galleries.add(newGallery);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

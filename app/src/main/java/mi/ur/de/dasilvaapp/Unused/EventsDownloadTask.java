@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Unused;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -15,20 +15,23 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import mi.ur.de.dasilvaapp.DaSilvaEvent;
+import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+
 /**
  * Created by blu on 03.09.2015.
  */
-public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
+public class EventsDownloadTask extends AsyncTask<String, Integer, String> {
 
     private static final String DATA = "data";
     private static final String FACEBOOK_ID = "id";
-    private static final String CREATED_TIME = "created_time";
-    private static final String STORY = "story";
-    private static final String MESSAGE = "message";
-    private static final String IMAGE_URL = "full_picture";
-    private static final String LINK = "link";
+    private static final String NAME = "name";
+    private static final String START_TIME = "start_time";
+    private static final String END_TIME = "end_time";
+    private static final String DESCRIPTION = "description";
+    private static final String URL = "url";
 
-    private ArrayList<NewsFeedItem> newsFeedItems;
+    private ArrayList<DaSilvaEvent> events;
     private DownloadListener listener;
     private Context context;
 
@@ -45,10 +48,10 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
         super.onProgressUpdate(values);
     }
 
-    public NewsFeedDownloadTask(Context context, DownloadListener listener, ArrayList<NewsFeedItem> newsFeedItems) {
+    public EventsDownloadTask(Context context, DownloadListener listener, ArrayList<DaSilvaEvent> events) {
         this.context = context;
         this.listener = listener;
-        this.newsFeedItems = newsFeedItems;
+        this.events = events;
     }
 
     @Override
@@ -95,37 +98,38 @@ public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
     private void processJson(String text) {
         try {
-            JSONObject feed = new JSONObject(text);
-            JSONArray jsonArray = feed.getJSONArray(DATA);
+            JSONObject event = new JSONObject(text);
+            JSONArray jsonArray = event.getJSONArray(DATA);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String facebookID = jsonObject.getString(FACEBOOK_ID);
-                String createdTime = jsonObject.getString(CREATED_TIME);
-                String link = jsonObject.getString(LINK);
-                // story may be null
-                String story;
+                String name = jsonObject.getString(NAME);
+                String date = jsonObject.getString(START_TIME).substring(0, 10);
+                String openingTime = jsonObject.getString(START_TIME);
+                // endTime may be null
+                String closingTime;
                 try {
-                    story = jsonObject.getString(STORY);
+                    closingTime = jsonObject.getString(END_TIME);
                 } catch (JSONException e) {
-                    story = null;
+                    closingTime = null;
                 }
-                // message may be null
-                String message;
+                // description may be null
+                String description;
                 try {
-                    message = jsonObject.getString(MESSAGE);
+                    description = jsonObject.getString(DESCRIPTION);
                 } catch (JSONException e) {
-                    message = null;
+                    description = null;
                 }
                 // imageURL may be null
                 String imageURL;
                 try {
-                    imageURL = jsonObject.getString(IMAGE_URL);
+                    imageURL = jsonObject.getString(URL);
                 } catch (JSONException e) {
                     imageURL = null;
                 }
 
-                NewsFeedItem item = new NewsFeedItem(facebookID, createdTime, link, story, message, imageURL);
-                newsFeedItems.add(item);
+                DaSilvaEvent newEvent = new DaSilvaEvent(0, facebookID, name, date, openingTime, closingTime, description, imageURL);
+                events.add(newEvent);
             }
         } catch (JSONException e) {
             e.printStackTrace();
