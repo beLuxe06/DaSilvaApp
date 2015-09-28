@@ -37,8 +37,8 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final double DA_SILVA_LATITUDE = 49.016;
-    private static final double DA_SILVA_LONGITUDE = 12.097;
+    private static final double DA_SILVA_LATITUDE = 49.02;
+    private static final double DA_SILVA_LONGITUDE = 12.16;
 
     private static final int DATABASE_ONLY_ID = 0;
 
@@ -110,11 +110,10 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void enterButtonClicked() {
-        String hoursCorrect = dateHelper.hoursCorrect(0,0);
-        if(hoursCorrect.equals("out of opening duration")){
+        String isOpened = dateHelper.isOpen();
+        if (isOpened.equals("out of opening duration")) {
             Toast.makeText(getActivity(), R.string.out_of_opening_times, Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             if (isLocationEnabled(getActivity())) {
                 compareEnteringLocations();
             } else {
@@ -144,15 +143,15 @@ public class Regular_Guest_Fragment extends Fragment {
     private Location approximateLocation(Location location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        double approximateLatitude = roundDown3(latitude);
-        double approximateLongitude = roundDown3(longitude);
+        double approximateLatitude = roundDown2(latitude);
+        double approximateLongitude = roundDown2(longitude);
         location.setLatitude(approximateLatitude);
         location.setLongitude(approximateLongitude);
         return location;
     }
 
-    public static double roundDown3(double d) {
-        return (long) (d * 1e3) / 1e3;
+    public static double roundDown2(double d) {
+        return (long) (d * 1e2) / 1e2;
     }
 
     private void saveEnteringInDatabase() {
@@ -166,10 +165,11 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void leaveButtonClicked() {
-        if (regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getTimeOfEntering().length() != 0) {
-            compareTimings();
-        } else {
+        if (regularGuestDatabase.getAllRegularGuestItems().size() == 0
+                || regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getTimeOfEntering().length() == 0) {
             Toast.makeText(getActivity(), R.string.enter_first, Toast.LENGTH_SHORT).show();
+        } else {
+            compareTimings();
         }
     }
 

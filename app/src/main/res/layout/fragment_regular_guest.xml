@@ -28,6 +28,27 @@
         android:layout_gravity="center"
         android:text="@string/zero" />
 
+    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+        android:id="@+id/available_voucher"
+        style="@style/subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actual_number_of_visits"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/available_vouchers" />
+
+    <ImageView
+        android:id="@+id/view_available_voucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/enter_button"
+        android:layout_below="@+id/available_voucher"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:contentDescription="@string/flyer_next_event_content_description"
+        android:src="@drawable/dienstag_neu" />
+
     <Button
         android:id="@+id/enter_button"
         android:layout_width="wrap_content"

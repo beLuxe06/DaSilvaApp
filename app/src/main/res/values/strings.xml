@@ -206,6 +206,8 @@
     <string name="visit_too_short">Bleibe mindestens eine Stunde um Punkte zu sammeln.</string>
     <string name="visit_too_long">Dein Besuch ist zu lange her.</string>
     <string name="out_of_opening_times">Außerhalb der Öffnungszeit!</string>
+    <string name="available_vouchers">Verfügbarer Gutschein</string>
+    <string name="available_voucher_content_description">Image of available voucher</string>
 
     <string name="image_fullscreen_content_description">Image in fullscreen.</string>
 
