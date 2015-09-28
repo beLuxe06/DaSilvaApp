@@ -197,6 +197,7 @@
     <string name="number_of_visits">Anzahl von Besuchen</string>
     <string name="zero">0</string>
 
+    <string name="no_locaion_available">Kein Standort verfügbar.</string>
     <string name="activate_location">Bitte aktivieren sie den Standortdienst.</string>
     <string name="you_entered">Du hast das Da Silva betreten.</string>
     <string name="please_enter">Bitte betreten sie das Da Silva.</string>

@@ -37,8 +37,8 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final double DA_SILVA_LATITUDE = 49.01;
-    private static final double DA_SILVA_LONGITUDE = 12.09;
+    private static final double DA_SILVA_LATITUDE = 49.02;
+    private static final double DA_SILVA_LONGITUDE = 12.16;
 
     private static final int DATABASE_ONLY_ID = 0;
 
@@ -129,14 +129,18 @@ public class Regular_Guest_Fragment extends Fragment {
         if (currentLocation == null) {
             currentLocation = locationTracker.getPossiblyStaleLocation();
         }
-        Location approximateLocation = approximateLocation(currentLocation);
-        if (approximateLocation.getLatitude() == daSilvaLocation.getLatitude()
-                && approximateLocation.getLongitude() == daSilvaLocation.getLongitude()) {
-            Toast.makeText(getActivity(), R.string.you_entered, Toast.LENGTH_SHORT).show();
-            saveEnteringInDatabase();
+        if (currentLocation == null) {
+            Toast.makeText(getActivity(), R.string.no_locaion_available, Toast.LENGTH_SHORT).show();
         } else {
-            //Toast.makeText(getActivity(), R.string.please_enter, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), Double.toString(approximateLocation.getLatitude()) + " - " + Double.toString(approximateLocation.getLongitude()), Toast.LENGTH_SHORT).show();
+            Location approximateLocation = approximateLocation(currentLocation);
+            if (approximateLocation.getLatitude() == daSilvaLocation.getLatitude()
+                    && approximateLocation.getLongitude() == daSilvaLocation.getLongitude()) {
+                Toast.makeText(getActivity(), R.string.you_entered, Toast.LENGTH_SHORT).show();
+                saveEnteringInDatabase();
+            } else {
+                Toast.makeText(getActivity(), R.string.please_enter, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), Double.toString(approximateLocation.getLatitude()) + " - " + Double.toString(approximateLocation.getLongitude()), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -166,7 +170,7 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private void leaveButtonClicked() {
         if (regularGuestDatabase.getAllRegularGuestItems().size() == 0
-                || regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getTimeOfEntering().length() == 0) {
+                || regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getTimeOfEntering().length() == 1) {
             Toast.makeText(getActivity(), R.string.enter_first, Toast.LENGTH_SHORT).show();
         } else {
             compareTimings();
@@ -177,7 +181,7 @@ public class Regular_Guest_Fragment extends Fragment {
         String visitDescription = dateHelper.isVisitLongEnough(new Timestamp(regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getTimeOfEntering()));
         if (visitDescription == null || visitDescription.length() == 0) {
             Toast.makeText(getActivity(), R.string.not_right_period_of_time, Toast.LENGTH_SHORT).show();
-            regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+            regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
         }
         switch (visitDescription) {
             case "correct":
@@ -185,18 +189,18 @@ public class Regular_Guest_Fragment extends Fragment {
                 break;
             case "incorrect":
                 Toast.makeText(getActivity(), R.string.not_right_period_of_time, Toast.LENGTH_SHORT).show();
-                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
                 break;
             case "visit too short":
                 Toast.makeText(getActivity(), R.string.visit_too_short, Toast.LENGTH_SHORT).show();
                 break;
             case "visit too long":
                 Toast.makeText(getActivity(), R.string.visit_too_long, Toast.LENGTH_SHORT).show();
-                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
                 break;
             case "out of opening duration":
                 Toast.makeText(getActivity(), R.string.out_of_opening_times, Toast.LENGTH_SHORT).show();
-                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+                regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
                 break;
         }
     }
@@ -212,15 +216,18 @@ public class Regular_Guest_Fragment extends Fragment {
                 && approximateLocation.getLongitude() == daSilvaLocation.getLongitude()) {
             Toast.makeText(getActivity(), R.string.you_left, Toast.LENGTH_SHORT).show();
             saveLeavingInDatabase();
+            updateViews();
         } else {
             Toast.makeText(getActivity(), R.string.please_enter, Toast.LENGTH_SHORT).show();
-            regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+            regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
         }
     }
 
     private void saveLeavingInDatabase() {
-        regularGuestDatabase.updateNumberOfVisits(DATABASE_ONLY_ID, regularGuestDatabase.getAllRegularGuestItems().get((DATABASE_ONLY_ID)).getNumberOfVisits() + 1);
-        regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "");
+        numberOfVisits = regularGuestDatabase.getAllRegularGuestItems().get((DATABASE_ONLY_ID)).getNumberOfVisits();
+        numberOfVisits++;
+        regularGuestDatabase.updateNumberOfVisits(DATABASE_ONLY_ID, numberOfVisits);
+        regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
     }
 
     public static boolean isLocationEnabled(Context context) {
@@ -244,6 +251,9 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void updateViews() {
+        if (regularGuestDatabase.getAllRegularGuestItems().size() != 0) {
+            numberOfVisits = regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getNumberOfVisits();
+        }
         viewNumberOfVisits.setText(Integer.toString(numberOfVisits));
     }
 

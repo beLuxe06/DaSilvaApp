@@ -49,7 +49,6 @@ public class RegularGuestDatabase {
         return db.insert(DATABASE_TABLE, null, newRegularGuestValues);
     }
 
-
     // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow
     public long updateNumberOfVisits(long id, int numberOfVisits) {
         // New value for one column
@@ -57,12 +56,11 @@ public class RegularGuestDatabase {
         values.put(KEY_NUMBER_OF_VISITS, numberOfVisits);
 
         // Which row to update, based on the ID
-        String selection = KEY_ID + " LIKE ?";
+        //String selection = KEY_PHOTO + " = '" + foodieItemID + "'";
+        String selection = KEY_NUMBER_OF_VISITS + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
 
-        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
-
-        return 1;
+        return db.update(DATABASE_TABLE, values, selection, selectionArgs);
     }
 
     public long updateTimeOfEntering(long id, String timeOfEntering) {
@@ -71,12 +69,12 @@ public class RegularGuestDatabase {
         values.put(KEY_TIME_OF_ENTERING, timeOfEntering);
 
         // Which row to update, based on the ID
-        String selection = KEY_ID + " LIKE ?";
-        String[] selectionArgs = {String.valueOf(id)};
+        String selection = KEY_ID + " = '" + id + "'";
+        /*String selection = KEY_TIME_OF_ENTERING + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};*/
 
-        int count = db.update(DATABASE_TABLE, values, selection, selectionArgs);
-
-        return 1;
+        //return db.update(DATABASE_TABLE, values, selection, selectionArgs);
+        return db.update(DATABASE_TABLE, values, selection, null);
     }
 
     // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow

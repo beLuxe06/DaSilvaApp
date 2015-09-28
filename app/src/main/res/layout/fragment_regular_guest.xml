@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:contentDescription="@string/flyer_next_event_content_description"
-        android:src="@drawable/dienstag_neu" />
+        android:src="@drawable/gutschein_freischalten" />
 
     <Button
         android:id="@+id/enter_button"

@@ -148,7 +148,7 @@ public class DateHelper {
     }
 
     public String hoursCorrect(int timestampHour, int openingDuration) {
-        if((actualHour >= CLOSING_TIME) && (actualHour <= OPENING_TIME)){
+        if((actualHour > CLOSING_TIME) && (actualHour < OPENING_TIME)){
             return OUT_OF_OPENING_DURATION;
         }
         int hourDifference = 0;
@@ -315,10 +315,7 @@ public class DateHelper {
     }
 
     private boolean timeNotEqual(int timeStampTime, int actualTime) {
-        if(timeStampTime == actualTime){
-            return false;
-        }
-        else return true;
+        return timeStampTime != actualTime;
     }
 
 
