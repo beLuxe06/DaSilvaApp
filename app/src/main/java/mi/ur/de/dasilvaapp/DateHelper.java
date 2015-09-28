@@ -151,11 +151,11 @@ public class DateHelper {
         if((actualHour >= CLOSING_TIME) && (actualHour <= OPENING_TIME)){
             return OUT_OF_OPENING_DURATION;
         }
-        int hourDifference;
-        if (actualHour < 0){
+        int hourDifference = 0;
+        if (actualHour >= OPENING_TIME){
             hourDifference = getDifference(timestampHour, actualHour);
         }
-        else{
+        if(actualHour <=CLOSING_TIME){
             hourDifference = getDifference(timestampHour, 24) + actualHour;
         }
         if((hourDifference < MIN_NUM_HOURS_TO_STAY)){

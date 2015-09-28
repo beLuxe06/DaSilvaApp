@@ -15,6 +15,7 @@ import mi.ur.de.dasilvaapp.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.DaSilvaAppContentTextView;
 import mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView;
 import mi.ur.de.dasilvaapp.DaSilvaEvent;
+import mi.ur.de.dasilvaapp.DateHelper;
 import mi.ur.de.dasilvaapp.EventDatabase;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
@@ -36,6 +37,7 @@ public class Home_Fragment extends Fragment {
 
     private Context context;
     private ActualCalendarProperties calendarProperties;
+    private DateHelper dh;
 
     private String actualOpeningStatus;
     private String nextEventDay;
@@ -53,7 +55,6 @@ public class Home_Fragment extends Fragment {
     private TextView labelDate;
     private TextView labelOpeningStatus;
     private ImageView flyer;
-    private EventDatabase db;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -61,20 +62,14 @@ public class Home_Fragment extends Fragment {
     public void onStart() {
         super.onStart();
         getCalendarData();
-       // initDatabase();
         initUI();
         updateDateTextViews();
         setOnClickListenersForFullScreenImage();
     }
 
-    private void initDatabase() {
-        db = new EventDatabase(context);
-        db.open();
-    }
 
     @Override
     public void onDestroy() {
-//        db.close();
         super.onDestroy();
     }
 
@@ -94,13 +89,6 @@ public class Home_Fragment extends Fragment {
     }
 
     private void updateDateTextViews() {
-        // DaSilvaEvent upcomingEvent = db.getEvent(actualDBSearchDate);
-        // labelWeekday.setText(calendarProperties.getWeekday());
-        // labelDate.setText(calendarProperties.getDateString());
-        // labelOpeningStatus.setText(calendarProperties.getOpeningStatus());
-        // labelNextEventTitle.setText(upcomingEvent.getName());
-        // labelNextEventTitle.setText(upcomingEvent.getDateString());
-        // flyer.setImageRessource(upcomingEvent.getImageURL());
         updateActualStringValues(actualWeekdayIndex, actualHour);
         labelNextEventDay.setText(nextEventDay);
         labelNextEventTitle.setText(nextEventTitle);
@@ -250,6 +238,7 @@ public class Home_Fragment extends Fragment {
         actualHour = calendarProperties.getHour();
         actualDBSearchDate = calendarProperties.getDBSearchString();
         actualDate = calendarProperties.getDateString();
+        dh = new DateHelper(context);
     }
 
     private void setOnClickListenersForFullScreenImage() {

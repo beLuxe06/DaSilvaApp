@@ -37,8 +37,8 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final double DA_SILVA_LATITUDE = 49.02;
-    private static final double DA_SILVA_LONGITUDE = 12.16;
+    private static final double DA_SILVA_LATITUDE = 49.01;
+    private static final double DA_SILVA_LONGITUDE = 12.09;
 
     private static final int DATABASE_ONLY_ID = 0;
 

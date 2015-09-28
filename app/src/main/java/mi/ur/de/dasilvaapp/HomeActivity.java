@@ -51,8 +51,6 @@ public class HomeActivity extends AppCompatActivity
      */
     private CharSequence mTitle;
     private ArrayList<DaSilvaEvent> events = new ArrayList<DaSilvaEvent>();
-    // private EventListAdapter events_adapter;
-    private EventDatabase db;
 
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
@@ -63,36 +61,9 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initEvents();
         setupNavigationDrawerFragment();
         startHomeFragmentFirst();
         overrideTransitions();
-    }
-
-    private void initEvents() {
-        initEventDatabase();
-        initEventAdapter();
-        fetchDataFromFacebook();
-    }
-
-    private void fetchDataFromFacebook() {
-        events.clear();
-        new EventsDownloadTask(this,this,events).execute(ADDRESS);
-    }
-
-    private void updateEventsFromDB() {
-        events.clear();
-        events.addAll(db.getAllEvents());
-       // events_adapter.notifyDataSetChanged();
-    }
-
-    private void initEventAdapter() {
-       // events_adapter = new EventListAdapter(this, events);
-    }
-
-    private void initEventDatabase() {
-        db = new EventDatabase(this);
-        db.open();
     }
 
     private void overrideTransitions() {
@@ -100,11 +71,6 @@ public class HomeActivity extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
 
-    @Override
-    public void onDestroy() {
-        db.close();
-        super.onDestroy();
-    }
 
     @Override
     protected void onPause() {
@@ -117,7 +83,6 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-       // updateEventsFromDB();
         // Facebook Logs 'install' and 'app activate' App Events.
         // Forces Shut Down -> Commented
         // AppEventsLogger.activateApp(this);
