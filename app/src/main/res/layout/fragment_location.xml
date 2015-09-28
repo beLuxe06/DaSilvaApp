@@ -44,7 +44,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="@string/opening_times_hours" />
+        android:text="@string/opening_times_hours"
+        android:layout_marginBottom="25dp" />
 
     <TextView
         android:id="@+id/opening_weekdays_location"

@@ -51,6 +51,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="@string/description_of_drink" />
+        android:text="@string/description_of_drink"
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>

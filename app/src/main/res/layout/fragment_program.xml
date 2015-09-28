@@ -38,7 +38,6 @@
         android:layout_below="@+id/location_type_program"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/location_type_program"
-        android:contentDescription="@string/last_event_content_description"
         android:maxWidth="20dp"
         android:scaleType="centerInside"
         android:src="@drawable/samstag_neu"
@@ -65,7 +64,6 @@
         android:layout_below="@+id/location_type_program"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/location_type_program"
-        android:contentDescription="@string/flyer_next_event_content_description"
         android:scaleType="centerInside"
         android:src="@drawable/donnerstag_neu" />
 
@@ -78,7 +76,8 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/event_description_tuesday" />
+        android:text="@string/event_description_tuesday"
+        android:layout_marginBottom="10dp" />
 
     <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
         android:id="@+id/actual_event_description_program"
