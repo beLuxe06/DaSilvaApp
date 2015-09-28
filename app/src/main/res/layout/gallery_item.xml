@@ -40,7 +40,7 @@
 
         <TableRow android:background="@color/da_silva_background_transparent">
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                 android:id="@+id/gallery_date"
                 style="@style/subhead"
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:paddingLeft="@dimen/padding_list_view_items"
                 android:text="@string/date_today" />
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                 android:id="@+id/gallery_event"
                 style="@style/subhead"
                 android:layout_width="wrap_content"

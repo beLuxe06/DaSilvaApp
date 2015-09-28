@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.RegularGuest;
 
 import android.content.ContentValues;
 import android.content.Context;

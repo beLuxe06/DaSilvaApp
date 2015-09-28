@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Gallery;
 
 /**
  * Created by blu on 25.09.2015.

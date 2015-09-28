@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home$PlaceholderFragment">
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
         android:id="@+id/next_event_day_home"
         style="@style/headline"
         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
         android:gravity="center"
         android:text="@string/date_today" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
         android:id="@+id/next_event_title_home"
         style="@style/headline"
         android:layout_width="wrap_content"

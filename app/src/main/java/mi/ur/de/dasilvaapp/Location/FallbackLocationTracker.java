@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Location;
 
 /**
  * Created by Bernhard on 14.09.2015.
@@ -7,6 +7,9 @@ package mi.ur.de.dasilvaapp;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
+
+import mi.ur.de.dasilvaapp.Location.LocationTracker;
+import mi.ur.de.dasilvaapp.Location.ProviderLocationTracker;
 
 public class FallbackLocationTracker implements LocationTracker, LocationTracker.LocationUpdateListener {
 

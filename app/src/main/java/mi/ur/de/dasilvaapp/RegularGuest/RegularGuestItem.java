@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.RegularGuest;
 
 /**
  * Created by Bernhard on 27.09.2015.

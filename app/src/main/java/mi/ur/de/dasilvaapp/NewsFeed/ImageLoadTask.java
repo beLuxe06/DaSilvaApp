@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.NewsFeed;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

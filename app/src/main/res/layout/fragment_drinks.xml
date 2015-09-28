@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home$PlaceholderFragment">
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
         android:id="@+id/location_name_drinks"
         style="@style/headline"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:text="@string/location_name" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/location_type_drinks"
         style="@style/subhead"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:text="@string/location_type" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/headline"
         style="@style/sub_subhead"
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_beer"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_wine"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_cocktail"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_non_alcoholic_cocktail"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_longdrink"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_shot"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -257,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_soft_drink"
                     style="@style/subhead"
                     android:layout_width="wrap_content"
@@ -290,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+                <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
                     android:id="@+id/section_bottle"
                     style="@style/subhead"
                     android:layout_width="wrap_content"

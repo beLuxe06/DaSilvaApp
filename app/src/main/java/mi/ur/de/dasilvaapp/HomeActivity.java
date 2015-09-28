@@ -20,6 +20,7 @@ import mi.ur.de.dasilvaapp.Fragments.Opening_Time_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Program_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
+import mi.ur.de.dasilvaapp.Unused.DownloadListener;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener {

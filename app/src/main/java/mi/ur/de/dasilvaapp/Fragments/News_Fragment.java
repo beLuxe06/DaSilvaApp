@@ -12,11 +12,10 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-import mi.ur.de.dasilvaapp.DownloadListener;
+import mi.ur.de.dasilvaapp.Unused.DownloadListener;
 import mi.ur.de.dasilvaapp.HomeActivity;
-import mi.ur.de.dasilvaapp.NewsFeedAdapter;
-import mi.ur.de.dasilvaapp.NewsFeedDownloadTask;
-import mi.ur.de.dasilvaapp.NewsFeedItem;
+import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedAdapter;
+import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedItem;
 import mi.ur.de.dasilvaapp.R;
 
 /**
@@ -43,7 +42,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     private void fetchDataFromFacebook() {
         newsFeedItems.clear();
-        new NewsFeedDownloadTask(getActivity(), this, newsFeedItems).execute(ADDRESS);
+        new NewsFeedItem.NewsFeedDownloadTask(getActivity(), this, newsFeedItems).execute(ADDRESS);
     }
 
 

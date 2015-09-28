@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Location;
 
 /**
  * Created by Bernhard on 14.09.2015.
@@ -9,6 +9,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+
+import mi.ur.de.dasilvaapp.Location.LocationTracker;
 
 public class ProviderLocationTracker implements LocationListener, LocationTracker {
 

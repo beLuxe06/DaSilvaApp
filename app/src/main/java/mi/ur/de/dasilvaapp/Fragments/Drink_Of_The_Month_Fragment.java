@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import mi.ur.de.dasilvaapp.ActualCalendarProperties;
+import mi.ur.de.dasilvaapp.DateAndTime.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.R;
 

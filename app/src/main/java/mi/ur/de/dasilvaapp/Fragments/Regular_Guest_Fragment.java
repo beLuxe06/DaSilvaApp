@@ -16,15 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import mi.ur.de.dasilvaapp.ActualCalendarProperties;
-import mi.ur.de.dasilvaapp.DateHelper;
-import mi.ur.de.dasilvaapp.FallbackLocationTracker;
+import mi.ur.de.dasilvaapp.DateAndTime.ActualCalendarProperties;
+import mi.ur.de.dasilvaapp.DateAndTime.DateHelper;
+import mi.ur.de.dasilvaapp.Location.FallbackLocationTracker;
 import mi.ur.de.dasilvaapp.HomeActivity;
-import mi.ur.de.dasilvaapp.LocationTracker;
+import mi.ur.de.dasilvaapp.Location.LocationTracker;
 import mi.ur.de.dasilvaapp.R;
-import mi.ur.de.dasilvaapp.RegularGuestDatabase;
-import mi.ur.de.dasilvaapp.RegularGuestItem;
-import mi.ur.de.dasilvaapp.Timestamp;
+import mi.ur.de.dasilvaapp.RegularGuest.RegularGuestDatabase;
+import mi.ur.de.dasilvaapp.RegularGuest.RegularGuestItem;
+import mi.ur.de.dasilvaapp.DateAndTime.Timestamp;
 
 /**
  * Created by blu on 17.08.2015.

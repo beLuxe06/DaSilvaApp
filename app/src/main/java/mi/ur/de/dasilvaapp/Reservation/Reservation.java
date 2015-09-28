@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Reservation;
 
 /**
  * Created by blu on 11.09.2015.

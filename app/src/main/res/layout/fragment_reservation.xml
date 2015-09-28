@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home$PlaceholderFragment">
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView
         android:id="@+id/location_name_reservation"
         style="@style/headline"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:text="@string/location_name" />
 
-    <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+    <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
         android:id="@+id/location_type_reservation"
         style="@style/subhead"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_name"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -67,7 +67,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_birthday"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -96,7 +96,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_mail"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -125,7 +125,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_phone"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -154,7 +154,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_date"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -183,7 +183,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_time"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -210,7 +210,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_persons"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -239,7 +239,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_area"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"
@@ -266,7 +266,7 @@
 
         <TableRow>
 
-            <mi.ur.de.dasilvaapp.DaSilvaAppContentTextView
+            <mi.ur.de.dasilvaapp.TextViews.DaSilvaAppContentTextView
                 android:id="@+id/reservation_reason"
                 style="@style/body_custom_font"
                 android:layout_width="0dp"

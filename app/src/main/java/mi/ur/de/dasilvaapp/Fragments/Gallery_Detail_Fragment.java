@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import mi.ur.de.dasilvaapp.DaSilvaGallery;
-import mi.ur.de.dasilvaapp.DownloadListener;
-import mi.ur.de.dasilvaapp.GalleryDetailAdapter;
-import mi.ur.de.dasilvaapp.GalleryDownloadTask;
+import mi.ur.de.dasilvaapp.Gallery.DaSilvaGallery;
+import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+import mi.ur.de.dasilvaapp.Gallery.GalleryDetailAdapter;
+import mi.ur.de.dasilvaapp.Gallery.GalleryDownloadTask;
 import mi.ur.de.dasilvaapp.R;
 
 /**

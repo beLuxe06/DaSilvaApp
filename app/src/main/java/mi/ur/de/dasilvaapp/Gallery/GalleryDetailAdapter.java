@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp;
+package mi.ur.de.dasilvaapp.Gallery;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.DateAndTime.ActualCalendarProperties;
+import mi.ur.de.dasilvaapp.NewsFeed.ImageLoadTask;
+import mi.ur.de.dasilvaapp.R;
 
 
 /**
