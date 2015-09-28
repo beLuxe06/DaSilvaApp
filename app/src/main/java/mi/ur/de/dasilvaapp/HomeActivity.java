@@ -39,7 +39,7 @@ import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -51,8 +51,6 @@ public class HomeActivity extends AppCompatActivity
      */
     private CharSequence mTitle;
     private ArrayList<DaSilvaEvent> events = new ArrayList<DaSilvaEvent>();
-
-    private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
     // StringArray to store the several section(fragment) names of the App
     private String[] appSections;
@@ -219,20 +217,5 @@ public class HomeActivity extends AppCompatActivity
         newFragment = Drinks_Fragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().addToBackStack("drinks").replace(R.id.container, newFragment).commit();
-    }
-
-    @Override
-    public void onDownloadFinished() {
-
-    }
-
-    @Override
-    public void onDownloadStarted() {
-
-    }
-
-    @Override
-    public void onDownloadInProgress() {
-
     }
 }

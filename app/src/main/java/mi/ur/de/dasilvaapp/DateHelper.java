@@ -85,7 +85,7 @@ public class DateHelper {
             }
         }
 
-        return "incorrect";
+        return VISIT_INCORRECT;
     }
 
     public String isOpen(){

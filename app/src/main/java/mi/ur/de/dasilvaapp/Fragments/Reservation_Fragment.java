@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,6 +82,7 @@ public class Reservation_Fragment extends Fragment {
     public void onStart() {
         super.onStart();
         context = getActivity();
+        dh = new DateHelper(context);
         initArrayList();
         initAdapters();
         initUI();
@@ -108,9 +111,51 @@ public class Reservation_Fragment extends Fragment {
                     mEmail.putExtra(Intent.EXTRA_TEXT, getFormattedReservationString());
                     mEmail.setType("message/rfc822");
                     startActivity(Intent.createChooser(mEmail, "Choose your mail client"));
+                } else {
+                    if (getFlagSum() <= 5) {
+                        sendMessage(getResources().getString(R.string.fill_rest));
+                    } else {
+                        if (getFlagSum() == 0) {
+                            sendMessage(getResources().getString(R.string.fill_reservation));
+                        } else checkForIncorrectFlags();
+                    }
                 }
             }
         });
+    }
+
+    private void checkForIncorrectFlags() {
+        if(nameCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_name));
+        }
+        if(legalAgeFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_birthday));
+        }
+        if(mailCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_mail));
+        }
+        if(phoneCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_phone));
+        }
+        if(dateInFutureFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_date));
+        }
+        if(timeCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_time));
+        }
+        if(personsCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_persons));
+        }
+        if(areaCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_area));
+        }
+        if(reasonCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_reason));
+        }
+    }
+
+    private void sendMessage(String fill_reservation) {
+        Toast.makeText(getActivity(), fill_reservation, Toast.LENGTH_SHORT).show();
     }
 
     private String getFormattedReservationString() {
@@ -204,6 +249,7 @@ public class Reservation_Fragment extends Fragment {
                         } else {
                             legalAgeFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
+                            hideKeyboard();
                         }
                     }
                 }
@@ -226,6 +272,7 @@ public class Reservation_Fragment extends Fragment {
                 if ((email.matches(emailPattern)) && (email != null)) {
                     mailCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
+                    hideKeyboard();
                 } else {
                     mailCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
@@ -272,7 +319,6 @@ public class Reservation_Fragment extends Fragment {
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
                     dateFilledFlag = TRUE;
-                    dh = new DateHelper(context);
                     if (dh.incorrectDateFormat(text)) {
                         dateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
@@ -284,6 +330,7 @@ public class Reservation_Fragment extends Fragment {
                         } else {
                             dateInFutureFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
+                            hideKeyboard();
                         }
                     }
                 }
@@ -352,15 +399,15 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedTime = time_adapter.getItem(position).toString();
-                if((selectedTime.equals("") || (selectedTime == null))){
+                if ((selectedTime.equals("") || (selectedTime == null))) {
                     timeCorrectFlag = FALSE;
                     inputIndicatorTime.setImageResource(R.drawable.icon_incorrect);
-                }
-                else{
+                } else {
                     timeCorrectFlag = TRUE;
                     inputIndicatorTime.setImageResource(R.drawable.icon_correct);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 timeCorrectFlag = FALSE;
@@ -407,6 +454,15 @@ public class Reservation_Fragment extends Fragment {
     private void initTimeSpinnerAdapter() {
         String [] time_array = getActivity().getResources().getStringArray(R.array.time_array);
         this.time_adapter = new SpinnerAdapter<String>(getActivity(), time_array);
+    }
+
+    private void hideKeyboard(){
+        InputMethodManager inputManager =
+                (InputMethodManager) context.
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(
+                getActivity().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override

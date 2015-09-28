@@ -191,6 +191,19 @@
     <string name="reservation_reason">Anlass:</string>
     <string name="reservation_reason_hint">z.B. Geburtstag</string>
     <string name="reservation_send_button">Senden</string>
+    <string name="fill_reservation">Bitte fülle zuerst das Formular aus!</string>
+    <string name="fill_rest">Bitte ergänze die fehlenden Angaben!</string>
+    <string name="fill_name">Bitte nenn uns deinen Namen!</string>
+    <string name="fill_birthday">Bitte gib ein korrektes Geburtstdatum an! \n Beachte dass du mindestens 18 Jahre alt sein musst!</string>
+    <string name="fill_mail">Bitte gib eine korrekte E-Mail-Adresse an!</string>
+    <string name="fill_phone">Bitte gib eine korrekte Telefonnummer an!</string>
+    <string name="fill_date">Das Reservierungsdateum darf frühestens am nächsten Tag sein! \n Reservierungen ein Jahr im Vorraus können nicht angenommen werden!</string>
+    <string name="fill_time">Bitte wähle eine Uhrzeit aus!</string>
+    <string name="fill_persons">Die Personenanzahl ist limitiert auf minestens 4 und höchstens 50! \n Bei größeren Reservierungen oder Sonderveranstaltungen kontaktiere uns bitte direkt!</string>
+    <string name="fill_area">Bitte gib einen Bereich an in dem du feiern willst!</string>
+    <string name="fill_reason">Bitte teile uns deinen Anlass mit!</string>
+
+
 
     <string name="enter_da_silva">Da Silva betreten</string>
     <string name="leave_da_silva">Da Silva verlassen</string>
