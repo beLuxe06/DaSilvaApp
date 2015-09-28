@@ -83,21 +83,4 @@
         android:layout_toRightOf="@id/da_silva_logo_news"
         android:padding="@dimen/padding_list_view_items"
         android:text="@string/default_news_feed_message" />
-
-    <TextView
-        android:id="@+id/link_to_facebook_entry"
-        style="@style/body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/message"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/da_silva_logo_news"
-        android:padding="@dimen/padding_list_view_items"
-        android:text="@string/default_news_link" />
-
-    <View
-        style="@style/news_feed_item_divider"
-        android:layout_below="@+id/link_to_facebook_entry" />
-
-
 </RelativeLayout>
