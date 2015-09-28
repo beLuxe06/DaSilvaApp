@@ -14,6 +14,9 @@ import java.net.URL;
 /**
  * Created by blu on 03.09.2015.
  */
+
+// ImageView aus URL anzeigen, bzw. Download Bitmap asynchron
+//        http://stackoverflow.com/questions/18953632/how-to-set-image-from-url-for-imageview
 public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
     private String url;

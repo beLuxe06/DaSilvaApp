@@ -12,15 +12,19 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.HomeActivity;
 import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedAdapter;
+import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedDownloadTask;
 import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedItem;
 import mi.ur.de.dasilvaapp.R;
 
 /**
  * Created by blu on 17.08.2015.
  */
+
+// Getting News Feed From Facebook
+// https://developers.facebook.com/docs/graph-api/reference/v2.4/page/feed
 public class News_Fragment extends Fragment implements DownloadListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -29,6 +33,11 @@ public class News_Fragment extends Fragment implements DownloadListener {
     private NewsFeedAdapter news_feed_items_adapter;
 
     public ProgressBar progressBar;
+
+   // Facebook Access Token:
+   // https://smashballoon.com/custom-facebook-feed/access-token/
+    // Facebook-GraphAPI Link bekommen
+    // https://developers.facebook.com/tools/explorer/145634995501895
 
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/posts?fields=id,created_time,link,story,message,full_picture&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
@@ -42,7 +51,7 @@ public class News_Fragment extends Fragment implements DownloadListener {
 
     private void fetchDataFromFacebook() {
         newsFeedItems.clear();
-        new NewsFeedItem.NewsFeedDownloadTask(getActivity(), this, newsFeedItems).execute(ADDRESS);
+        new NewsFeedDownloadTask(getActivity(), this, newsFeedItems).execute(ADDRESS);
     }
 
 

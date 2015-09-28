@@ -10,6 +10,16 @@ import mi.ur.de.dasilvaapp.R;
 /**
  * Created by blu on 04.09.2015.
  */
+
+//Format Time and Date
+//http://stackoverflow.com/questions/8654990/how-can-i-get-current-date-in-android
+//http://developer.android.com/reference/java/util/Date.html
+    //DateAndCalender Parsing
+//          http://www.mkyong.com/java/java-convert-date-to-calendar-example/
+ //       http://developer.android.com/reference/java/util/Date.html
+    //  developer.android.com/reference/java/text/DateFormat.html
+//       http://developer.android.com/reference/java/util/Calendar.html
+
 public class ActualCalendarProperties {
 
     private Calendar calendar;

@@ -17,6 +17,9 @@ import mi.ur.de.dasilvaapp.ViewPagerAdapter;
 /**
  * Created by blu on 17.08.2015.
  */
+
+// Location
+// http://gabesechansoftware.com/location-tracking/
 public class Location_Fragment extends Fragment {
 
     ViewPager locationImageViewPager;

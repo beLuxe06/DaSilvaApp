@@ -157,7 +157,7 @@ public class DateHelper {
             return true;
         }
         //true if following day and midnight
-        if ((dayDifference == -1 && midnight)) {
+        if ((dayDifference == -1) && midnight) {
             return true;
         }
         //true if other dayDifference but last months eve

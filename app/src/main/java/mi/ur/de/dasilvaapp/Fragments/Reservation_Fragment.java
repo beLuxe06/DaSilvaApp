@@ -8,13 +8,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import mi.ur.de.dasilvaapp.DateAndTime.ActualCalendarProperties;
 import mi.ur.de.dasilvaapp.DateAndTime.DateHelper;
 import mi.ur.de.dasilvaapp.Reservation.Reservation;
 import mi.ur.de.dasilvaapp.SpinnerAdapter;
@@ -31,6 +36,7 @@ public class Reservation_Fragment extends Fragment {
 
     private SpinnerAdapter time_adapter;
     private SpinnerAdapter area_adapter;
+    private ActualCalendarProperties calendarProperties;
     private DateHelper dh;
     private Context context;
     private Reservation reservation;
@@ -38,7 +44,11 @@ public class Reservation_Fragment extends Fragment {
     private String selectedTime;
     private String selectedArea;
     private int nameCorrectFlag = 0;
+    private int dateCorrectFlag = 0;
     private int mailCorrectFlag = 0;
+    private int birthdayDateCorrectFlag = 0;
+    private int birthdayFilledFlag = 0;
+    private int dateFilledFlag = 0;
     private int legalAgeFlag = 0;
     private int dateInFutureFlag = 0;
     private int phoneCorrectFlag = 0;
@@ -49,6 +59,8 @@ public class Reservation_Fragment extends Fragment {
     private static final int FALSE = 0;
     private static final int TRUE = 1;
 
+    private ArrayList<String> collectedFormData;
+    private Button sendButton;
     private EditText name;
     private EditText birthday;
     private EditText mail;
@@ -56,19 +68,28 @@ public class Reservation_Fragment extends Fragment {
     private EditText date;
     private EditText persons;
     private EditText reason;
+    private Spinner timeSpinner;
+    private Spinner areaSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_reservation, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
+        return rootView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         context = getActivity();
+        dh = new DateHelper(context);
+        initArrayList();
         initAdapters();
         initUI();
+    }
+
+    private void initArrayList() {
+        collectedFormData = new ArrayList<>();
     }
 
     private void initUI() {
@@ -78,7 +99,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initSendButton() {
-        Button sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
+        sendButton = (Button) getView().findViewById(R.id.reservation_send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,13 +111,55 @@ public class Reservation_Fragment extends Fragment {
                     mEmail.putExtra(Intent.EXTRA_TEXT, getFormattedReservationString());
                     mEmail.setType("message/rfc822");
                     startActivity(Intent.createChooser(mEmail, "Choose your mail client"));
+                } else {
+                    if (getFlagSum() <= 5) {
+                        sendMessage(getResources().getString(R.string.fill_rest));
+                    } else {
+                        if (getFlagSum() == 0) {
+                            sendMessage(getResources().getString(R.string.fill_reservation));
+                        } else checkForIncorrectFlags();
+                    }
                 }
             }
         });
     }
 
+    private void checkForIncorrectFlags() {
+        if(nameCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_name));
+        }
+        if(legalAgeFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_birthday));
+        }
+        if(mailCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_mail));
+        }
+        if(phoneCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_phone));
+        }
+        if(dateInFutureFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_date));
+        }
+        if(timeCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_time));
+        }
+        if(personsCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_persons));
+        }
+        if(areaCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_area));
+        }
+        if(reasonCorrectFlag == 0){
+            sendMessage(getResources().getString(R.string.fill_reason));
+        }
+    }
+
+    private void sendMessage(String fill_reservation) {
+        Toast.makeText(getActivity(), fill_reservation, Toast.LENGTH_SHORT).show();
+    }
+
     private String getFormattedReservationString() {
-        return "Name: " + reservation.getName() + "\n" +
+        return "Name: " + reservation.getName() +"\n" +
                 "Geburtstag: " + reservation.getBirthday() + "\n" +
                 "E-Mail: " + reservation.getMail() + "\n" +
                 "Telefon: " + reservation.getPhone() + "\n" +
@@ -125,7 +188,7 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private int getFlagSum() {
-        return (nameCorrectFlag + legalAgeFlag + mailCorrectFlag + phoneCorrectFlag + dateInFutureFlag + timeCorrectFlag + personsCorrectFlag + areaCorrectFlag + reasonCorrectFlag);
+        return (nameCorrectFlag +  legalAgeFlag + mailCorrectFlag + phoneCorrectFlag + dateInFutureFlag + timeCorrectFlag + personsCorrectFlag + areaCorrectFlag+ reasonCorrectFlag );
     }
 
     private void initInputAndValidateFields() {
@@ -154,6 +217,7 @@ public class Reservation_Fragment extends Fragment {
                 } else {
                     nameCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
+                    hideKeyboard();
                 }
             }
         });
@@ -171,17 +235,22 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
+                    birthdayFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
+                    birthdayFilledFlag = TRUE;
                     if (dh.incorrectDateFormat(text)) {
+                        birthdayDateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
+                        birthdayDateCorrectFlag = TRUE;
                         if (dh.illegalAge(text)) {
                             legalAgeFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {
                             legalAgeFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
+                            hideKeyboard();
                         }
                     }
                 }
@@ -189,11 +258,19 @@ public class Reservation_Fragment extends Fragment {
         });
     }
 
+    // Senden von Daten aus Reservierungsformular per Mail:
+    // http://stackoverflow.com/questions/21202069/sending-form-data-to-email
+
     private void initEnterMail() {
         mail = (EditText) getView().findViewById(R.id.reservation_mail_edit);
         final ImageView inputIndicatorMail = (ImageView) getView().findViewById(R.id.reservation_mail_input_indicator);
         checkForCorrectEMailInput(mail, inputIndicatorMail);
     }
+
+    // Validierung von TextInput in Edits
+    // http://stackoverflow.com/questions/2763022/android-how-can-i-validate-edittext-input
+    // Validierung von Mail-Adressen
+    // http://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
 
     private void checkForCorrectEMailInput(TextView textView, final ImageView indicator) {
         textView.addTextChangedListener(new TextInputValidator(textView) {
@@ -201,9 +278,10 @@ public class Reservation_Fragment extends Fragment {
             public void validate(TextView textView, String text) {
                 String email = text.trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if ((email.matches(emailPattern))) {
+                if ((email.matches(emailPattern)) && (email != null)) {
                     mailCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
+                    hideKeyboard();
                 } else {
                     mailCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
@@ -218,15 +296,19 @@ public class Reservation_Fragment extends Fragment {
         checkForCorrectPhoneInput(phone, inputIndicatorPhone);
     }
 
+    // Validierung von Telefonnummern
+    // http://stackoverflow.com/questions/6358380/phone-number-validation-android
+
     private void checkForCorrectPhoneInput(TextView textView, final ImageView indicator) {
         textView.addTextChangedListener(new TextInputValidator(textView) {
             @Override
             public void validate(TextView textView, String text) {
                 String phone = text.trim();
                 String phonePattern = "^[+]?[0-9]{6,20}$";
-                if ((phone.matches(phonePattern))) {
+                if ((phone.matches(phonePattern)) && (phone != null)) {
                     phoneCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
+                    hideKeyboard();
                 } else {
                     phoneCorrectFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
@@ -246,18 +328,22 @@ public class Reservation_Fragment extends Fragment {
             @Override
             public void validate(TextView textView, String text) {
                 if ((text == null) || (text.length() != 10)) {
+                    dateFilledFlag = FALSE;
                     indicator.setImageResource(R.drawable.icon_incorrect);
                 } else {
-                    dh = new DateHelper(context);
+                    dateFilledFlag = TRUE;
                     if (dh.incorrectDateFormat(text)) {
+                        dateCorrectFlag = FALSE;
                         indicator.setImageResource(R.drawable.icon_incorrect);
                     } else {
+                        dateCorrectFlag = TRUE;
                         if (dh.timeInPast(text)) {
                             dateInFutureFlag = FALSE;
                             indicator.setImageResource(R.drawable.icon_incorrect);
                         } else {
                             dateInFutureFlag = TRUE;
                             indicator.setImageResource(R.drawable.icon_correct);
+                            hideKeyboard();
                         }
                     }
                 }
@@ -286,6 +372,7 @@ public class Reservation_Fragment extends Fragment {
                     } else {
                         personsCorrectFlag = TRUE;
                         indicator.setImageResource(R.drawable.icon_correct);
+                        hideKeyboard();
                     }
                 }
             }
@@ -308,10 +395,15 @@ public class Reservation_Fragment extends Fragment {
                 } else {
                     reasonCorrectFlag = TRUE;
                     indicator.setImageResource(R.drawable.icon_correct);
+                    hideKeyboard();
                 }
             }
         });
     }
+
+    // Einfache Drop-Down-Menüs(Spinner)
+    // http://developer.android.com/guide/topics/ui/controls/spinner.html
+    // http://stackoverflow.com/questions/4361604/how-to-change-the-spinner-font-color
 
     private void initSpinners() {
         initTimeSpinner();
@@ -319,14 +411,14 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initTimeSpinner() {
-        Spinner timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
+        timeSpinner = (Spinner) getView().findViewById(R.id.time_spinner);
         timeSpinner.setAdapter(time_adapter);
         final ImageView inputIndicatorTime = (ImageView) getView().findViewById(R.id.reservation_time_input_indicator);
         timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedTime = time_adapter.getItem(position).toString();
-                if ((selectedTime.equals(""))) {
+                if ((selectedTime.equals("") || (selectedTime == null))) {
                     timeCorrectFlag = FALSE;
                     inputIndicatorTime.setImageResource(R.drawable.icon_incorrect);
                 } else {
@@ -344,22 +436,22 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initAreaSpinner() {
-        Spinner areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
+        areaSpinner = (Spinner) getView().findViewById(R.id.area_spinner);
         areaSpinner.setAdapter(area_adapter);
         final ImageView inputIndicatorArea = (ImageView) getView().findViewById(R.id.reservation_area_input_indicator);
         areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedArea = area_adapter.getItem(position).toString();
-                if ((selectedArea.equals(""))) {
+                if((selectedArea.equals("") || (selectedArea == null))){
                     areaCorrectFlag = FALSE;
                     inputIndicatorArea.setImageResource(R.drawable.icon_incorrect);
-                } else {
+                }
+                else{
                     areaCorrectFlag = TRUE;
                     inputIndicatorArea.setImageResource(R.drawable.icon_correct);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 areaCorrectFlag = FALSE;
@@ -374,13 +466,25 @@ public class Reservation_Fragment extends Fragment {
     }
 
     private void initAreaSpinnerAdapter() {
-        String[] area_array = getActivity().getResources().getStringArray(R.array.area_array);
-        this.area_adapter = new SpinnerAdapter<>(getActivity(), area_array);
+        String [] area_array = getActivity().getResources().getStringArray(R.array.area_array);
+        this.area_adapter = new SpinnerAdapter<String>(getActivity(), area_array);
     }
 
     private void initTimeSpinnerAdapter() {
-        String[] time_array = getActivity().getResources().getStringArray(R.array.time_array);
-        this.time_adapter = new SpinnerAdapter<>(getActivity(), time_array);
+        String [] time_array = getActivity().getResources().getStringArray(R.array.time_array);
+        this.time_adapter = new SpinnerAdapter<String>(getActivity(), time_array);
+    }
+
+    //Hide Keyboard after Edit
+   // http://stackoverflow.com/questions/2342620/how-to-hide-keyboard-after-typing-in-edittext-in-android
+
+    private void hideKeyboard(){
+        InputMethodManager inputManager =
+                (InputMethodManager) context.
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(
+                getActivity().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override

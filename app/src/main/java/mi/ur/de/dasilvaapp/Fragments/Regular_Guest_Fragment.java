@@ -33,8 +33,8 @@ public class Regular_Guest_Fragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final double DA_SILVA_LATITUDE = 49.02;
-    private static final double DA_SILVA_LONGITUDE = 12.16;
+    private static final double DA_SILVA_LATITUDE = 49.016;
+    private static final double DA_SILVA_LONGITUDE = 12.096;
 
     private static final int DATABASE_ONLY_ID = 0;
 
@@ -63,6 +63,9 @@ public class Regular_Guest_Fragment extends Fragment {
         startLocationTracking();
         workWithButtonClicks();
     }
+
+    // Getting a Single Row from Database
+    // http://themasterworld.com/android-sqlite-get-a-single-row-from-table/
 
     private void initDB() {
         regularGuestDatabase = new RegularGuestDatabase(getActivity());
@@ -136,24 +139,27 @@ public class Regular_Guest_Fragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.you_entered, Toast.LENGTH_SHORT).show();
                 saveEnteringInDatabase();
             } else {
-                Toast.makeText(getActivity(), R.string.please_enter, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getActivity(), Double.toString(approximateLocation.getLatitude()) + " - " + Double.toString(approximateLocation.getLongitude()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), R.string.please_enter, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), Double.toString(approximateLocation.getLatitude()) + " - " + Double.toString(approximateLocation.getLongitude()), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    // Test ob Location Services aktiviert
+    // http://stackoverflow.com/questions/10311834/how-to-check-if-location-services-are-enabled
+
     private Location approximateLocation(Location location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        double approximateLatitude = roundDown2(latitude);
-        double approximateLongitude = roundDown2(longitude);
+        double approximateLatitude = roundDown3(latitude);
+        double approximateLongitude = roundDown3(longitude);
         location.setLatitude(approximateLatitude);
         location.setLongitude(approximateLongitude);
         return location;
     }
 
-    public static double roundDown2(double d) {
-        return (long) (d * 1e2) / 1e2;
+    public static double roundDown3(double d) {
+        return (long) (d * 1e3) / 1e3;
     }
 
     private void saveEnteringInDatabase() {

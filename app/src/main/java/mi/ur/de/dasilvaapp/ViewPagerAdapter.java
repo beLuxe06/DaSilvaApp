@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 
 import mi.ur.de.dasilvaapp.Fragments.Image_Fullscreen_Fragment;
 
+// View Pager
+// http://www.androidbegin.com/tutorial/android-viewpager-gallery-images-and-texts-tutorial/))
+
 public class ViewPagerAdapter extends PagerAdapter {
     // Declare Variables
     Context context;

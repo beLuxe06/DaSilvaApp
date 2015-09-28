@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.Gallery.DaSilvaGallery;
-import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.Gallery.GalleryDetailAdapter;
 import mi.ur.de.dasilvaapp.Gallery.GalleryDownloadTask;
 import mi.ur.de.dasilvaapp.R;
@@ -26,6 +26,11 @@ public class Gallery_Detail_Fragment extends Fragment implements DownloadListene
     public static final String FACEBOOK_ID_KEY = "0";
     public static final String EVENT_NAME_KEY = "1";
     public static final String EVENT_DATE_KEY = "2";
+
+    // Facebook Access Token:
+    // https://smashballoon.com/custom-facebook-feed/access-token/
+    // Facebook-GraphAPI Link bekommen
+    // https://developers.facebook.com/tools/explorer/145634995501895
     private static final String ADDRESS_PREFIX = "https://graph.facebook.com/";
     private static final String ADDRESS_SUFFIX = "/photos?fields=id,picture,name,link,backdated_time&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 

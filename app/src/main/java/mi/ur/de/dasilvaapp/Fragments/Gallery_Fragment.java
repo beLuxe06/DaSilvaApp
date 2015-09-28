@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.Gallery.DaSilvaGallery;
-import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+import mi.ur.de.dasilvaapp.DownloadListener;
 import mi.ur.de.dasilvaapp.Gallery.GalleryAdapter;
 import mi.ur.de.dasilvaapp.Gallery.GalleryDownloadTask;
 import mi.ur.de.dasilvaapp.HomeActivity;
@@ -32,6 +32,11 @@ public class Gallery_Fragment extends Fragment implements DownloadListener {
 
     public ProgressBar progressBar;
 
+
+    // Facebook Access Token:
+    // https://smashballoon.com/custom-facebook-feed/access-token/
+    // Facebook-GraphAPI Link bekommen
+    // https://developers.facebook.com/tools/explorer/145634995501895
     private final static String ADDRESS = "https://graph.facebook.com/58336779060/albums?fields=id,link,backdated_time,name,picture{url}&access_token=504302586404216|WUO3JsCn9BioDFifJv0hpgzaiRE";
 
     @Override

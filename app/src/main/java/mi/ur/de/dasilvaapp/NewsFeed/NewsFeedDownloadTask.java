@@ -1,4 +1,4 @@
-package mi.ur.de.dasilvaapp.Gallery;
+package mi.ur.de.dasilvaapp.NewsFeed;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,20 +16,22 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.DownloadListener;
+import mi.ur.de.dasilvaapp.NewsFeed.NewsFeedItem;
 
 /**
- * Created by blu on 25.09.2015.
+ * Created by blu on 03.09.2015.
  */
-public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
+public class NewsFeedDownloadTask extends AsyncTask<String, Integer, String> {
 
     private static final String DATA = "data";
     private static final String FACEBOOK_ID = "id";
-    private static final String NAME = "name";
-    private static final String DATE = "backdated_time";
+    private static final String CREATED_TIME = "created_time";
+    private static final String STORY = "story";
+    private static final String MESSAGE = "message";
+    private static final String IMAGE_URL = "full_picture";
     private static final String LINK = "link";
-    private static final String URL = "url";
 
-    private ArrayList<DaSilvaGallery> galleries;
+    private ArrayList<NewsFeedItem> newsFeedItems;
     private DownloadListener listener;
     private Context context;
 
@@ -46,10 +48,10 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
         super.onProgressUpdate(values);
     }
 
-    public GalleryDownloadTask(Context context, DownloadListener listener, ArrayList<DaSilvaGallery> galleries) {
+    public NewsFeedDownloadTask(Context context, DownloadListener listener, ArrayList<NewsFeedItem> newsFeedItems) {
         this.context = context;
         this.listener = listener;
-        this.galleries = galleries;
+        this.newsFeedItems = newsFeedItems;
     }
 
     // Auslesen eines JSON Arrays und speichern der Daten in eigenem Objekt vgl. Übung Bundesligatabelle
@@ -59,7 +61,7 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
         String jsonString = "";
 
         try {
-            java.net.URL url = new URL(params[0]);
+            URL url = new URL(params[0]);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -98,43 +100,37 @@ public class GalleryDownloadTask extends AsyncTask<String, Integer, String> {
 
     private void processJson(String text) {
         try {
-            JSONObject gallery = new JSONObject(text);
-            JSONArray jsonArray = gallery.getJSONArray(DATA);
+            JSONObject feed = new JSONObject(text);
+            JSONArray jsonArray = feed.getJSONArray(DATA);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String facebookID = jsonObject.getString(FACEBOOK_ID);
-                String name;
-                // name for pictures is null
-                try {
-                    name = jsonObject.getString(NAME);
-                } catch (JSONException e) {
-                    name = null;
-                }
+                String createdTime = jsonObject.getString(CREATED_TIME);
                 String link = jsonObject.getString(LINK);
-                // date may be null
-                String date;
+                // story may be null
+                String story;
                 try {
-                    date = jsonObject.getString(DATE).substring(0, 10);
+                    story = jsonObject.getString(STORY);
                 } catch (JSONException e) {
-                    date = null;
+                    story = null;
                 }
-
+                // message may be null
+                String message;
+                try {
+                    message = jsonObject.getString(MESSAGE);
+                } catch (JSONException e) {
+                    message = null;
+                }
                 // imageURL may be null
-                String imageURL = null;
+                String imageURL;
                 try {
-                    imageURL = jsonObject.getJSONObject("picture").getJSONObject("data").getString(URL);
+                    imageURL = jsonObject.getString(IMAGE_URL);
                 } catch (JSONException e) {
-                    try {
-                        imageURL = jsonObject.getString("picture");
-                    } catch (JSONException ex) {
-                        imageURL = null;
-                    }
+                    imageURL = null;
                 }
 
-                if ((date != null)) {
-                    DaSilvaGallery newGallery = new DaSilvaGallery(0, facebookID, name, date, imageURL, link);
-                    galleries.add(newGallery);
-                }
+                NewsFeedItem item = new NewsFeedItem(facebookID, createdTime, link, story, message, imageURL);
+                newsFeedItems.add(item);
             }
         } catch (JSONException e) {
             e.printStackTrace();

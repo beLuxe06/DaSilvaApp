@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/today_home"
-        style="@style/sub_subhead"
+        style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/event_status_home"
@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/weekday_today_home"
-        style="@style/sub_subhead"
+        style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/event_status_home"
@@ -66,7 +66,7 @@
 
     <TextView
         android:id="@+id/date_today_home"
-        style="@style/sub_subhead"
+        style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/event_status_home"

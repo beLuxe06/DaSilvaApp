@@ -37,6 +37,10 @@ import mi.ur.de.dasilvaapp.TextViews.DaSilvaAppTitleTextView;
  */
 public class NavigationDrawerFragment extends Fragment {
 
+    // Fragment info: http://www.bs7-augsburg.de/aicher/files_codeconcert/Android/AnPr_Android_Course_2_2_Fragments.pdf
+    // https://www.youtube.com/watch?v=K8hSIP2ha-g
+    // https://www.youtube.com/watch?v=zwqzhY5i2rc
+
     /**
      * Remember the position of the selected item.
      */
@@ -136,6 +140,11 @@ public class NavigationDrawerFragment extends Fragment {
      * @param fragmentId   The android:id of this fragment in its activity's layout.
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
+
+    //Setting Color Ressources for Navigation Drawer
+    //http://stackoverflow.com/questions/23112376/custom-background-color-for-selected-item-with-activatedbackgroundindicator-na
+    //How to add Icons in Navigation Drawer
+    //http://stackoverflow.com/questions/28119149/how-do-i-add-icons-to-android-studios-navigation-drawer-template
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;

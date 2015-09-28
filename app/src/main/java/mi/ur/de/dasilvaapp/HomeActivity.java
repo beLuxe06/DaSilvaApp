@@ -20,7 +20,6 @@ import mi.ur.de.dasilvaapp.Fragments.Opening_Time_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Program_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Regular_Guest_Fragment;
 import mi.ur.de.dasilvaapp.Fragments.Reservation_Fragment;
-import mi.ur.de.dasilvaapp.Unused.DownloadListener;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, DownloadListener {
@@ -65,6 +64,9 @@ public class HomeActivity extends AppCompatActivity
         // Forces Shut Down -> Commented
         // AppEventsLogger.activateApp(this);
     }
+
+    // First Fragment to start
+    // http://stackoverflow.com/questions/22557780/first-fragment-to-be-added-to-the-main-activity-when-application-starts-up
 
     private void startHomeFragmentFirst() {
         Fragment newFragment = Home_Fragment.newInstance(1);

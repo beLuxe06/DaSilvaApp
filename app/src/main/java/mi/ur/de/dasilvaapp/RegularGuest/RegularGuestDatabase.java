@@ -85,6 +85,7 @@ public class RegularGuestDatabase {
     }
 
 
+
     public ArrayList<RegularGuestItem> getAllRegularGuestItems() {
         ArrayList<RegularGuestItem> items = new ArrayList<>();
         Cursor cursor = db.query(DATABASE_TABLE, new String[]{KEY_ID, KEY_NUMBER_OF_VISITS, KEY_TIME_OF_ENTERING}, null, null, null, null, null);

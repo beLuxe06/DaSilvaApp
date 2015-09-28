@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import mi.ur.de.dasilvaapp.DaSilvaEvent;
-import mi.ur.de.dasilvaapp.Unused.DownloadListener;
+import mi.ur.de.dasilvaapp.DownloadListener;
 
 /**
  * Created by blu on 03.09.2015.
