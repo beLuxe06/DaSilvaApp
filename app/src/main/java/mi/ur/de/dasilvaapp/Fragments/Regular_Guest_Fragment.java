@@ -14,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.InvalidMarkException;
 import java.text.DecimalFormat;
 
 import mi.ur.de.dasilvaapp.ActualCalendarProperties;
@@ -46,6 +48,7 @@ public class Regular_Guest_Fragment extends Fragment {
     Button leaveButton;
 
     TextView viewNumberOfVisits;
+    ImageView voucher;
 
     LocationTracker locationTracker;
     Location daSilvaLocation;
@@ -79,6 +82,7 @@ public class Regular_Guest_Fragment extends Fragment {
     private void initUi() {
         enterButton = (Button) getView().findViewById(R.id.enter_button);
         leaveButton = (Button) getView().findViewById(R.id.leave_button);
+        voucher = (ImageView) getView().findViewById(R.id.view_available_voucher);
         viewNumberOfVisits = (TextView) getView().findViewById(R.id.actual_number_of_visits);
         calendarProperties = new ActualCalendarProperties(getActivity());
         dateHelper = new DateHelper(getActivity());
@@ -224,10 +228,33 @@ public class Regular_Guest_Fragment extends Fragment {
     }
 
     private void saveLeavingInDatabase() {
+        regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
         numberOfVisits = regularGuestDatabase.getAllRegularGuestItems().get((DATABASE_ONLY_ID)).getNumberOfVisits();
         numberOfVisits++;
         regularGuestDatabase.updateNumberOfVisits(DATABASE_ONLY_ID, numberOfVisits);
-        regularGuestDatabase.updateTimeOfEntering(DATABASE_ONLY_ID, "0");
+    }
+
+    private void updateViews() {
+        if (regularGuestDatabase.getAllRegularGuestItems().size() != 0) {
+            numberOfVisits = regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getNumberOfVisits();
+        }
+        viewNumberOfVisits.setText(Integer.toString(numberOfVisits));
+        updateVouchers();
+    }
+
+    private void updateVouchers() {
+        if (numberOfVisits >= 1) {
+            voucher.setImageResource(R.drawable.gutschein_vodka_lime);
+        }
+        if (numberOfVisits >= 5) {
+            voucher.setImageResource(R.drawable.gutschein_vodka_bull);
+        }
+        if (numberOfVisits >= 10) {
+            voucher.setImageResource(R.drawable.gutschein_solero);
+        }
+        if (numberOfVisits >= 15) {
+            voucher.setImageResource(R.drawable.gutschein_touch_down);
+        }
     }
 
     public static boolean isLocationEnabled(Context context) {
@@ -248,13 +275,6 @@ public class Regular_Guest_Fragment extends Fragment {
             locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
             return !TextUtils.isEmpty(locationProviders);
         }
-    }
-
-    private void updateViews() {
-        if (regularGuestDatabase.getAllRegularGuestItems().size() != 0) {
-            numberOfVisits = regularGuestDatabase.getAllRegularGuestItems().get(DATABASE_ONLY_ID).getNumberOfVisits();
-        }
-        viewNumberOfVisits.setText(Integer.toString(numberOfVisits));
     }
 
     @Override

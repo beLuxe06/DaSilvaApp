@@ -69,12 +69,10 @@ public class RegularGuestDatabase {
         values.put(KEY_TIME_OF_ENTERING, timeOfEntering);
 
         // Which row to update, based on the ID
-        String selection = KEY_ID + " = '" + id + "'";
-        /*String selection = KEY_TIME_OF_ENTERING + " LIKE ?";
-        String[] selectionArgs = {String.valueOf(id)};*/
+        String selection = KEY_TIME_OF_ENTERING + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};
 
-        //return db.update(DATABASE_TABLE, values, selection, selectionArgs);
-        return db.update(DATABASE_TABLE, values, selection, null);
+        return db.update(DATABASE_TABLE, values, selection, selectionArgs);
     }
 
     // update and delete methods Vgl. developer.android.com/training/basics/data-storage/databases.html#UpdateDbRow
