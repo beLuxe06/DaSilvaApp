@@ -2,8 +2,9 @@
 
 <mi.ur.de.dasilvaapp.DaSilvaAppTitleTextView
     android:id="@+id/navigation_fragment_section"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
     android:textAlignment="textStart"
     android:background="@drawable/navigation_drawer_background"
     style="@style/navigation_drawer"

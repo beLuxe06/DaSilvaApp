@@ -26,14 +26,14 @@
         <item>@drawable/icon_news</item>
     </string-array>
     <string-array name="sections">
-        <item>Home</item>
-        <item>Programm</item>
-        <item>Galerie</item>
-        <item>Location</item>
-        <item>Reservierung</item>
-        <item>Drink des Monats</item>
-        <item>Stammgast</item>
-        <item>News</item>
+        <item>\tHome</item>
+        <item>\tProgramm</item>
+        <item>\tGalerie</item>
+        <item>\tLocation</item>
+        <item>\tReservierung</item>
+        <item>\tDrink des Monats</item>
+        <item>\tStammgast</item>
+        <item>\tNews</item>
     </string-array>
 
     <string name="event_day_today">Heute</string>

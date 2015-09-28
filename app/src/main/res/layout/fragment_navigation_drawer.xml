@@ -1,9 +1,9 @@
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:choiceMode="singleChoice"
-    android:divider="@color/text_color_primary"
-    android:dividerHeight="2dp"
-    android:background="@drawable/navigation_drawer_background"
+    android:divider="@color/da_silva_background_transparent"
+    android:dividerHeight="1dp"
+    android:background="@color/navigation_drawer_background_color"
     tools:context=".NavigationDrawerFragment" />
