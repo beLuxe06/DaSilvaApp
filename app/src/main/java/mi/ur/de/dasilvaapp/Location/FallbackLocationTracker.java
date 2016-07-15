@@ -8,8 +8,6 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 
-import mi.ur.de.dasilvaapp.Location.LocationTracker;
-import mi.ur.de.dasilvaapp.Location.ProviderLocationTracker;
 
 public class FallbackLocationTracker implements LocationTracker, LocationTracker.LocationUpdateListener {
 
